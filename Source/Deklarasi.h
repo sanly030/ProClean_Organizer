@@ -1,7 +1,6 @@
 #ifndef DEKLARASI_H
 #define DEKLARASI_H
-#include <stdio.h>
-#include <windows.h>
+
 
 
 #endif //DEKLARASI_H
@@ -17,6 +16,7 @@
 #define RIGHT_KEY 77
 #define TAB 83
 int a, i, j, x , y , z;
+int id;
 int input;
 FILE *fp;
 FILE* fp1;
@@ -55,3 +55,23 @@ typedef struct {
     char password[30];
 } Admin ;
 Admin adm;
+
+
+typedef char string[255];
+typedef struct {
+    int id_petugas;
+    string nama[25];
+    string alamat[25];
+    string no_telp[25];
+    string status[25];
+    string username[20];
+    string password[20];
+} petugas;
+petugas pgs;
+
+typedef struct {
+    int id_jenispetugas[6];
+    char namaJenisKaryawan[25];
+    char jabatan[25];
+} jnspetugas;
+jnspetugas jgs;

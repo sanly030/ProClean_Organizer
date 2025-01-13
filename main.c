@@ -14,15 +14,20 @@
 // #include "Source/MASTER PETUGAS.h"
 
 #include "Source/Login.h"
+#include "Interface/MenuAdmin.h"
 #include "Source/Dashboard.h"
-// #include "Source/Dashboard Petugas.h"
+
 #include "Source/CRUD MASTER/CRUD MASTER PETUGAS/CreatePetugas.h"
 #include "Source/CRUD MASTER/CRUD MASTER PETUGAS/ReadPetugas.h"
 #include "Source/CRUD MASTER/CRUD MASTER PETUGAS/UpdatePetugas.h"
 #include "Source/CRUD MASTER/CRUD MASTER PETUGAS/DeletePetugas.h"
+#include "Source/CRUD MASTER/CRUD MASTER JENIS PETUGAS/Create Jenis Petugas.h"
+#include "Source/CRUD MASTER/CRUD MASTER JENIS PETUGAS/ReadJenisPetugas.h"
+#include "Source/CRUD MASTER/CRUD MASTER JENIS PETUGAS/UpdateJenisPetugas.h"
+#include "Source/CRUD MASTER/CRUD MASTER JENIS PETUGAS/DeleteJenisPetugas.h"
+
 
 int main() {
-
     tampilanawal();
     getch();
 }

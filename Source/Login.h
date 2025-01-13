@@ -1,3 +1,7 @@
+void HalLogin();
+void Username(char username[]);
+void Password(char password[]);
+void Dashboard();
 
 int i, x, y;
 
@@ -34,6 +38,7 @@ void frame(int x, int y){
 }
 
 void HalLogin() {
+    // ShowCursor(0);
     system("color 71");
     borderAwal();
     // PrintFile("..//Asset/ProCleanOrganizer.txt", 83, 15);

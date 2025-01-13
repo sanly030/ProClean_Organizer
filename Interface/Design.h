@@ -189,7 +189,7 @@ void PrintFile(char file[], int x, int y){
          printf("%c", 196);
      }
      for (x = 68; x <= 109; x++) {           //isi
-         _sleep(20);
+         Sleep(20);
          gotoxy(x, 36);
          printf("%c", 219);
      }
@@ -259,7 +259,7 @@ void textBox2(int x, int y, int width, int height) {
     printf("%c", 188);
 }
 
-void blankScreen(i,j){
+void blankScreen(int i,int j){
     SetColorBlock(7,7);
     for(i = 2; i < 43; i++){
         for(j = 3; j < 173; j++){
