@@ -70,8 +70,8 @@ typedef struct {
 petugas pgs;
 
 typedef struct {
-    int id_jenispetugas[6];
-    char namaJenisKaryawan[25];
+    int id_jenispetugas;
+    char namajenispetugas[25];
     char jabatan[25];
 } jnspetugas;
 jnspetugas jgs;

@@ -36,7 +36,7 @@ void ReadJenisPetugas() {
             printf(" ");
         }
         gotoxy(55,A);printf("PGS00%d",jgs.id_jenispetugas);
-        gotoxy(70,A);printf("%s",jgs.namaJenisKaryawan);
+        gotoxy(70,A);printf("%s",jgs.namajenispetugas);
         gotoxy(84,A);printf("%s",jgs.jabatan);
 
     }

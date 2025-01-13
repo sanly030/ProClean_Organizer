@@ -47,8 +47,7 @@ void MenuAdmin() {
                 case 5:
                     printf("Keluar program.\n");
                     // MenuAdmin();
-                    // exit(0)
-                Dashboard();
+                    exit(0);
                 break;
                 default:
                     printf("Pilihan tidak valid.\n");

@@ -30,6 +30,7 @@ void ReadPetugas() {
         gotoxy(123, 16);printf("Username");
         gotoxy(140, 16);printf("Password");
 
+    A = 17;
     while(fread(&pgs, sizeof(petugas), 1, arspgs)) {
         A++, N++;
         if(A%2 == 0) {
@@ -48,6 +49,7 @@ void ReadPetugas() {
         gotoxy(110,A);printf("%s",pgs.status);
         gotoxy(123,A);printf("%s",pgs.username);
         gotoxy(140,A);printf("%s",pgs.password);
+        A+1;
 
         fflush(stdin);
     }
