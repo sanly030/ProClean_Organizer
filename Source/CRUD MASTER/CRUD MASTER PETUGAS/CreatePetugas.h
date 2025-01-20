@@ -109,6 +109,7 @@
 static int lastpetugas = 0;
 
 void CreatePetugas() {
+    clearArea(30,10,140,31);
     fflush(stdin);
     int role_choice; // Variabel untuk menyimpan pilihan role
     i = 0;

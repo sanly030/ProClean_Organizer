@@ -10,6 +10,7 @@ void TextBoxUbah(int id_petugas);
 
 //Fungsi Ubah Data Jenis Petugas
 void UpdateJenisPetugas() {
+    clearArea(30,10,140,31);
     int id_petugas;
     int found = 0;
 

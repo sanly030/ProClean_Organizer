@@ -3,6 +3,7 @@
 
 void CreateJenisPetugas() {
     fflush(stdin);
+    clearArea(30,10,140,31);
     int lastpetugas = 0;
     i = 0;
 

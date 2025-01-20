@@ -3,6 +3,7 @@
 
 // Fungsi Hapus Data
 void DeletePetugas() {
+    clearArea(30,10,140,31);
     int id_petugas;
     int found = 0;
     fflush(stdin);

@@ -4,6 +4,7 @@
 void lihatData();
 // Fungsi Ubah Data
 void UpdatePetugas() {
+    clearArea(30,10,140,31);
     int id_petugas;
     int found = 0;
 

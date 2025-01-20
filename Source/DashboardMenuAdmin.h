@@ -65,7 +65,7 @@ void MenuJenisPetugas() {
         gotoprinttext(50,23,"4. Hapus Data");
         gotoprinttext(50,25,"5. Keluar Data");
         gotoprinttext(50,28,"Pilih opsi : ");
-        gotoxy(50, 28);
+        gotoxy(63, 28);
         scanf("%d", &pilihan);
         getchar(); // Bersihkan buffer
 

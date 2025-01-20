@@ -7,6 +7,7 @@
 
 
 void ReadJenisPetugas() {
+    clearArea(30,10,140,31);
     A=19; I=55; N=0;
     FILE *arsjgs = fopen("../Database/Dat/JENIS PETUGAS.dat", "rb");
     if (arsjgs == NULL) {

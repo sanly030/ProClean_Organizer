@@ -5,6 +5,7 @@
 
 // Fungsi Tampilkan Data
 void ReadPetugas() {
+    clearArea(30,10,140,31);
     A=17, I=53, N=0;
     FILE *arspgs = fopen("../Database/Dat/DATA PETUGAS.dat", "rb");
 
