@@ -1,7 +1,6 @@
 #ifndef UPDATEPETUGAS_H
 #define UPDATEPETUGAS_H
 
-
 void lihatData();
 // Fungsi Ubah Data
 void UpdatePetugas() {
@@ -22,8 +21,8 @@ void UpdatePetugas() {
     FILE *arspgs = fopen("../Database/Dat/DATA PETUGAS.dat", "rb");
     FILE *temp = fopen("TEMP PETUGAS.dat", "wb");
 
-    clearArea(48,10,123,33);
-    frame(72,20);
+    // clearArea(48,10,123,33);
+    // frame(72,20);
     while (fread(&pgs, sizeof(petugas), 1, arspgs)) {
         if (pgs.id_petugas == id_petugas) {
             found = 1;
@@ -54,10 +53,10 @@ void UpdatePetugas() {
     } else {
         gotoxy(65,30);
 
-        printf("Data dengan ID Petugas %s tidak ditemukan.\n", id_petugas);
+        printf("Data dengan ID Petugas PGS00%d tidak ditemukan.\n", id_petugas);
     }
     getch();
-    MenuAdmin();
+    DashboardMenuAdmin();
 }
 
 

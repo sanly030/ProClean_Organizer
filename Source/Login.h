@@ -38,7 +38,7 @@ void frame(int x, int y){
 }
 
 void HalLogin() {
-    // ShowCursor(0);
+    // ShowCursor(10);
     system("color 71");
     borderAwal();
     // PrintFile("..//Asset/ProCleanOrganizer.txt", 83, 15);

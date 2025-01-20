@@ -19,4 +19,5 @@ add_executable(ProClean_Organizer main.c
         "Source/CRUD MASTER/CRUD MASTER JENIS PETUGAS/ReadJenisPetugas.h"
         "Source/CRUD MASTER/CRUD MASTER JENIS PETUGAS/UpdateJenisPetugas.h"
         "Source/CRUD MASTER/CRUD MASTER JENIS PETUGAS/DeleteJenisPetugas.h"
+        Source/DashboardMenuAdmin.h
 )

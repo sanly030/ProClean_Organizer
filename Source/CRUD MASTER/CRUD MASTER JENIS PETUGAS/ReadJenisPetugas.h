@@ -5,26 +5,29 @@
 #ifndef READJENISPETUGAS_H
 #define READJENISPETUGAS_H
 
+
 void ReadJenisPetugas() {
-    FILE *JGS = fopen("../Database/Dat/JENIS PETUGAS.dat", "rb");
-    if (JGS == NULL) {
+    A=19; I=55; N=0;
+    FILE *arsjgs = fopen("../Database/Dat/JENIS PETUGAS.dat", "rb");
+    if (arsjgs == NULL) {
         printf("File could not be opened\n");
     }
-    gotoxy(65,12);
+    gotoxy(70,12);
     printf("-----------------------------------");
-    gotoxy(70, 13);
+    gotoxy(70 ,13);
     printf("D A T A  J E N I S  P E T U G A S");
-    gotoxy(65, 14);
+    gotoxy(70, 14);
     printf("-----------------------------------\n");
-    for(x=I;x < 150;x++) {
-        gotoxy(x,15);printf("%c",205);
-        gotoxy(x,17);printf("%c",205);
+    for(x=I;x < 127;x++) {
+        gotoxy(x,16);printf("%c",205);
+        gotoxy(x,18);printf("%c",205);
     }
-    gotoxy(55, 16);printf("ID Jenis Petugas");
-    gotoxy(70, 16);printf("Jenis Petugas");
-    gotoxy(84, 16);printf("Jabatan");
+    gotoxy(58, 17);printf("ID Jenis Petugas");
+    gotoxy(78, 17);printf("Jabatan");
+    gotoxy(98, 17);printf("Deskripsi");
 
-    while(fread(&jgs, sizeof(jnspetugas), 1, JGS)) {
+    A=18;
+    while(fread(&jgs, sizeof(jnspetugas), 1, arsjgs)) {
         A++, N++;
         if(A%2 == 0) {
             gotoxy(I,A);
@@ -35,10 +38,14 @@ void ReadJenisPetugas() {
         {
             printf(" ");
         }
-        gotoxy(55,A);printf("PGS00%d",jgs.id_jenispetugas);
-        gotoxy(70,A);printf("%s",jgs.namajenispetugas);
-        gotoxy(84,A);printf("%s",jgs.jabatan);
-
+        gotoxy(58,A);printf("JPS00%d",jgs.id_jenispetugas);
+        gotoxy(78,A);printf("%s",jgs.jabatan);
+        gotoxy(98,A);printf("%s",jgs.deskripsijabatan);
+        A+1;
+        fflush(stdin);
     }
+    fclose(arsjgs);
+    getch();
+    MenuJenisPetugas();
 }
 #endif //READJENISPETUGAS_H

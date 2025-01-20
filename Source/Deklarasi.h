@@ -21,6 +21,7 @@ int input;
 FILE *fp;
 FILE* fp1;
 FILE* temp;
+int A,I,N;
 
 // DEKLARASI MASTER PELANGGAN
 // typedef struct {
@@ -59,6 +60,7 @@ Admin adm;
 
 typedef char string[255];
 typedef struct {
+    int role;
     int id_petugas;
     string nama[25];
     string alamat[25];
@@ -71,7 +73,7 @@ petugas pgs;
 
 typedef struct {
     int id_jenispetugas;
-    char namajenispetugas[25];
     char jabatan[25];
+    char deskripsijabatan[255];
 } jnspetugas;
 jnspetugas jgs;

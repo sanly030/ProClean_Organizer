@@ -188,19 +188,21 @@ void PrintFile(char file[], int x, int y){
 
          printf("%c", 196);
      }
-     for (x = 68; x <= 109; x++) {           //isi
+     for (x = 74; x <= 102; x++) {           //isi
          Sleep(20);
          gotoxy(x, 36);
          printf("%c", 219);
      }
      gotoxy(73, 38);
-     system("pause");
+     // system("pause");
      system("cls");
  }
 
 //TAMPILAN AWAL
 void logo()
 {
+    // hideCursor();
+    ShowCursor(0);
     PrintFile("..//Asset//ProClean Organizer.txt",70 , 10);
     PrintFile("..//Asset//Bubble kiri.txt", 7, 4);
     PrintFile("..//Asset//Bubble kanan.txt", 133, 4);
@@ -301,4 +303,99 @@ void garisFullBlokHorizontal(int x, int y, int lebar) {
 
 void borderAwal(){
     borderFullBlock(2,1,172,44);
+}
+
+void generateid(char Teks[4],int IDStruct){
+
+    if(IDStruct < 10){
+        printf("%s00%d", Teks, IDStruct);
+    }
+    else if(IDStruct < 100){
+        printf("%s0%d", Teks, IDStruct);
+    }
+    else{
+        printf("%s%d", Teks, IDStruct);
+    }
+}
+
+void getallinput(char input[], int min, int max, int type)
+{
+    char inpkey;
+    int i,n,x,m;
+    n = 0;
+    x=0;
+    do
+    {
+        inpkey = getch(); // membaca masukan dari keyboard per-karakter //
+
+//---- Menghapus Input ----//
+//start//
+        if(inpkey == '\b' && n != 0)
+        {
+            printf("\b \b");
+            n--;
+            input[n]='\0';
+        }
+//end//
+        else if(isprint(inpkey)){ //karakter yang bisa di print
+            if(n == max) {
+                continue;
+            }
+            else{
+                if(type == 3){ //isdigit = angka doang
+                    if(isdigit(inpkey)) {
+                        printf("%c", inpkey);
+                        input[n]=inpkey;
+                        n++;
+                    }
+                    else printf("\a"); //pemberitahuan suara tidak dapat di input (allert)
+                }
+                else if(type == 2){ //isalpha = alpabet dan spasi co : nama
+                    if(isalpha(inpkey) || inpkey == ' ') {
+                        printf("%c", inpkey);
+                        input[n]=inpkey;
+                        n++;
+                    }
+                    else printf("\a");
+                }
+                else { // inpkeyword //0= bebas
+                    if(type == 1)
+                    {
+                        if (inpkey=='\r')
+                        {
+                            inpkey='\0';
+                            break;
+                        }
+                        printf("%c", inpkey);
+                        input[n]=inpkey;
+//                        printf("*");
+                        n++;
+                    }
+
+
+                    else
+                    {
+                        printf("%c", inpkey);
+                        input[n]=inpkey;
+                        n++;
+                    }
+                }
+            }
+        }
+        else if(inpkey == 13)
+        {
+            if(n < min) {
+                printf("\a");
+                inpkey = 0;
+            }
+            else input[n]='\0';
+        }
+        //else if(current == 27) end();
+    }
+    while(inpkey != 13);
+}
+
+void getinput(char input[], int max, int type)
+{
+    getallinput(input, 1, max, type);
 }

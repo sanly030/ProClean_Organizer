@@ -1,10 +1,11 @@
 #ifndef READPETUGAS_H
 #define READPETUGAS_H
 
-int A=17, I=53, N =0;
-int x,j;
+
+
 // Fungsi Tampilkan Data
 void ReadPetugas() {
+    A=17, I=53, N=0;
     FILE *arspgs = fopen("../Database/Dat/DATA PETUGAS.dat", "rb");
 
     if (arspgs == NULL) {
@@ -55,6 +56,6 @@ void ReadPetugas() {
     }
     fclose(arspgs);
     getch();
-    MenuAdmin();
+    DashboardMenuAdmin();
 }
 #endif

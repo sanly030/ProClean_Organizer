@@ -1,5 +1,6 @@
 #ifndef DELETEPETUGAS_H
 #define DELETEPETUGAS_H
+
 // Fungsi Hapus Data
 void DeletePetugas() {
     int id_petugas;
@@ -46,6 +47,6 @@ void DeletePetugas() {
         printf("Data dengan ID Petugas PGS00%d tidak ditemukan.\n", id_petugas);
     }
     getch();
-    MenuAdmin();
+    DashboardMenuAdmin();
 }
 #endif //DELETEPETUGAS_H
