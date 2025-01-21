@@ -105,35 +105,35 @@ void BorderScreen(){
     SetColorBlock(1,7);
 
     //pojok kanan atas/
-    gotoprintchar(2,1,206);
+    gotoprintchar(32,11,206);
 
     //atas tengah/
-    for(i = 3; i < 174; i++){
-        gotoprintchar(i,1,205);
+    for(i = 33; i < 170; i++){
+        gotoprintchar(i,11,205);
     }
 
     //pojok kiri atas/
-    gotoprintchar(173,1,206);
+    gotoprintchar(170,11,206);
 
     //border samping kiri/
-    for(i = 2; i < 43; i++){
-        gotoprintchar(2,i,186);
+    for(i = 12; i < 43; i++){
+        gotoprintchar(32,i,186);
     }
 
     //border samping kanan
-    for(i = 2; i < 43; i++){
-        gotoprintchar(173,i,186);
+    for(i = 12; i < 43; i++){
+        gotoprintchar(170,i,186);
     }
 
     //pojok kiri bawah/
-    gotoprintchar(2,43,206);
+    gotoprintchar(32,42,206);
 
     //bawah tengah/
-    for(i = 3; i < 174; i++){
-        gotoprintchar(i,43,205);
+    for(i = 33; i < 170; i++){
+        gotoprintchar(i,42,205);
     }
     //pojok kanan bawah/
-    gotoprintchar(173,43,206);
+    gotoprintchar(170,42,206);
 }
 
 // FONT
@@ -261,10 +261,10 @@ void textBox2(int x, int y, int width, int height) {
     printf("%c", 188);
 }
 
-void blankScreen(int i,int j){
+void blankScreen(){
     SetColorBlock(7,7);
-    for(i = 2; i < 43; i++){
-        for(j = 3; j < 173; j++){
+    for(i = 10; i < 43; i++){
+        for(j = 30; j < 173; j++){
             gotoprintchar(j,i,32);
         }
     }
@@ -398,4 +398,13 @@ void getallinput(char input[], int min, int max, int type)
 void getinput(char input[], int max, int type)
 {
     getallinput(input, 1, max, type);
+}
+
+
+void frameLayout(int x, int y,int lebar, int tinggi, int dec){
+    for(i = y; i < tinggi; i++){
+        for(j = x; j < lebar; j++){
+            gotoprintchar(j,i,dec);
+        }
+    }
 }

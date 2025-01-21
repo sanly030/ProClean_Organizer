@@ -22,6 +22,7 @@ FILE *fp;
 FILE* fp1;
 FILE* temp;
 int A,I,N;
+int opsi;
 
 // DEKLARASI MASTER PELANGGAN
 // typedef struct {

@@ -2,8 +2,8 @@
 #define CREATE_JENIS_PETUGAS_H
 
 void CreateJenisPetugas() {
-    fflush(stdin);
-    clearArea(30,10,140,31);
+    SetColorBlock(1,7);
+    PrintFile("..//Asset//TambahData.txt",50,11);
     int lastpetugas = 0;
     i = 0;
 
@@ -24,11 +24,6 @@ void CreateJenisPetugas() {
 
     // Buat ID Jenis Petugas secara otomatis
 
-    gotoxy(65, 15);
-    printf("-------------------------------------------------");
-    gotoprinttext(65,16," T A M B A H  D A T A  J E N I S  P E T U G A S ");
-    gotoxy(65, 17);
-    printf("-----------------------------------------------");
     gotoxy(65, 20);
     printf("ID Jenis Petugas               : JPS%03d\n", jgs.id_jenispetugas); // Tampilkan ID petugas
     gotoprinttext(65,22,"Masukkan Jenis Petugas         : ");

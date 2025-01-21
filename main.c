@@ -7,9 +7,10 @@
 #include <time.h>
 #include <mmsystem.h>
 
+#include "Source/Deklarasi.h"
 #include "Interface/Design.h"
 #include "Source/Tampilan.h"
-#include "Source/Deklarasi.h"
+
 
 // #include "Source/MASTER PETUGAS.h"
 

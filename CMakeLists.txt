@@ -14,10 +14,10 @@ add_executable(ProClean_Organizer main.c
         Source/Login.h
         Source/Deklarasi.h
         Source/Tampilan.h
-        Interface/MenuAdmin.h
         "Source/CRUD MASTER/CRUD MASTER JENIS PETUGAS/Create Jenis Petugas.h"
         "Source/CRUD MASTER/CRUD MASTER JENIS PETUGAS/ReadJenisPetugas.h"
         "Source/CRUD MASTER/CRUD MASTER JENIS PETUGAS/UpdateJenisPetugas.h"
         "Source/CRUD MASTER/CRUD MASTER JENIS PETUGAS/DeleteJenisPetugas.h"
         Source/DashboardMenuAdmin.h
+        Source/DashboardOwner.h
 )
