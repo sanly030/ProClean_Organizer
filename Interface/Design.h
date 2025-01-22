@@ -408,3 +408,10 @@ void frameLayout(int x, int y,int lebar, int tinggi, int dec){
         }
     }
 }
+
+void getnum(int *nilai, int max)
+{
+    char input[max];
+    getinput(input, max, 3);
+    *nilai = atoi(input);
+}

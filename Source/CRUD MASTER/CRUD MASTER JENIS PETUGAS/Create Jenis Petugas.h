@@ -10,7 +10,7 @@ void CreateJenisPetugas() {
     lastpetugas = 0;
     FILE *arsjgs = fopen("../Database/Dat/JENIS PETUGAS.dat", "rb"); // Buka file untuk membaca dan menulis
 
-    while(fread(&jgs,sizeof(jnspetugas),1,arsjgs)) {
+    while(fread(&jgs,sizeof(jgs),1,arsjgs)) {
         if(jgs.id_jenispetugas >= lastpetugas) {
             lastpetugas = jgs.id_jenispetugas;
         }
@@ -25,19 +25,21 @@ void CreateJenisPetugas() {
     // Buat ID Jenis Petugas secara otomatis
 
     gotoxy(65, 20);
-    printf("ID Jenis Petugas               : JPS%03d\n", jgs.id_jenispetugas); // Tampilkan ID petugas
-    gotoprinttext(65,22,"Masukkan Jenis Petugas         : ");
-    scanf(" %[^\n]", jgs.jabatan);
+    printf("I D  J E N I S  P E T U G A S              : JPS%03d\n", jgs.id_jenispetugas); // Tampilkan ID petugas
+    gotoprinttext(65,22,"N A M A  J E N I S  P E T U G A S          : ");
+    gotoxy(110,22);
+    getinput(jgs.jabatan,25,2);
     gotoxy(65, 24);
-    printf("Masukkan deskripsi             : ");
-    scanf(" %[^\n]", jgs.deskripsijabatan);
-    gotoxy(65, 26);
+    printf("D E S K R I P S I                          : ");
+    gotoxy(110, 24);
+    getinput(jgs.deskripsijabatan,225,2);
 
-    fwrite(&jgs, sizeof(jnspetugas), 1, arsjgs);
+    fwrite(&jgs, sizeof(jgs), 1, arsjgs);
     fclose(arsjgs);
     printf("Data jenis petugas berhasil ditambahkan.\n");
 
     getch();
+    blankScreen();
     MenuJenisPetugas();
 }
 

@@ -23,6 +23,9 @@ FILE* fp1;
 FILE* temp;
 int A,I,N;
 int opsi;
+int nilai;
+int id_petugas;
+int found;
 
 // DEKLARASI MASTER PELANGGAN
 // typedef struct {

@@ -19,16 +19,14 @@ void Dashboard() {
     gotoprinttext(9,20,"   D A T A ");
     gotoprinttext(9,21,"L A Y A N A N ");
     textBox2(3,39,24,2);
-    gotoprinttext(5,40,"P I L I H  M E N U : ");
+    gotoprinttext(5,40,"P I L I H  M E N U :[ ]");
 
     gotoprinttext(10,35,"K E L U A R ");
     gotoxy(26,40);
-    scanf("%d",&opsi);
-
+    getnum(&opsi,1);
 
     switch (opsi) {
-        case 1:
-        MenuJenisPetugas();break;
+        case 1:MenuJenisPetugas();break;
         case 2:DashboardMenuAdmin();break;
     }
 }

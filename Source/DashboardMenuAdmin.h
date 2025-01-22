@@ -41,7 +41,6 @@ void DashboardMenuAdmin() {
 
 void MenuJenisPetugas() {
     int pilihan;
-    PrintFile("..//Asset//MenuJenisPetugas.txt",41, 10);
     SetColorBlock(1,7);
     frameLayout(60,18,120,40,32);
     SetColorBlock(1,7);
@@ -53,6 +52,7 @@ void MenuJenisPetugas() {
 
 
     do {
+    PrintFile("..//Asset//MenuJenisPetugas.txt",41, 10);
         textBox2(64,24,20,2);
         gotoprinttext(68, 25,"1. Tambah Data");
 
@@ -70,13 +70,12 @@ void MenuJenisPetugas() {
         textBox2(78,33,20,2);
         gotoprinttext(81,34,"PILIH OPSI : [ ]");
         gotoxy(95, 34);
-        scanf("%d", &pilihan);
-        getchar(); // Bersihkan buffer
+        getnum(&pilihan,1);
 
         switch (pilihan) {
             case 1:blankScreen();CreateJenisPetugas();break;
-            case 2:ReadJenisPetugas();break;
-            case 3:UpdateJenisPetugas();break;
+            case 2:blankScreen();ReadJenisPetugas();break;
+            case 3:blankScreen();UpdateJenisPetugas();break;
             case 4:DeleteJenisPetugas();break;
             case 5:printf("Keluar program.\n");
             exit(0);
