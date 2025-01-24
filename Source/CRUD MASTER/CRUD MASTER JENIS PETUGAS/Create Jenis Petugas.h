@@ -21,7 +21,6 @@ void CreateJenisPetugas() {
     arsjgs = fopen("../Database/Dat/JENIS PETUGAS.dat", "ab+"); // Buka file untuk membaca dan menulis
     jgs.id_jenispetugas = lastpetugas;
 
-
     // Buat ID Jenis Petugas secara otomatis
 
     gotoxy(65, 20);

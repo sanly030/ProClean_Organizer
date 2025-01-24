@@ -75,8 +75,10 @@
 
 #ifndef READJENISPETUGAS_H
 #define READJENISPETUGAS_H
+#include "DeleteJenisPetugas.h"
 
 void TextBoxUpdateJenisPetugas(int id_petugas);
+void TextBoxDeleteJenisPetugas(int id_petugas);
 
 void ReadJenisPetugas() {
     int i = 1;
@@ -128,7 +130,6 @@ void ReadJenisPetugas() {
 }
 
 void ReadUpdateJenisPetugas() {
-    int found = 0;
     int i = 1;
     int y = 20;
 
@@ -171,29 +172,58 @@ void ReadUpdateJenisPetugas() {
     }
 
     fclose(arsjgs);
-
     TextBoxUpdateJenisPetugas(id_petugas);
+    getch();
+    MenuJenisPetugas();
+}
 
-    arsjgs = fopen("../Database/Dat/JENIS PETUGAS.dat", "rb");
-    temp = fopen("TEMP JENIS PETUGAS.dat", "wb");
+void ReadDeleteJenisPetugas() {
+    int i = 1;
+    int y = 20;
 
-    clearArea(48,10,123,33);
-    while (fread(&jgs, sizeof(jnspetugas), 1, arsjgs)) {
-        if (jgs.id_jenispetugas == id_petugas) {
-            found = 1;
+    SetColorBlock(1, 7);
+    PrintFile("..//Asset//HapusData.txt",60,11);
 
+    FILE *arsjgs = fopen("../Database/Dat/JENIS PETUGAS.dat", "rb");
+    if (arsjgs == NULL) {
+        printf("File could not be opened\n");
+        return;
+    }
+
+    BoxBlock(32,17,98,2);
+    SetColorBlock(7, 1);
+    gotoprinttext(33,18,"NO.");
+    gotoprinttext(38,18,"I D  J E N I S  P E T U G A S");
+    gotoprinttext(70,18,"J A B A T A N");
+    gotoprinttext(98,18,"D E S K R I P S I");
+
+    while (fread(&jgs, sizeof(jgs), 1, arsjgs) == 1) {
+        SetColorBlock((i % 2 == 0) ? 7 : 7, (i % 2 == 0) ? 1 : 9);
+
+        for (int x = y; x <= y; x++) {
+            for (int j = 32; j < 130; j++) {
+                gotoprintchar(j, x, 32);
+            }
         }
-        fwrite(&jgs, sizeof(jnspetugas), 1, temp);
+
+        gotoxy(33, y);
+        printf("%d", i);
+        gotoxy(49, y);
+        printf("JPS00%d", jgs.id_jenispetugas);
+        gotoxy(70, y);
+        printf("%s", jgs.jabatan);
+        gotoxy(98, y);
+        printf("%s", jgs.deskripsijabatan);
+
+        i++;
+        y++;
     }
 
     fclose(arsjgs);
-    fclose(temp);
-
-    remove("../Database/Dat/JENIS PETUGAS.dat");
-    rename("TEMP JENIS PETUGAS.dat", "../Database/Dat/JENIS PETUGAS.dat");
-
+    TextBoxDeleteJenisPetugas(id_petugas);
     getch();
     MenuJenisPetugas();
+
 }
 
 

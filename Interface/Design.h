@@ -409,9 +409,48 @@ void frameLayout(int x, int y,int lebar, int tinggi, int dec){
     }
 }
 
+void frameDetailData(int x, int y) {
+    hideCursor();
+        SetColorBlock(1,7);
+        for(i = y; i < 22+ y; i++){
+            for(j = x; j < 127; j++){
+                gotoprintchar(j,i,32);
+            }
+        }
+        SetColorBlock(7,1);
+        /*border frame atas bawah*/
+        for(i = 17; i < 18; i++){
+            for(j = x - 2; j < 98; j++){
+                gotoprintchar(j,i,177);
+            }
+        }
+
+        for(i = 38 ;i < 39; i++){
+            for(j = x - 2; j < 98; j++){
+                gotoprintchar(j,i,177);
+            }
+        }
+
+        SetColorBlock(1,7);
+        /*border frame tengah kanan kiri*/
+        for(i = y + 1; i < y + 21; i++){
+            gotoprintchar(x - 1,i,186);
+        }
+
+        for(i = y + 1; i < y + 21; i++){
+            gotoprintchar(x+60,i,186);
+        }
+    }
+
+
 void getnum(int *nilai, int max)
 {
     char input[max];
     getinput(input, max, 3);
     *nilai = atoi(input);
+}
+
+void clearTengah() {
+    SetColorBlock(7,7);
+    frameLayout(31,17,130,40,32);
 }

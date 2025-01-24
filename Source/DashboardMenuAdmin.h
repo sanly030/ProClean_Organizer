@@ -76,7 +76,7 @@ void MenuJenisPetugas() {
             case 1:blankScreen();CreateJenisPetugas();break;
             case 2:blankScreen();ReadJenisPetugas();break;
             case 3:blankScreen();UpdateJenisPetugas();break;
-            case 4:DeleteJenisPetugas();break;
+            case 4:blankScreen();DeleteJenisPetugas();break;
             case 5:printf("Keluar program.\n");
             exit(0);
             default:

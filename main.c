@@ -9,6 +9,7 @@
 
 #include "Source/Deklarasi.h"
 #include "Interface/Design.h"
+#include "Interface/lib.h"
 #include "Source/Tampilan.h"
 
 
@@ -31,4 +32,5 @@
 int main() {
     tampilanawal();
     getch();
+
 }

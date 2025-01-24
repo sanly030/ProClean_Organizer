@@ -26,6 +26,11 @@ int opsi;
 int nilai;
 int id_petugas;
 int found;
+int pilihan;
+int cancel;
+int batal;
+char Opsi;
+int status;
 
 // DEKLARASI MASTER PELANGGAN
 // typedef struct {
