@@ -7,6 +7,7 @@
 #include <time.h>
 #include <mmsystem.h>
 
+
 #include "Source/Deklarasi.h"
 #include "Interface/Design.h"
 #include "Interface/lib.h"

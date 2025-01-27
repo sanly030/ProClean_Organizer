@@ -1,5 +1,7 @@
 void Dashboard() {
     system("color 71");
+    PrintFile("..//Asset//ikonsapu.txt",90, 12);
+    PrintFile("..//Asset//HelloAdmin!.txt",50, 20);
     PrintFile("..//Asset//ProCleanV2.txt",43, 0);
     // PrintFile("..//Asset//Admin.txt", 7, 2);
     borderAwal();
@@ -26,7 +28,7 @@ void Dashboard() {
     getnum(&opsi,1);
 
     switch (opsi) {
-        case 1:MenuJenisPetugas();break;
+        case 1:blankScreen();MenuJenisPetugas();break;
         case 2:DashboardMenuAdmin();break;
     }
 }

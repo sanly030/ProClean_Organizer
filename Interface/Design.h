@@ -1,3 +1,5 @@
+#pragma once
+
 void hideCursor() {
     HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
     CONSOLE_CURSOR_INFO cursorInfo;
@@ -194,8 +196,9 @@ void PrintFile(char file[], int x, int y){
          printf("%c", 219);
      }
      gotoxy(73, 38);
-     // system("pause");
-     system("cls");
+     system("pause");
+     // system("cls");
+
  }
 
 //TAMPILAN AWAL
@@ -214,6 +217,7 @@ void logo()
     PrintFile("..//Asset//Bawah kanan.txt", 156, 38);
     getch();
     loading();
+
 }
 
 
@@ -453,4 +457,13 @@ void getnum(int *nilai, int max)
 void clearTengah() {
     SetColorBlock(7,7);
     frameLayout(31,17,130,40,32);
+}
+
+void blankScreenLogin() {
+    SetColorBlock(7,7);
+    for(i = 2; i < 43; i++){
+        for(j = 3; j < 173; j++){
+            gotoprintchar(j,i,32);
+        }
+    }
 }

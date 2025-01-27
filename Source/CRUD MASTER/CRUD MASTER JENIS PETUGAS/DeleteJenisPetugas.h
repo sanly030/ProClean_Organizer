@@ -1,4 +1,4 @@
-#ifndef DELETEJENISPETUGAS_H
+#ifndef  DELETEJENISPETUGAS_H
 #define DELETEJENISPETUGAS_H
 
 
@@ -102,4 +102,4 @@ void TextBoxDeleteJenisPetugas(id_petugas) {
 //         clearTengah();
 //         // DeleteJenisPetugas();
 // }
-// #endif //DELETEJENISPETUGAS_H
+#endif //DELETEJENISPETUGAS_H

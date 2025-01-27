@@ -10,6 +10,7 @@ void DeleteJenisPetugas();
 void DashboardMenuAdmin() {
     int pilihan;
 
+
         do {
             gotoprinttext(50,15,"Menu");
             gotoprinttext(50, 17,"1. Tambah Data");
