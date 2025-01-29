@@ -73,14 +73,15 @@ void ReadPetugasByRole(int role) {
         return;
     }
 
-    BoxBlock(32, 17, 98, 2);
+    BoxBlock(32, 17, 111, 2);
     SetColorBlock(7, 1);
     gotoprinttext(33, 18, "NO.");
     gotoprinttext(38, 18, "I D  P E T U G A S");
-    gotoprinttext(60, 18, "N A M A");
-    gotoprinttext(74, 18, "N O  T E L P");
-    gotoprinttext(90, 18, "S T A T U S");
-    gotoprinttext(108, 18, "U S E R N A M E");
+    gotoprinttext(61, 18, "N A M A");
+    gotoprinttext(73, 18, "T G L  L A H I R");
+    gotoprinttext(94, 18, "N O  T E L P");
+    gotoprinttext(111, 18, "S T A T U S");
+    gotoprinttext(127, 18, "U S E R N A M E");
     petugas pgs;
 
     while (fread(&pgs, sizeof(pgs), 1, arspgs) == 1) {
@@ -89,7 +90,7 @@ void ReadPetugasByRole(int role) {
             SetColorBlock((i % 2 == 0) ? 7 : 7, (i % 2 == 0) ? 1 : 9);
 
             for (int x = y; x <= y; x++) {
-                for (int j = 32; j < 130; j++) {
+                for (int j = 32; j < 143; j++) {
                     gotoprintchar(j, x, 32);
                 }
             }
@@ -98,13 +99,15 @@ void ReadPetugasByRole(int role) {
             printf("%d", i);
             gotoxy(39, y);
             printf("%s", pgs.id_petugas_str);
-            gotoxy(60, y);
+            gotoxy(61, y);
             printf("%s", pgs.nama);
-            gotoxy(74, y);
+            gotoxy(76, y);
+            printf("%02d/%02d/%d", pgs.tgl_lahir.hari, pgs.tgl_lahir.bulan, pgs.tgl_lahir.tahun);
+            gotoxy(94, y);
             printf("%s", pgs.no_telp);
-            gotoxy(90, y);
+            gotoxy(111, y);
             printf("%s", pgs.status);
-            gotoxy(108, y);
+            gotoxy(127, y);
             printf("%s", pgs.username);
 
             i++;
@@ -153,14 +156,15 @@ void ReadUpdatePetugasByRole(int role) {
         return;
     }
 
-    BoxBlock(32, 17, 98, 2);
+    BoxBlock(32, 17, 115, 2);
     SetColorBlock(7, 1);
     gotoprinttext(33, 18, "NO.");
     gotoprinttext(38, 18, "I D  P E T U G A S");
-    gotoprinttext(62, 18, "N A M A");
-    gotoprinttext(74, 18, "N O  T E L P");
-    gotoprinttext(90, 18, "S T A T U S");
-    gotoprinttext(108, 18, "U S E R N A M E");
+    gotoprinttext(61, 18, "N A M A");
+    gotoprinttext(73, 18, "T G L  L A H I R");
+    gotoprinttext(94, 18, "N O  T E L P");
+    gotoprinttext(111, 18, "S T A T U S");
+    gotoprinttext(127, 18, "U S E R N A M E");
 
     petugas pgs;
 
@@ -170,7 +174,7 @@ void ReadUpdatePetugasByRole(int role) {
 
             SetColorBlock((i % 2 == 0) ? 7 : 7, (i % 2 == 0) ? 1 : 9);
             for (int x = y; x <= y; x++) {
-                for (int j = 32; j < 130; j++) {
+                for (int j = 32; j < 140; j++) {
                     gotoprintchar(j, x, 32);
                 }
             }
@@ -179,13 +183,15 @@ void ReadUpdatePetugasByRole(int role) {
             printf("%d", i);
             gotoxy(39, y);
             printf("%s", pgs.id_petugas_str);
-            gotoxy(62, y);
+            gotoxy(61, y);
             printf("%s", pgs.nama);
-            gotoxy(74, y);
+            gotoxy(76, y);
+            printf("%02d/%02d/%d", pgs.tgl_lahir.hari, pgs.tgl_lahir.bulan, pgs.tgl_lahir.tahun);
+            gotoxy(94, y);
             printf("%s", pgs.no_telp);
-            gotoxy(90, y);
+            gotoxy(111, y);
             printf("%s", pgs.status);
-            gotoxy(108, y);
+            gotoxy(127, y);
             printf("%s", pgs.username);
 
             i++;
@@ -207,7 +213,9 @@ void ReadUpdatePetugasByRole(int role) {
     if (role == 1) {
         gotoprinttext(134, 30, "Masukkan ID Petugas : ADM00");
     } else if (role == 2) {
-        gotoprinttext(34, y + 2, "Masukkan ID Petugas yang ingin diubah : KSR00");
+        gotoprinttext(34, y + 2, "Masukkan ID Petugas : KSR00");
+    }else if(role == 3 ){
+        gotoprinttext(34, y + 2, "Masukkan ID Petugas : PTS00");
     } else {
         gotoprinttext(34, y + 2, "Masukkan ID Petugas yang ingin diubah : UNK00");
     }

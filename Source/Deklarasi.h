@@ -82,6 +82,11 @@ typedef struct {
 } Admin ;
 Admin adm;
 
+typedef struct {
+    int hari;
+    int bulan;
+    int tahun;
+} tanggal;
 
 typedef char string[255];
 typedef struct {
@@ -93,6 +98,7 @@ typedef struct {
     string username;
     string password;
     char id_petugas_str[10];
+    tanggal tgl_lahir;
 } petugas;
 petugas pgs;
 

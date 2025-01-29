@@ -78,6 +78,20 @@ char* getNextPetugasId(int id_jenispetugas) {
     return newId;
 }
 
+int isValidDate(int hari, int bulan, int tahun) {
+    if (tahun < 1900 || tahun > 2015) return 0;
+    if (bulan < 1 || bulan > 12) return 0;
+    if (hari < 1) return 0;
+
+    int hariBulan[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    if (bulan == 2) { // Cek tahun kabisat
+        if ((tahun % 4 == 0 && tahun % 100 != 0) || (tahun % 400 == 0))
+            hariBulan[1] = 29;
+    }
+    return hari <= hariBulan[bulan - 1];
+}
+
+
 void CreatePetugas() {
     char pilihan;
     do {
@@ -107,7 +121,6 @@ void CreatePetugas() {
         int id_jenispetugas;
         gotoprinttext(45, 13 + i + 1, "Masukkan ID Jenis Petugas yang dipilih : ");
         gotoxy(86, 13 + i + 1);
-        // scanf("%d", &id_jenispetugas);
         getnum(&id_jenispetugas,1);
 
         // Validasi ID
@@ -149,27 +162,47 @@ void CreatePetugas() {
         gotoprinttext(45, 24, "N O  T E L E P O N                     : ");
         gotoxy(86, 24);
         getinput(pgs.no_telp, 16, 3);
-        gotoprinttext(45, 26, "S T A T U S                            : ");
+
+        // Menampilkan Format Tanggal Lahir Langsung
+        gotoprinttext(45, 26, "T A N G G A L  L A H I R (dd/mm/yyyy)  : ");
         gotoxy(86, 26);
-        getinput(pgs.status, 25, 2);
-        gotoprinttext(45, 28, "U S E R N A M E                        : ");
+        printf("  /  /     ");  // Format tetap terlihat saat user input
+
+        do {
+            gotoxy(86, 26);  // Letakkan kursor di tempat tanggal
+            getnum(&pgs.tgl_lahir.hari, 2);
+            gotoxy(89, 26);  // Lompat ke bulan (melewati "/")
+            getnum(&pgs.tgl_lahir.bulan, 2);
+            gotoxy(92, 26);  // Lompat ke tahun (melewati "/")
+            getnum(&pgs.tgl_lahir.tahun, 4);
+
+            if (!isValidDate(pgs.tgl_lahir.hari, pgs.tgl_lahir.bulan, pgs.tgl_lahir.tahun)) {
+                MessageBox(NULL, "Format tanggal salah atau tidak valid! Gunakan format dd/mm/yyyy.", "ERROR!", MB_OK | MB_ICONERROR | MB_DEFAULT_DESKTOP_ONLY);
+            }
+        } while (!isValidDate(pgs.tgl_lahir.hari, pgs.tgl_lahir.bulan, pgs.tgl_lahir.tahun));
+
+        gotoprinttext(45, 28, "S T A T U S                            : ");
         gotoxy(86, 28);
-        getinput(pgs.username, 20, 2);
-        gotoprinttext(45, 30, "P A S S W O R D                        : ");
+        getinput(pgs.status, 25, 2);
+        gotoprinttext(45, 30, "U S E R N A M E                        : ");
         gotoxy(86, 30);
+        getinput(pgs.username, 20, 2);
+        gotoprinttext(45, 32, "P A S S W O R D                        : ");
+        gotoxy(86, 32);
         getinput(pgs.password, 20, 2);
 
         // Simpan ke file
         fwrite(&pgs, sizeof(pgs), 1, arspgs);
         fclose(arspgs);
 
-        gotoxy(65, 32);
+        gotoxy(65, 34);
         printf("Data petugas berhasil ditambahkan.\n");
 
-        textBox2(69, 35, 56, 2);
-        gotoxy(70, 36);
+        // Konfirmasi untuk menambah lagi
+        textBox2(69, 37, 56, 2);
+        gotoxy(70, 38);
         printf("Apakah ingin menambah data petugas lagi? (y/t): ");
-        gotoxy(118,36);
+        gotoxy(118,38);
         getinput(&pilihan,1,2);
 
         blankScreen();
@@ -177,3 +210,4 @@ void CreatePetugas() {
 
     MenuPetugas();
 }
+

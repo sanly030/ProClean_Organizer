@@ -11,9 +11,10 @@ void seluruhpetugas() {
     gotoprinttext(43,22,"ID PETUGAS          :");
     gotoprinttext(43,24,"NAMA                :");
     gotoprinttext(43,26,"TANGGAL LAHIR       :");
-    gotoprinttext(43,28,"STATUS              :");
-    gotoprinttext(43,30,"USERNAME            :");
-    gotoprinttext(43,32,"PASSWORD            :");
+    gotoprinttext(43,28,"NO TELP             :");
+    gotoprinttext(43,30,"STATUS              :");
+    gotoprinttext(43,32,"USERNAME            :");
+    gotoprinttext(43,34,"PASSWORD            :");
 
 }
 

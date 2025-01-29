@@ -8,6 +8,7 @@
 
 void TextBoxUpdateJenisPetugas(id_petugas);
 //Fungsi Ubah Data Jenis Petugas
+
 void UpdateJenisPetugas() {
     SetColorBlock(1,7);
     ReadUpdateJenisPetugas();
