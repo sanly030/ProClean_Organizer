@@ -1,78 +1,3 @@
-// //
-// // Created by hi on 1/12/2025.
-// //
-//
-// #ifndef READJENISPETUGAS_H
-// #define READJENISPETUGAS_H
-//
-//
-// void ReadJenisPetugas() {
-//     i = 1;
-//     y = 15;
-//
-//     SetColorBlock(1,7);
-//     PrintFile("..//Asset//LihatData.txt",50,11);
-//
-//     FILE *arsjgs = fopen("../Database/Dat/JENIS PETUGAS.dat", "rb");
-//     if (arsjgs == NULL) {
-//         printf("File could not be opened\n");
-//     }
-//
-//     while(fread(&jgs,sizeof(jgs),1,arsjgs) == 1) {
-//         if (1 % 2 == 0 ) {
-//             SetColorBlock(7,1);
-//             for(x = y; x <= y;x++) {
-//                 for(j = 37; j < 167; j++) {
-//                     gotoprintchar(j,x,32);
-//                 }
-//             }
-//             if (i % 2 == 0) {
-//                 SetColorBlock(7,1);
-//                 for(x = y; x <= y;x++){
-//                     for(j = 37; j < 167; j++){
-//                         gotoprintchar(j,x,32);
-//                     }
-//                 }
-//                 gotoxy(38, y);
-//                 printf("%d", i);
-//                 gotoxy(47, y);
-//                 printf("JPS00%d",jgs.id_jenispetugas);
-//                 gotoxy(75, y);
-//                 printf("%s",jgs.jabatan);
-//                 gotoxy(110, y);
-//                 printf("%s",jgs.deskripsijabatan);
-//
-//             } else {
-//                 SetColorBlock(7, 9);
-//                 for (x = y; x <= y; x++) {
-//                     for (j = 37; j < 167; j++) {
-//                         gotoprintchar(j, x, 32);
-//                     }
-//                 }
-//                 gotoxy(38, y);
-//                 printf("%d", i);
-//                 gotoxy(47, y);
-//                 printf("JPS00%d",jgs.id_jenispetugas);
-//                 gotoxy(75, y);
-//                 printf("%s",jgs.jabatan);
-//                 gotoxy(110, y);
-//                 printf("%s",jgs.deskripsijabatan);
-//
-//                 i++;
-//                 y++;
-//             }
-//         }
-//     }
-//
-//     fclose(arsjgs);
-//     getch();
-//     blankScreen();
-//     MenuJenisPetugas();
-// }
-// #endif //READJENISPETUGAS_H
-
-// Created by hi on 1/12/2025
-
 #ifndef READJENISPETUGAS_H
 #define READJENISPETUGAS_H
 #include "DeleteJenisPetugas.h"
@@ -119,14 +44,28 @@ void ReadJenisPetugas() {
         gotoxy(105, y);
         printf("%s", jgs.deskripsijabatan);
 
+
         i++;
         y++;
     }
 
     fclose(arsjgs);
-    getch();
-    blankScreen();
-    MenuJenisPetugas();
+    SetColorBlock(1, 7);
+    while (1) { // Looping untuk meminta input ulang jika salah
+        textBox2(32, y + 1, 28, 2);
+        gotoprinttext(34, y + 2, "Tekan 0 untuk kembali: ");
+        gotoxy(57, y + 2);
+        getnum(&pilihan, 1); // Meminta input angka
+
+        if (pilihan == 0) {
+            blankScreen();        // Bersihkan layar
+            MenuJenisPetugas();   // Kembali ke menu utama
+            break;                // Keluar dari loop
+        } else {
+            // Jika input salah, tampilkan pesan kesalahan
+            MessageBox(NULL, "Input tidak valid silahkan coba lagi!.", "CANCEL", MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);
+        }
+    }
 }
 
 void ReadUpdateJenisPetugas() {
@@ -218,12 +157,10 @@ void ReadDeleteJenisPetugas() {
         i++;
         y++;
     }
-
     fclose(arsjgs);
     TextBoxDeleteJenisPetugas(id_petugas);
     getch();
     MenuJenisPetugas();
-
 }
 
 

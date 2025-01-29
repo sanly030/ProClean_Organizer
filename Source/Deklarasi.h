@@ -31,6 +31,22 @@ int cancel;
 int batal;
 char Opsi;
 int status;
+char ulangi;
+
+struct id {
+    int id_petugasKebersihan;
+    int id_admin;
+    int id_kasir;
+};
+typedef struct akun {
+    char username[255];
+};
+struct date {
+    int tahun;
+    int bulan;
+    int hari;
+};
+float jan,feb,mar,apr,mei,jun,jul,aug,sep,okt,nov,des;
 
 // DEKLARASI MASTER PELANGGAN
 // typedef struct {
@@ -71,12 +87,12 @@ typedef char string[255];
 typedef struct {
     int role;
     int id_petugas;
-    string nama[25];
-    string alamat[25];
-    string no_telp[25];
-    string status[25];
-    string username[20];
-    string password[20];
+    string nama;
+    string no_telp;
+    string status;
+    string username;
+    string password;
+    char id_petugas_str[10];
 } petugas;
 petugas pgs;
 
@@ -84,5 +100,6 @@ typedef struct {
     int id_jenispetugas;
     char jabatan[25];
     char deskripsijabatan[255];
+    char kode[4];
 } jnspetugas;
 jnspetugas jgs;

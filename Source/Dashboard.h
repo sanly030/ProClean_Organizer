@@ -29,6 +29,6 @@ void Dashboard() {
 
     switch (opsi) {
         case 1:blankScreen();MenuJenisPetugas();break;
-        case 2:DashboardMenuAdmin();break;
+        case 2:blankScreen();MenuPetugas();break;
     }
 }

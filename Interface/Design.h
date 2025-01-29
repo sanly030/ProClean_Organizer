@@ -267,7 +267,7 @@ void textBox2(int x, int y, int width, int height) {
 
 void blankScreen(){
     SetColorBlock(7,7);
-    for(i = 10; i < 43; i++){
+    for(i = 10; i < 44; i++){
         for(j = 30; j < 173; j++){
             gotoprintchar(j,i,32);
         }
@@ -467,3 +467,6 @@ void blankScreenLogin() {
         }
     }
 }
+
+
+

@@ -1,220 +1,179 @@
-// static int lastpetugas = 0;
-// void CreatePetugas() {
-//     fflush(stdin);
-//     int role_choice; // Variabel untuk menyimpan pilihan role
-//     i = 0;
-//
-//     FILE *arspgs = fopen("../Database/Dat/DATA PETUGAS.dat", "rb"); // Buka file untuk membaca
-//     petugas pgs;
-//
-//     // Cari ID terakhir untuk increment ID baru
-//     while (fread(&pgs, sizeof(petugas), 1, arspgs)) {
-//         if (pgs.id_petugas >= lastpetugas) {
-//             lastpetugas = pgs.id_petugas;
-//         }
-//     }
-//     lastpetugas++;
-//     fclose(arspgs);
-//
-//     arspgs = fopen("../Database/Dat/DATA PETUGAS.dat", "ab"); // Buka file untuk append
-//     pgs.id_petugas = lastpetugas;
-//
-//     // Masukkan data lainnya
-//     gotoxy(65, 15);
-//     printf("-----------------------------------");
-//     gotoprinttext(65, 16, "T A M B A H  D A T A  P E T U G A S");
-//     gotoxy(65, 17);
-//     printf("-----------------------------------");
-//
-//     gotoxy(65, 19);
-//     printf("ID Petugas: PGS%03d", pgs.id_petugas);
-//
-//     // Pilihan Role
-//     textBox2(120, 20, 30, 7);
-//     gotoxy(122, 21);
-//     printf(" Jenis Petugas:");
-//     gotoxy(122, 23);
-//     printf("1. Owner");
-//     gotoxy(122, 24);
-//     printf("2. Kasir");
-//     gotoxy(122, 25);
-//     printf("3. Petugas Kebersihan");
-//
-//     gotoxy(65, 22);
-//     printf("Masukkan Jenis Petugas [1-3]: ");
-//     gotoxy(94, 22);
-//     scanf("%d", &role_choice);
-//
-//     // Validasi input role
-//
-//     gotoxy(65, 22);
-//     printf("Masukkan Jenis Petugas [1-3]: ");
-//     gotoxy(94, 22);
-//     scanf("%d", &role_choice);
-//
-//     // Bersihkan buffer untuk mencegah konflik input berikutnya
-//     while (getchar() != '\n');
-//
-//     // Validasi input role
-//     while (role_choice < 1 || role_choice > 3) {
-//         gotoxy(65, 24); // Tempatkan pesan error di lokasi yang jelas
-//         printf("Pilihan tidak valid. Silakan pilih lagi [1-3]: ");
-//         gotoxy(94, 24);
-//         scanf("%d", &role_choice);
-//         while (getchar() != '\n'); // Bersihkan buffer
-//     }
-//
-//
-//     // Pindah ke bagian input data lainnya
-//     gotoxy(65, 26);
-//     printf("Masukkan Nama Petugas: ");
-//     scanf(" %[^\n]", pgs.nama);
-//     gotoxy(65, 28);
-//     printf("Masukkan Alamat Petugas: ");
-//     scanf(" %[^\n]", pgs.alamat);
-//     gotoxy(65, 30);
-//     printf("Masukkan No. Telepon Petugas: ");
-//     scanf(" %[^\n]", pgs.no_telp);
-//     gotoxy(65, 32);
-//     printf("Masukkan Status Petugas (Aktif/Nonaktif): ");
-//     scanf(" %[^\n]", pgs.status);
-//
-//     // Hanya untuk Owner dan Kasir, minta Username dan Password
-//     if (strcmp(pgs.role, "Owner") == 0 || strcmp(pgs.role, "Kasir") == 0) {
-//         gotoxy(65, 34);
-//         printf("Masukkan Username Petugas: ");
-//         scanf(" %[^\n]", pgs.username);
-//         gotoxy(65, 36);
-//         printf("Masukkan Password Petugas: ");
-//         scanf(" %[^\n]", pgs.password);
-//     } else {
-//         // Kosongkan username dan password jika role adalah Petugas Kebersihan
-//         strcpy(pgs.username, "-");
-//         strcpy(pgs.password, "-");
-//     }
-//
-//     // Simpan data ke file
-//     fseek(arspgs, 0, SEEK_END);
-//     fwrite(&pgs, sizeof(petugas), 1, arspgs);
-//     fclose(arspgs);
-//
-//     // Tampilkan pesan sukses
-//     gotoxy(65, 38);
-//     printf("Data petugas berhasil ditambahkan dengan ID: PGS%03d.\n", pgs.id_petugas);
-//     getch();
-//     MenuAdmin();
-// }
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
+typedef char string[255];
+void inisialisasiJenisPetugas() {
+    FILE *arsjgs = fopen("../Database/Dat/JENIS PETUGAS.dat", "wb");
+    if (arsjgs == NULL) {
+        printf("Error: Tidak dapat membuka file JENIS PETUGAS.dat\n");
+        return;
+    }
 
-static int lastpetugas = 0;
+    // Data Admin
+    jnspetugas admin = {
+        .id_jenispetugas = 1,
+        .kode = "ADM"
+    };
+    strcpy(admin.jabatan, "Admin");
+    strcpy(admin.deskripsijabatan, "Mengelola sistem dan database");
+    fwrite(&admin, sizeof(jnspetugas), 1, arsjgs);
 
-void CreatePetugas() {
-    clearArea(30,10,140,31);
-    fflush(stdin);
-    int role_choice; // Variabel untuk menyimpan pilihan role
-    i = 0;
+    // Data Kasir
+    jnspetugas kasir = {
+        .id_jenispetugas = 2,
+        .kode = "KSR"
+    };
+    strcpy(kasir.jabatan, "Kasir");
+    strcpy(kasir.deskripsijabatan, "Mengelola transaksi pembayaran");
+    fwrite(&kasir, sizeof(jnspetugas), 1, arsjgs);
 
-    FILE *arspgs = fopen("../Database/Dat/DATA PETUGAS.dat", "rb"); // Buka file untuk membaca
-    petugas pgs;
+    // Data Petugas Kebersihan
+    jnspetugas kebersihan = {
+        .id_jenispetugas = 3,
+        .kode = "PTS"
+    };
+    strcpy(kebersihan.jabatan, "Petugas Kebersihan");
+    strcpy(kebersihan.deskripsijabatan, "Menjaga kebersihan area");
+    fwrite(&kebersihan, sizeof(jnspetugas), 1, arsjgs);
 
-    // Cari ID terakhir untuk increment ID baru
-    while (fread(&pgs, sizeof(petugas), 1, arspgs)) {
-        if (pgs.id_petugas >= lastpetugas) {
-            lastpetugas = pgs.id_petugas;
+    fclose(arsjgs);
+    printf("Inisialisasi data jenis petugas berhasil!\n");
+}
+char* getNextPetugasId(int id_jenispetugas) {
+    static char newId[10];
+    char kodePrefix[4] = "PTG"; // default prefix
+    int lastNumber = 0;
+
+    // Dapatkan kode prefix berdasarkan jenis petugas
+    FILE *arsjgs = fopen("../Database/Dat/JENIS PETUGAS.dat", "rb");
+    if (arsjgs != NULL) {
+        jnspetugas jgs;
+        while (fread(&jgs, sizeof(jgs), 1, arsjgs)) {
+            if (jgs.id_jenispetugas == id_jenispetugas) {
+                strcpy(kodePrefix, jgs.kode);
+                break;
+            }
         }
-    }
-    lastpetugas++;
-    fclose(arspgs);
-
-    arspgs = fopen("../Database/Dat/DATA PETUGAS.dat", "ab"); // Buka file untuk append
-    pgs.id_petugas = lastpetugas;
-
-    // Masukkan data lainnya
-    gotoxy(65, 15);
-    printf("-----------------------------------");
-    gotoprinttext(65, 16, "T A M B A H  D A T A  P E T U G A S");
-    gotoxy(65, 17);
-    printf("-----------------------------------");
-
-    gotoxy(65, 19);
-    printf("ID Petugas: PGS%03d", pgs.id_petugas);
-
-    // Pilihaz
-    gotoxy(122, 21);
-    printf(" Jenis Petugas:");
-    gotoxy(122, 23);
-    printf("1. Owner");
-    gotoxy(122, 24);
-    printf("2. Kasir");
-    gotoxy(122, 25);
-    printf("3. Petugas Kebersihan");
-
-
-    gotoxy(65, 22);
-    printf("Masukkan Jenis Petugas[1-3]: ");
-    gotoxy(94, 22);
-    scanf("%d", &role_choice);
-
-
-    // Validasi input role
-    while (role_choice < 1 || role_choice > 3) {
-        gotoxy(65, 29);
-        printf("Pilihan tidak valid. Silakan pilih lagi [1-3]: ");
-        scanf("%d", &role_choice);
+        fclose(arsjgs);
     }
 
-    // Tentukan role berdasarkan pilihan
-    switch (role_choice) {
-        case 1:
-            strcpy(pgs.role, "Owner");
-            break;
-        case 2:
-            strcpy(pgs.role, "Kasir");
-            break;
-        case 3:
-            strcpy(pgs.role, "Petugas Kebersihan");
-            break;
+    // Cari nomor terakhir untuk prefix ini
+    FILE *arspgs = fopen("../Database/Dat/PETUGAS.dat", "rb");
+    if (arspgs != NULL) {
+        petugas pgs;
+        while (fread(&pgs, sizeof(pgs), 1, arspgs)) {
+            if (strncmp(pgs.id_petugas_str, kodePrefix, 3) == 0) {
+                int currentNum;
+                sscanf(pgs.id_petugas_str + 3, "%d", &currentNum);
+                if (currentNum > lastNumber) {
+                    lastNumber = currentNum;
+                }
+            }
+        }
+        fclose(arspgs);
     }
 
-    // Masukkan data lainnya
-    gotoxy(65, 24);
-    printf("ID Petugas                    : PGS%03d\n", pgs.id_petugas);
-    gotoxy(65, 26);
-    printf("Masukkan Nama Petugas: ");
-    scanf(" %[^\n]", pgs.nama);
-    gotoxy(65, 28);
-    printf("Masukkan Alamat Petugas: ");
-    scanf(" %[^\n]", pgs.alamat);
-    gotoxy(65, 30);
-    printf("Masukkan No. Telepon Petugas: ");
-    scanf(" %[^\n]", pgs.no_telp);
-    gotoxy(65, 32);
-    printf("Masukkan Status Petugas (Aktif/Nonaktif): ");
-    scanf(" %[^\n]", pgs.status);
-
-    // Hanya untuk Owner dan Kasir, minta Username dan Password
-    if (strcmp(pgs.role, "Owner") == 0 || strcmp(pgs.role, "Kasir") == 0) {
-        gotoxy(65, 34);
-        printf("Masukkan Username Petugas: ");
-        scanf(" %[^\n]", pgs.username);
-        gotoxy(65, 36);
-        printf("Masukkan Password Petugas: ");
-        scanf(" %[^\n]", pgs.password);
-    } else {
-        // Kosongkan username dan password jika role adalah Petugas Kebersihan
-        strcpy(pgs.username, "-");
-        strcpy(pgs.password, "-");
-    }
-
-    // Simpan data ke file
-    fseek(arspgs, 0, SEEK_END);
-    fwrite(&pgs, sizeof(petugas), 1, arspgs);
-    fclose(arspgs);
-
-    // Tampilkan pesan sukses
-    gotoxy(65, 43);
-    printf("Data petugas berhasil ditambahkan dengan ID: PGS%03d.\n", pgs.id_petugas);
-    getch();
-    DashboardMenuAdmin();
+    sprintf(newId, "%s%03d", kodePrefix, lastNumber + 1);
+    return newId;
 }
 
+void CreatePetugas() {
+    char pilihan;
+    do {
+        SetColorBlock(1, 7);
+        textBox2(31, 10, 139, 33);
+        PrintFile("..//Asset//TambahData.txt",50,11);
+
+        // Menampilkan daftar jenis petugas
+        FILE *arsjgs = fopen("../Database/Dat/JENIS PETUGAS.dat", "rb");
+        if (arsjgs == NULL) {
+            printf("File JENIS PETUGAS.dat tidak dapat dibuka.\n");
+            return;
+        }
+
+        jnspetugas jgs;
+        int i = 1;
+        textBox2(120,17,49,7);
+        gotoprinttext(130,18, "Daftar Jenis Petugas:");
+        while (fread(&jgs, sizeof(jgs), 1, arsjgs)) {
+            gotoxy(122, 19 + i);
+            printf("[%d] %s - %s", jgs.id_jenispetugas, jgs.jabatan, jgs.deskripsijabatan);
+            i++;
+        }
+        fclose(arsjgs);
+
+        // Input dan validasi ID jenis petugas
+        int id_jenispetugas;
+        gotoprinttext(45, 13 + i + 1, "Masukkan ID Jenis Petugas yang dipilih : ");
+        gotoxy(86, 13 + i + 1);
+        // scanf("%d", &id_jenispetugas);
+        getnum(&id_jenispetugas,1);
+
+        // Validasi ID
+        arsjgs = fopen("../Database/Dat/JENIS PETUGAS.dat", "rb");
+        int valid = 0;
+        while (fread(&jgs, sizeof(jgs), 1, arsjgs)) {
+            if (jgs.id_jenispetugas == id_jenispetugas) {
+                valid = 1;
+                break;
+            }
+        }
+        fclose(arsjgs);
+
+        if (!valid) {
+            printf("ID Jenis Petugas tidak valid.\n");
+            continue;
+        }
+
+        // Buka file petugas untuk penambahan data
+        FILE *arspgs = fopen("../Database/Dat/PETUGAS.dat", "ab+");
+        if (arspgs == NULL) {
+            printf("File PETUGAS.dat tidak dapat dibuka.\n");
+            return;
+        }
+
+        petugas pgs;
+        pgs.role = id_jenispetugas;
+
+        // Generate ID baru dengan format sesuai jenis petugas
+        char* newId = getNextPetugasId(id_jenispetugas);
+        strcpy(pgs.id_petugas_str, newId);
+
+        // Tampilkan dan input data petugas
+        gotoxy(45, 20);
+        printf("I D  P E T U G A S                     : %s\n", pgs.id_petugas_str);
+        gotoprinttext(45, 22, "N A M A  P E T U G A S                 : ");
+        gotoxy(86, 22);
+        getinput(pgs.nama, 25, 2);
+        gotoprinttext(45, 24, "N O  T E L E P O N                     : ");
+        gotoxy(86, 24);
+        getinput(pgs.no_telp, 16, 3);
+        gotoprinttext(45, 26, "S T A T U S                            : ");
+        gotoxy(86, 26);
+        getinput(pgs.status, 25, 2);
+        gotoprinttext(45, 28, "U S E R N A M E                        : ");
+        gotoxy(86, 28);
+        getinput(pgs.username, 20, 2);
+        gotoprinttext(45, 30, "P A S S W O R D                        : ");
+        gotoxy(86, 30);
+        getinput(pgs.password, 20, 2);
+
+        // Simpan ke file
+        fwrite(&pgs, sizeof(pgs), 1, arspgs);
+        fclose(arspgs);
+
+        gotoxy(65, 32);
+        printf("Data petugas berhasil ditambahkan.\n");
+
+        textBox2(69, 35, 56, 2);
+        gotoxy(70, 36);
+        printf("Apakah ingin menambah data petugas lagi? (y/t): ");
+        gotoxy(118,36);
+        getinput(&pilihan,1,2);
+
+        blankScreen();
+    } while (pilihan == 'y' || pilihan == 'Y');
+
+    MenuPetugas();
+}

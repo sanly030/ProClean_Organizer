@@ -1,108 +1,136 @@
-#ifndef UPDATEPETUGAS_H
-#define UPDATEPETUGAS_H
 
-void lihatData();
-// Fungsi Ubah Data
+#include "../../../Interface/lib.h"
+
+void TextBoxUpdatePetugasByRole(char id_petugas[]);
+// void ReadUpdatePetugasByRole(int role);
 void UpdatePetugas() {
-    clearArea(30,10,140,31);
-    int id_petugas;
-    int found = 0;
+    int role; // Variabel untuk menyimpan pilihan role
 
-    lihatData();
-    gotoxy(72,21);
-    printf("-----------------------------------");
-    gotoxy(72,22);
-    printf("  U B A H  D A T A  P E T U G A S");
-    gotoxy(72,23);
-    printf("-----------------------------------\n");
-    gotoprinttext(72,24,"Masukkan ID Petugas yang ingin diubah: PGS00 ");
-    gotoxy(116,24);
-    scanf("%d", &id_petugas);
+    blankScreen();
+    SetColorBlock(1, 7);
+    frameLayout(60,18,120,40,32);
+    SetColorBlock(1,7);
+    frameLayout(60,18,120,19,220);
+    frameLayout(60,18,61,40,220);
+    frameLayout(60,40,120,41,223);
+    frameLayout(119,18,120,40,220);
+    textBox2(80,21,20,2);
+    gotoprinttext(81, 22, "     1-> Admin");
+    textBox2(80,25,20,2);
+    gotoprinttext(81, 26, "     2-> Kasir");
+    textBox2(78,29,24,2);
+    gotoprinttext(79, 30, " 3-> Petugas Kebersihan");
 
-    FILE *arspgs = fopen("../Database/Dat/DATA PETUGAS.dat", "rb");
-    FILE *temp = fopen("TEMP PETUGAS.dat", "wb");
+    // gotoprinttext(40, 16, "Masukkan pilihan role: ");
+    // getnum(&role, 1); // Meminta input angka dari user gotoprinttext(80,38,"Ketik 0 untuk kembali");
+    gotoprinttext(80,38,"Ketik 0 untuk kembali");
+    gotoxy(82, 34);
+    printf("Masukkan pilihan: ");
+    getnum(&role, 1);
 
-    // clearArea(48,10,123,33);
-    // frame(72,20);
-    while (fread(&pgs, sizeof(petugas), 1, arspgs)) {
-        if (pgs.id_petugas == id_petugas) {
-            found = 1;
-            gotoprinttext(65,23,"Masukkan Nama Petugas Baru      : ");
-            scanf("%s", &pgs.nama);
-            gotoprinttext(65,24,"Masukkan Alamat Baru             :");
-            scanf("%s", &pgs.alamat);
-            gotoprinttext(65,25,"Masukkan No. Telepon Baru       : ");
-            scanf("%s", &pgs.no_telp);
-            gotoprinttext(65,26,"Masukkan Status Baru            : ");
-            scanf("%s", &pgs.status);
-            gotoprinttext(65,27,"Masukkan Username Baru          : ");
-            scanf("%s", &pgs.username);
-            gotoprinttext(65,28,"Masukkan Password Baru          : ");
-            scanf("%s", &pgs.password);
-        }
-        fwrite(&pgs, sizeof(petugas), 1, temp);
+
+    // Validasi input
+    if (role < 1 || role > 3) {
+        blankScreen();        // Bersihkan layar
+        MenuPetugas();          // Kembali ke menu utama
+        return;
     }
 
-    fclose(arspgs);
-    fclose(temp);
-
-    remove("../Database/Dat/DATA PETUGAS.dat");
-    rename("TEMP PETUGAS.dat", "../Database/Dat/DATA PETUGAS.dat");
-
-    if (found) {
-        gotoprinttext(65,30,"Data petugas berhasil diubah.\n");
-    } else {
-        gotoxy(65,30);
-
-        printf("Data dengan ID Petugas PGS00%d tidak ditemukan.\n", id_petugas);
-    }
-    getch();
-    DashboardMenuAdmin();
+    // Panggil fungsi untuk menampilkan data berdasarkan role
+    ReadUpdatePetugasByRole(role);
 }
 
 
-void lihatData() {
-    int A=15, I=53, N =0;
-    int x,j;
-    fflush(stdin);
-        FILE *arspgs = fopen("../Database/Dat/DATA PETUGAS.dat", "rb");
-
-        if (arspgs == NULL) {
-            printf("File could not be opened\n");
-            return;
-        }
-        for(x=I;x < 150;x++) {
-            gotoxy(x,12);printf("%c",205);
-            gotoxy(x,14);printf("%c",205);
-        }
-        gotoxy(55, 13);printf("ID Petugas");
-        gotoxy(70, 13);printf("Nama");
-        gotoxy(84, 13);printf("Alamat");
-        gotoxy(96, 13);printf("No.Telepon");
-        gotoxy(110, 13);printf("Status");
-        gotoxy(123, 13);printf("Username");
-        gotoxy(140, 13);printf("Password");
-
-        while(fread(&pgs, sizeof(petugas), 1, arspgs)) {
-            A++, N++;
-            if(A%2 == 0) {
-                gotoxy(I,A);
-            }else {
-                gotoxy(I,A);
-            }
-            for(j=1;j<=80;j++)
-            {
-                printf(" ");
-            }
-            gotoxy(55,A);printf("PGS00%d",pgs.id_petugas);
-            gotoxy(70,A);printf("%s",pgs.nama);
-            gotoxy(84,A);printf("%s",pgs.alamat);
-            gotoxy(96,A);printf("%s",pgs.no_telp);
-            gotoxy(110,A);printf("%s",pgs.status);
-            gotoxy(123,A);printf("%s",pgs.username);
-            gotoxy(140,A);printf("%s",pgs.password);
-            fflush(stdin);
-        }
-        fclose(arspgs);
+void TextBoxUpdatePetugasByRole(char id_petugas[]) {
+    petugas pgs;
+    FILE *arspgs = fopen("../Database/Dat/PETUGAS.dat", "rb+"); // Dibuka dengan mode "rb+" untuk read & write
+    if (arspgs == NULL) {
+        MessageBox(NULL, "File PETUGAS.dat tidak dapat dibuka.", "ERROR", MB_OK | MB_ICONERROR | MB_DEFAULT_DESKTOP_ONLY);
+        return;
     }
-#endif //UPDATEPETUGAS_H
+
+    int found = 0;
+    while (fread(&pgs, sizeof(pgs), 1, arspgs) == 1) {
+        if (strcmp(pgs.id_petugas_str, id_petugas) == 0) {
+            found = 1;
+            MessageBox(NULL, "ID PETUGAS Ditemukan!", "NOTIFICATION", MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);
+
+            // Menampilkan data lama
+            clearTengah();
+            SetColorBlock(1, 7);
+            frameDetailData(36, 17);
+            seluruhpetugas();
+            gotoxy(65, 22);
+            printf("%s", pgs.id_petugas_str);
+            gotoxy(65, 24);
+            printf("%s", pgs.nama);
+            gotoxy(65, 28);
+            printf("%s", pgs.status);
+            gotoxy(65, 30);
+            printf("%s", pgs.username);
+            gotoxy(65, 32);
+            printf("%s", pgs.password);
+
+            // Menampilkan menu update
+            clearArea(132, 18, 38, 24);
+            SetColorBlock(7, 9);
+            gotoprinttext(141, 20, "U P D A T E  D A T A");
+            gotoprinttext(134, 24, "[1] Nama");
+            gotoprinttext(134, 26, "[2] No Telp");
+            gotoprinttext(134, 28, "[3] Status");
+            gotoprinttext(134, 30, "[4] Username");
+            gotoprinttext(134, 32, "[5] Password");
+            gotoprinttext(134, 34, "Masukkan Pilihan: ");
+            gotoxy(153, 34);
+
+            int pilihan;
+            scanf("%d", &pilihan);
+
+            switch (pilihan) {
+                case 1:
+                    gotoprinttext(134, 36, "Masukkan Nama Baru : ");
+                    gotoxy(154, 36);
+                    scanf(" %[^\n]s", pgs.nama);
+                    break;
+                case 2:
+                    gotoprinttext(134, 36, "Masukkan No Telp Baru: ");
+                    gotoxy(160, 36);
+                    scanf(" %[^\n]s", pgs.no_telp);
+                    break;
+                case 3:
+                    gotoprinttext(134, 36, "Masukkan Status Baru: ");
+                    gotoxy(160, 36);
+                    scanf(" %[^\n]s", pgs.status);
+                    break;
+                case 4:
+                    gotoprinttext(134, 36, "Masukkan Username Baru: ");
+                    gotoxy(160, 36);
+                    scanf(" %[^\n]s", pgs.username);
+                    break;
+                case 5:
+                    gotoprinttext(134, 36, "Masukkan Password Baru: ");
+                    gotoxy(160, 36);
+                    scanf(" %[^\n]s", pgs.password);
+                    break;
+                default:
+                    MessageBox(NULL, "Pilihan tidak valid!", "ERROR", MB_OK | MB_ICONERROR | MB_DEFAULT_DESKTOP_ONLY);
+                    fclose(arspgs);
+                    return;
+            }
+
+            fseek(arspgs, -sizeof(pgs), SEEK_CUR);
+            fwrite(&pgs, sizeof(pgs), 1, arspgs);
+            fflush(arspgs);
+
+            MessageBox(NULL, "Data berhasil diperbarui.", "SUCCESS", MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);
+            break;
+        }
+    }
+
+    fclose(arspgs);
+
+    if (!found) {
+        MessageBox(NULL, "ID Petugas tidak ditemukan.", "NOT FOUND", MB_OK | MB_ICONERROR | MB_DEFAULT_DESKTOP_ONLY);
+    }
+}
+
