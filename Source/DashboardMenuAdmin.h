@@ -237,9 +237,9 @@ void MenuJnsLayanan () {
         switch (pilihan) {
             case 1:blankScreen();CreateJnsLayanan();break;
             case 2:blankScreen();ReadJnsLayanan();break;
-            // case 3:blankScreen();UpdateLayanan();break;
-            // case 4:blankScreen();DeleteLayanan();break;
-            // case 5:blankScreen();Dashboard();
+            case 3:blankScreen();UpdateJnsLayanan();break;
+            case 4:blankScreen();DeleteJnsLayanan();break;
+            case 5:blankScreen();Dashboard();
             exit(0);
             default:
                 gotoprinttext(80,38,"Pilihan tidak valid.\n");

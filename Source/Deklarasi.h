@@ -127,3 +127,9 @@ typedef struct {
     int layanan_terpilih[3];
 }jnslayanan;
 jnslayanan jly;
+
+typedef struct {
+    int id_jnslayanan;
+    int id_layanan;
+}tabelDetailJenisPkt;
+tabelDetailJenisPkt tdj;

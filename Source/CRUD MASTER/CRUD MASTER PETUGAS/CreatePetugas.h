@@ -179,6 +179,9 @@ void CreatePetugas() {
 
             if (!isValidDate(pgs.tgl_lahir.hari, pgs.tgl_lahir.bulan, pgs.tgl_lahir.tahun)) {
                 MessageBox(NULL, "Format tanggal salah atau tidak valid! Gunakan format dd/mm/yyyy.", "ERROR!", MB_OK | MB_ICONERROR | MB_DEFAULT_DESKTOP_ONLY);
+                clearArea(86,26,2,1);
+                clearArea(89,26,2,1);
+                clearArea(92,26,4,1);
             }
         } while (!isValidDate(pgs.tgl_lahir.hari, pgs.tgl_lahir.bulan, pgs.tgl_lahir.tahun));
 

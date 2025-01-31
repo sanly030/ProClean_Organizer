@@ -32,6 +32,14 @@ void seluruhLayanan() {
     gotoprinttext(43,25,"ID LAYANAN          :");
     gotoprinttext(43,27,"JENIS LAYANAN       :");
 }
+
+void seluruhJnsLayanan() {
+    SetColorBlock(1,7);
+    gotoprinttext(55,22,"D E T A I L  D A T A");
+    gotoprinttext(43,25,"ID JENIS LAYANAN    :");
+    gotoprinttext(43,27,"NAMA JENIS LAYANAN  :");
+}
+
 void Tanggal()
 {
     time_t t = time(NULL);

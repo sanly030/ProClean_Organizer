@@ -59,7 +59,7 @@ void TextBoxDeleteLayanan(int id_layanan) {
             clearTengah();
             SetColorBlock(7, 9);
             frameDetailData(36, 17);
-            seluruhLayanan();
+            seluruhJnsLayanan();
             gotoxy(65, 25);
             printf("LYN00%d", lyn.id_layanan);
             gotoxy(65, 27);

@@ -5,4 +5,194 @@
 #ifndef UPDATEJNSLAYANAN_H
 #define UPDATEJNSLAYANAN_H
 
-#endif //UPDATEJNSLAYANAN_H
+#include "ReadJnsLayanan.h"
+#include "../../../Interface/lib.h"
+
+void UpdateJnsLayanan() {
+    int pilihan;
+
+    while (1) { // Loop agar user tetap di menu sampai memilih opsi yang benar
+        blankScreen();
+        SetColorBlock(1, 7);
+        frameLayout(60,18,120,40,32);
+        SetColorBlock(1,7);
+        PrintFile("..//Asset//MenuData.txt",70, 19);
+        PrintFile("..//Asset//UbahData.txt",60,11);
+        frameLayout(60,18,120,19,220);
+        frameLayout(60,18,61,40,220);
+        frameLayout(60,40,120,41,223);
+        frameLayout(119,18,120,40,220);
+
+        textBox2(73,24,30,2);
+        gotoprinttext(74, 25, "   1-> Update Jenis Paket");
+        textBox2(73,27,30,2);
+        gotoprinttext(74, 28, " 2-> Update Detail Jenis Paket");
+
+        gotoprinttext(80, 33, "Masukkan pilihan : [ ]");
+        gotoxy(100, 33);
+        getnum(&pilihan, 1);
+
+        switch (pilihan) {
+            case 1:
+                ReadUpdateJenisLayanan(); // Panggil fungsi untuk update Jenis Layanan
+            return;
+            case 2:
+                ReadUpdateDetailJenisPaket(); // Panggil fungsi untuk update Detail Jenis Paket
+            return;
+            case 0:
+                blankScreen();
+            MenuJnsLayanan(); // Kembali ke menu utama
+            return;
+            default:
+                MessageBox(NULL, "Pilihan tidak valid. Silakan coba lagi!", "ERROR!", MB_OK | MB_ICONERROR | MB_DEFAULT_DESKTOP_ONLY);
+        }
+    }
+}
+
+
+void TextBoxUpdateJenisLayanan(int id_jnslayanan) {
+    SetColorBlock(7, 9);
+    textBox2(130, 17, 39, 25);
+    gotoprinttext(134, 28, "U P D A T E  J N S  L A Y A N A N");
+    gotoprinttext(134, 30, "Masukkan ID Jenis Layanan : JLY  ");
+    gotoprinttext(136, 41, "==Ketik 0 untuk batal update==");
+    gotoxy(165, 30);
+    getnum(&id_jnslayanan, 3);
+
+    if (id_jnslayanan == 0) {
+        MessageBox(NULL, "Pengubahan dibatalkan oleh pengguna.", "CANCEL", MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);
+        blankScreen();
+        MenuJnsLayanan();
+        return;
+    }
+
+    FILE *arsjly = fopen("../Database/Dat/JENISLAYANAN.dat", "rb");
+    FILE *temp = fopen("TEMP_JENISLAYANAN.dat", "wb");
+    int found = 0;
+
+    jnslayanan jly;
+
+    while (fread(&jly, sizeof(jnslayanan), 1, arsjly) == 1) {
+        if (jly.id_jnslayanan == id_jnslayanan) {
+            found = 1;
+            MessageBox(NULL, "ID Jenis Layanan Ditemukan", "NOTIFICATION!", MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);
+            clearTengah();
+            SetColorBlock(7, 9);
+            frameDetailData(36, 17);
+            seluruhJnsLayanan();
+            gotoxy(65, 25);
+            printf("JLY%03d", jly.id_jnslayanan);
+            gotoxy(65, 27);
+            printf("%s", jly.namajnslyn);
+
+            clearArea(131, 18, 38, 24);
+            SetColorBlock(7, 9);
+            gotoprinttext(134, 20, "U P D A T E  J N S  L A Y A N A N");
+            gotoprinttext(134, 23, "[1] Nama Jenis Layanan");
+            gotoprinttext(134, 26, "MASUKKAN PILIHAN : ");
+            gotoxy(153, 26);
+            int pilihan;
+            getnum(&pilihan, 1);
+
+            switch (pilihan) {
+                case 1:
+                    gotoxy(134, 28);
+                    printf("Masukkan Nama Jenis Layanan : ");
+                    gotoprinttext(134, 29, "-> ");
+                    for (int i = 137; i <= 160; i++) {
+                        gotoprintchar(i, 30, 196);
+                    }
+                    gotoxy(137, 29);
+                    getinput(jly.namajnslyn, 25, 2);
+                    MessageBox(NULL, "Data Berhasil Diubah", "NOTIFICATION!", MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);
+                    break;
+            }
+            fwrite(&jly, sizeof(jnslayanan), 1, temp);
+        } else {
+            fwrite(&jly, sizeof(jnslayanan), 1, temp);
+        }
+    }
+
+    fclose(arsjly);
+    fclose(temp);
+    remove("../Database/Dat/JENISLAYANAN.dat");
+    rename("TEMP_JENISLAYANAN.dat", "../Database/Dat/JENISLAYANAN.dat");
+
+    if (!found) {
+        MessageBox(NULL, "ID tidak ditemukan!", "ERROR!", MB_OK | MB_ICONERROR | MB_DEFAULT_DESKTOP_ONLY);
+    }
+    blankScreen();
+    MenuJnsLayanan();
+}
+
+
+void UpdateDetailJenisPaket() {
+    SetColorBlock(1, 7);
+    ReadUpdateDetailJenisPaket();
+}
+
+void TextBoxUpdateDetailJenisPaket(int id_jnslayanan, int id_layanan) {
+    SetColorBlock(7, 9);
+    textBox2(130, 17, 39, 25);
+    gotoprinttext(132, 28, "U P D A T E  D E T A I L  J N S  P A K E T");
+    gotoprinttext(134, 30, "Masukkan ID Jenis Layanan : JLY  ");
+    gotoprinttext(134, 32, "Masukkan ID Layanan       : LYN  ");
+    gotoprinttext(138, 40, "Ketik 0 untuk batal update");
+    gotoxy(165, 30);
+    getnum(&id_jnslayanan, 3);
+    gotoxy(165, 32);
+    getnum(&id_layanan, 3);
+
+    if (id_jnslayanan == 0 || id_layanan == 0) {
+        MessageBox(NULL, "Pengubahan dibatalkan oleh pengguna.", "CANCEL", MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);
+        blankScreen();
+        MenuJnsLayanan();
+        return;
+    }
+
+    FILE *arsDetail = fopen("../Database/Dat/DETAILJENISPAKET.dat", "rb");
+    FILE *temp = fopen("TEMP_DETAILJENISPAKET.dat", "wb");
+    int found = 0;
+
+    tabelDetailJenisPkt tdj;
+
+    while (fread(&tdj, sizeof(tabelDetailJenisPkt), 1, arsDetail) == 1) {
+        if (tdj.id_jnslayanan == id_jnslayanan && tdj.id_layanan == id_layanan) {
+            found = 1;
+            MessageBox(NULL, "Data Ditemukan", "NOTIFICATION!", MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);
+            clearTengah();
+            SetColorBlock(7, 9);
+            frameDetailData(36, 17);
+            seluruhJnsLayanan();
+            gotoxy(65, 25);
+            printf("JLY%03d", tdj.id_jnslayanan);
+            gotoxy(65, 27);
+            printf("LYN%03d", tdj.id_layanan);
+
+            gotoprinttext(134, 29, "Masukkan ID Layanan Baru: LYN ");
+            gotoxy(164, 29);
+            getnum(&tdj.id_layanan, 3);
+            MessageBox(NULL, "Data Berhasil Diubah", "NOTIFICATION!", MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);
+        }
+        fwrite(&tdj, sizeof(tabelDetailJenisPkt), 1, temp);
+    }
+
+    fclose(arsDetail);
+    fclose(temp);
+    remove("../Database/Dat/DETAILJENISPAKET.dat");
+    rename("TEMP_DETAILJENISPAKET.dat", "../Database/Dat/DETAILJENISPAKET.dat");
+
+    if (!found) {
+        MessageBox(NULL, "Data tidak ditemukan!", "ERROR!", MB_OK | MB_ICONERROR | MB_DEFAULT_DESKTOP_ONLY);
+    }
+
+    blankScreen();
+    MenuJnsLayanan();
+}
+
+
+
+#endif // UPDATEJENISLAYANAN_H
+
+
+
