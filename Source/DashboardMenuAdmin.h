@@ -260,7 +260,7 @@ void MenuJnsLayanan () {
 //
 //
 //     do {
-//         PrintFile("..//Asset//MenuLayanan.txt",55, 10);
+//         PrintFile("..//Asset//MenuPktLayanan.txt",55, 10);
 //         textBox2(64,24,20,2);
 //         gotoprinttext(68, 25,"1. Tambah Data");
 //
@@ -284,10 +284,10 @@ void MenuJnsLayanan () {
 //
 //         switch (pilihan) {
 //             case 1:blankScreen();CreatePktLayanan();break;
-//             case 2:blankScreen();ReadPktLayanan();break;
-//             case 3:blankScreen();UpdatePktLayanan();break;
-//             case 4:blankScreen();DeletePktLayanan();break;
-//             case 5:blankScreen();Dashboard();
+//             // case 2:blankScreen();ReadPktLayanan();break;
+//             // case 3:blankScreen();UpdatePktLayanan();break;
+//             // case 4:blankScreen();DeletePktLayanan();break;
+//             // case 5:blankScreen();Dashboard();
 //             exit(0);
 //             default:
 //                 gotoprinttext(80,38,"Pilihan tidak valid.\n");

@@ -22,6 +22,8 @@ void Dashboard() {
     gotoprinttext(9,21,"L A Y A N A N ");
     gotoprinttext(9,23,"J E N I S  ");
     gotoprinttext(9,24,"L A Y A N A N");
+    gotoprinttext(9,26,"P A K E T  ");
+    gotoprinttext(9,27,"L A Y A N A N");
 
     textBox2(3,39,24,2);
     gotoprinttext(5,40,"P I L I H  M E N U :[ ]");
@@ -35,5 +37,6 @@ void Dashboard() {
         case 2:blankScreen();MenuPetugas();break;
         case 3:blankScreen();MenuLayanan();break;
         case 4:blankScreen();MenuJnsLayanan();break;
+        // case 5:blankScreen();MenuPktLayanan();break;
     }
 }

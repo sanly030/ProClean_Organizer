@@ -56,10 +56,9 @@ void CreateJnsLayanan() {
 
         gotoxy(45, 20);
         printf("I D  J E N I S  L A Y A N A N         : JLY%03d\n", jly.id_jnslayanan);
-        gotoprinttext(45, 22, "N A M A  J E N I S  L A Y A N A N     : ");
-        gotoprinttext(45, 24, "J E N I S  P A K E T                  : ");
-        gotoprinttext(45, 26, "H A R G A                             : Rp. ");
-        gotoprinttext(45, 28, "D U R A S I                           :     Menit");
+        gotoprinttext(45, 22, "J E N I S  P A K E T                  : ");
+        gotoprinttext(45, 24, "H A R G A                             : Rp. ");
+        gotoprinttext(45, 26, "D U R A S I                           :     Menit");
 
         for ( i = 85; i <= 110 ; i++) {
             gotoprintchar(i,23,196);
@@ -70,19 +69,14 @@ void CreateJnsLayanan() {
         for ( i = 85; i <= 110 ; i++) {
             gotoprintchar(i,27,196);
         }
-        for ( i = 85; i <= 110 ; i++) {
-            gotoprintchar(i,29,196);
-        }
-        gotoxy(85, 22);
-        getinput(jly.namajnslyn, 25, 2);
 
-        gotoxy(85, 24);
+        gotoxy(85, 22);
         getinput(jly.jenispaket, 25, 2);
 
-        gotoxy(90, 26);
-        getRp(&jly.harga, 4, 6, 88, 26);
+        gotoxy(90, 24);
+        getRp(&jly.harga, 4, 6, 88, 24);
 
-        gotoxy(85, 28);
+        gotoxy(85, 26);
         getnum(&jly.durasi, 3);
 
         // Simpan ke file JENISLAYANAN.dat

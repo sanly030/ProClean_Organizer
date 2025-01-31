@@ -36,8 +36,10 @@ void seluruhLayanan() {
 void seluruhJnsLayanan() {
     SetColorBlock(1,7);
     gotoprinttext(55,22,"D E T A I L  D A T A");
-    gotoprinttext(43,25,"ID JENIS LAYANAN    :");
-    gotoprinttext(43,27,"NAMA JENIS LAYANAN  :");
+    gotoprinttext(43,25,"ID LAYANAN          :");
+    gotoprinttext(43,27,"JENIS PAKET         :");
+    gotoprinttext(43,29,"HARGA               :");
+    gotoprinttext(43,31,"DURASI              :");
 }
 
 void Tanggal()

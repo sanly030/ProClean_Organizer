@@ -44,7 +44,7 @@ void ReadJnsLayanan() {
         gotoxy(44, y);
         printf("JLY%03d", jly.id_jnslayanan);
         gotoxy(70, y);
-        printf("%s", jly.namajnslyn);
+        printf("%s", jly.jenispaket);
         gotoxy(110, y);
         printf("%d Menit", jly.durasi);
 
@@ -163,7 +163,7 @@ void ReadUpdateJenisLayanan() {
         gotoxy(49, y);
         printf("JLY%03d", jly.id_jnslayanan);
         gotoxy(79, y);
-        printf("%s", jly.namajnslyn);
+        printf("%s", jly.jenispaket);
 
         i++;
         y++;

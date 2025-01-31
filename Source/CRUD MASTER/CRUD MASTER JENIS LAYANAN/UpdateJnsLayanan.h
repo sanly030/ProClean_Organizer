@@ -53,10 +53,11 @@ void UpdateJnsLayanan() {
 void TextBoxUpdateJenisLayanan(int id_jnslayanan) {
     SetColorBlock(7, 9);
     textBox2(130, 17, 39, 25);
-    gotoprinttext(134, 28, "U P D A T E  J N S  L A Y A N A N");
-    gotoprinttext(134, 30, "Masukkan ID Jenis Layanan : JLY  ");
-    gotoprinttext(136, 41, "==Ketik 0 untuk batal update==");
-    gotoxy(165, 30);
+    gotoprinttext(132, 20, "U P D A T E  J E N I S  L A Y A N A N");
+    gotoprinttext(134, 22, "Masukkan ID Jenis Layanan : JLY  ");
+    gotoprinttext(136, 40, "== Ketik 0 untuk batal update ==");
+
+    gotoxy(165, 22);
     getnum(&id_jnslayanan, 3);
 
     if (id_jnslayanan == 0) {
@@ -68,14 +69,21 @@ void TextBoxUpdateJenisLayanan(int id_jnslayanan) {
 
     FILE *arsjly = fopen("../Database/Dat/JENISLAYANAN.dat", "rb");
     FILE *temp = fopen("TEMP_JENISLAYANAN.dat", "wb");
-    int found = 0;
 
+    if (!arsjly || !temp) {
+        MessageBox(NULL, "Gagal membuka file!", "ERROR!", MB_OK | MB_ICONERROR | MB_DEFAULT_DESKTOP_ONLY);
+        return;
+    }
+
+    int found = 0;
     jnslayanan jly;
 
     while (fread(&jly, sizeof(jnslayanan), 1, arsjly) == 1) {
         if (jly.id_jnslayanan == id_jnslayanan) {
             found = 1;
-            MessageBox(NULL, "ID Jenis Layanan Ditemukan", "NOTIFICATION!", MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);
+            MessageBox(NULL, "ID Jenis Layanan ditemukan.", "NOTIFICATION!", MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);
+
+            // Menampilkan data lama
             clearTengah();
             SetColorBlock(7, 9);
             frameDetailData(36, 17);
@@ -83,48 +91,70 @@ void TextBoxUpdateJenisLayanan(int id_jnslayanan) {
             gotoxy(65, 25);
             printf("JLY%03d", jly.id_jnslayanan);
             gotoxy(65, 27);
-            printf("%s", jly.namajnslyn);
+            printf("%s", jly.jenispaket);
+            gotoxy(65, 29);
+            printf("Rp %.2f", jly.harga);
+            gotoxy(65, 31);
+            printf("%d", jly.durasi);
 
+            // Input update
             clearArea(131, 18, 38, 24);
             SetColorBlock(7, 9);
-            gotoprinttext(134, 20, "U P D A T E  J N S  L A Y A N A N");
-            gotoprinttext(134, 23, "[1] Nama Jenis Layanan");
-            gotoprinttext(134, 26, "MASUKKAN PILIHAN : ");
-            gotoxy(153, 26);
+            gotoprinttext(134, 20, "PILIH DATA YANG INGIN DIUBAH");
+            gotoprinttext(134, 23, "[1] Nama Jenis Paket");
+            gotoprinttext(134, 25, "[2] Harga ");
+            gotoprinttext(134, 27, "[3] Durasi ");
+
+            gotoprinttext(134, 30, "MASUKKAN PILIHAN : [   ] ");
+            gotoxy(155, 30);
             int pilihan;
             getnum(&pilihan, 1);
 
             switch (pilihan) {
                 case 1:
-                    gotoxy(134, 28);
-                    printf("Masukkan Nama Jenis Layanan : ");
-                    gotoprinttext(134, 29, "-> ");
-                    for (int i = 137; i <= 160; i++) {
-                        gotoprintchar(i, 30, 196);
+                    gotoprinttext(134, 32, "Masukkan Nama Jenis Layanan Baru: ");
+                    gotoprinttext(134,33,"-> ");
+                    for (i = 137; i <= 160; i++) {
+                    gotoprintchar(i,34,196);
                     }
-                    gotoxy(137, 29);
-                    getinput(jly.namajnslyn, 25, 2);
-                    MessageBox(NULL, "Data Berhasil Diubah", "NOTIFICATION!", MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);
+                    gotoxy(138, 33);
+                    getinput(jly.jenispaket, 25, 2);
+                    MessageBox(NULL, "Nama Jenis Layanan Berhasil Diubah", "NOTIFICATION!", MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);
+                    break;
+                case 2:
+                    gotoprinttext(134, 32, "Masukkan Harga Baru (Rp): ");
+                    gotoxy(134, 34);
+                    getnum(&jly.harga, 6);
+                    MessageBox(NULL, "Harga Berhasil Diubah", "NOTIFICATION!", MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);
+                    break;
+                case 3:
+                    gotoprinttext(134, 32, "Masukkan Durasi Baru: ");
+                    gotoxy(134, 34);
+                    getinput(jly.durasi, 10, 2);
+                    MessageBox(NULL, "Durasi Berhasil Diubah", "NOTIFICATION!", MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);
+                    break;
+                default:
+                    MessageBox(NULL, "Pilihan tidak valid!", "ERROR!", MB_OK | MB_ICONERROR | MB_DEFAULT_DESKTOP_ONLY);
                     break;
             }
-            fwrite(&jly, sizeof(jnslayanan), 1, temp);
-        } else {
-            fwrite(&jly, sizeof(jnslayanan), 1, temp);
         }
+
+        fwrite(&jly, sizeof(jly), 1, temp);
     }
 
     fclose(arsjly);
     fclose(temp);
+
     remove("../Database/Dat/JENISLAYANAN.dat");
     rename("TEMP_JENISLAYANAN.dat", "../Database/Dat/JENISLAYANAN.dat");
 
     if (!found) {
         MessageBox(NULL, "ID tidak ditemukan!", "ERROR!", MB_OK | MB_ICONERROR | MB_DEFAULT_DESKTOP_ONLY);
     }
+
     blankScreen();
     MenuJnsLayanan();
 }
-
 
 void UpdateDetailJenisPaket() {
     SetColorBlock(1, 7);

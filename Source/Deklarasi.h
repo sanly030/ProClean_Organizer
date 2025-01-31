@@ -133,3 +133,10 @@ typedef struct {
     int id_layanan;
 }tabelDetailJenisPkt;
 tabelDetailJenisPkt tdj;
+
+typedef struct {
+    int id_pktLayanan;
+    int id_jnslayanan;
+    string namaPkt;
+}PktLayanan;
+PktLayanan pkt;
