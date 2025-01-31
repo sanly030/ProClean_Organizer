@@ -32,6 +32,8 @@ int batal;
 char Opsi;
 int status;
 char ulangi;
+int i;
+int id_layanan;
 
 struct id {
     int id_petugasKebersihan;
@@ -109,3 +111,19 @@ typedef struct {
     char kode[4];
 } jnspetugas;
 jnspetugas jgs;
+
+typedef struct {
+    int id_layanan;
+    string jnslayanan;
+}layanan;
+layanan lyn;
+
+typedef struct {
+    int id_jnslayanan;
+    string namajnslyn;
+    string jenispaket;
+    float harga;
+    int durasi;
+    int layanan_terpilih[3];
+}jnslayanan;
+jnslayanan jly;

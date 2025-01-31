@@ -3,6 +3,7 @@
 #include <string.h>
 
 typedef char string[255];
+
 void inisialisasiJenisPetugas() {
     FILE *arsjgs = fopen("../Database/Dat/JENIS PETUGAS.dat", "wb");
     if (arsjgs == NULL) {
@@ -164,7 +165,7 @@ void CreatePetugas() {
         getinput(pgs.no_telp, 16, 3);
 
         // Menampilkan Format Tanggal Lahir Langsung
-        gotoprinttext(45, 26, "T A N G G A L  L A H I R (dd/mm/yyyy)  : ");
+        gotoprinttext(45, 26, "T A N G G A L  L A H I R               : ");
         gotoxy(86, 26);
         printf("  /  /     ");  // Format tetap terlihat saat user input
 

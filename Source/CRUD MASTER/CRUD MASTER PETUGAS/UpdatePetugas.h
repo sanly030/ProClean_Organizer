@@ -2,6 +2,7 @@
 #include "../../../Interface/lib.h"
 
 void TextBoxUpdatePetugasByRole(char id_petugas[]);
+
 // void ReadUpdatePetugasByRole(int role);
 void UpdatePetugas() {
 
@@ -39,11 +40,9 @@ void UpdatePetugas() {
         MenuPetugas();          // Kembali ke menu utama
         return;
     }
-
     // Panggil fungsi untuk menampilkan data berdasarkan role
     ReadUpdatePetugasByRole(role);
 }
-
 
 void TextBoxUpdatePetugasByRole(char id_petugas[]) {
     petugas pgs;
@@ -68,6 +67,8 @@ void TextBoxUpdatePetugasByRole(char id_petugas[]) {
             printf("%s", pgs.id_petugas_str);
             gotoxy(65, 24);
             printf("%s", pgs.nama);
+            gotoxy(65, 26);
+            printf("%02d/%02d/%d", pgs.tgl_lahir.hari, pgs.tgl_lahir.bulan, pgs.tgl_lahir.tahun);
             gotoxy(65, 28);
             printf("%s", pgs.no_telp);
             gotoxy(65, 30);
@@ -82,42 +83,63 @@ void TextBoxUpdatePetugasByRole(char id_petugas[]) {
             SetColorBlock(7, 9);
             gotoprinttext(141, 20, "U P D A T E  D A T A");
             gotoprinttext(134, 24, "[1] Nama");
-            gotoprinttext(135, 24, "[2] Tanggal Lahir");
-            gotoprinttext(134, 26, "[3] No Telp");
-            gotoprinttext(134, 28, "[4] Status");
-            gotoprinttext(134, 30, "[5] Username");
-            gotoprinttext(134, 32, "[6] Password");
-            gotoprinttext(134, 34, "Masukkan Pilihan: ");
-            gotoxy(153, 34);
-
+            gotoprinttext(134, 26, "[2] Tanggal Lahir");
+            gotoprinttext(134, 28, "[3] No Telp");
+            gotoprinttext(134, 30, "[4] Status");
+            gotoprinttext(134, 32, "[5] Username");
+            gotoprinttext(134, 34, "[6] Password");
+            gotoprinttext(134, 36, "Masukkan Pilihan : ");
+            gotoxy(153, 36);
 
             int pilihan;
             scanf("%d", &pilihan);
 
             switch (pilihan) {
                 case 1:
-                    gotoprinttext(134, 36, "Masukkan Nama Baru : ");
-                    gotoxy(154, 36);
+                    gotoprinttext(134, 38, "Masukkan Nama Baru : ");
+                    gotoxy(154, 38);
                     scanf(" %[^\n]s", pgs.nama);
                     break;
                 case 2:
-                    gotoprinttext(134, 36, "Masukkan No Telp Baru: ");
-                    gotoxy(160, 36);
-                    scanf(" %[^\n]s", pgs.no_telp);
+                    gotoprinttext(134, 38, "Masukkan Tanggal Lahir : ");
+                gotoxy(159, 38);
+                printf("  /  /     ");  // Format tetap terlihat saat user input
+
+                do {
+                    gotoxy(159, 38);  // Letakkan kursor di tempat tanggal
+                    getnum(&pgs.tgl_lahir.hari, 2);
+                    gotoxy(162, 38);  // Lompat ke bulan (melewati "/")
+                    getnum(&pgs.tgl_lahir.bulan, 2);
+                    gotoxy(165, 38);  // Lompat ke tahun (melewati "/")
+                    getnum(&pgs.tgl_lahir.tahun, 4);
+
+                    if (!isValidDate(pgs.tgl_lahir.hari, pgs.tgl_lahir.bulan, pgs.tgl_lahir.tahun)) {
+                        clearArea(159,38,2,1);
+                        clearArea(162,38,2,1);
+                        clearArea(165,38,4,1);
+                        MessageBox(NULL, "Format tanggal salah atau tidak valid! Gunakan format dd/mm/yyyy.", "ERROR!", MB_OK | MB_ICONERROR | MB_DEFAULT_DESKTOP_ONLY);
+                    }
+                } while (!isValidDate(pgs.tgl_lahir.hari, pgs.tgl_lahir.bulan, pgs.tgl_lahir.tahun));
+
                     break;
                 case 3:
-                    gotoprinttext(134, 36, "Masukkan Status Baru: ");
-                    gotoxy(160, 36);
-                    scanf(" %[^\n]s", pgs.status);
+                    gotoprinttext(134, 38, "Masukkan No Telp Baru: ");
+                    gotoxy(154, 38);
+                    scanf(" %[^\n]s", pgs.no_telp);
                     break;
                 case 4:
-                    gotoprinttext(134, 36, "Masukkan Username Baru: ");
-                    gotoxy(160, 36);
-                    scanf(" %[^\n]s", pgs.username);
+                    gotoprinttext(134, 38, "Masukkan Status Baru: ");
+                    gotoxy(154, 38);
+                    scanf(" %[^\n]s", pgs.status);
                     break;
                 case 5:
-                    gotoprinttext(134, 36, "Masukkan Password Baru: ");
-                    gotoxy(160, 36);
+                    gotoprinttext(134, 38, "Masukkan Username Baru: ");
+                    gotoxy(154, 38);
+                    scanf(" %[^\n]s", pgs.username);
+                    break;
+                case 6:
+                    gotoprinttext(134, 38, "Masukkan Password Baru: ");
+                    gotoxy(154, 38);
                     scanf(" %[^\n]s", pgs.password);
                     break;
                 default:
@@ -149,7 +171,7 @@ void TextBoxUpdatePetugasByRole(char id_petugas[]) {
         // **Cek pilihan user**
         if (ulangi == 'y' || ulangi == 'Y') {
             blankScreen();
-            ReadUpdatePetugasByRole(id_petugas); // Panggil ulang fungsi untuk update baru
+            TextBoxUpdatePetugasByRole(id_petugas); // Panggil ulang fungsi untuk update baru
             return;
         } else if (ulangi == 't' || ulangi == 'T') {
             blankScreen();
@@ -160,9 +182,9 @@ void TextBoxUpdatePetugasByRole(char id_petugas[]) {
         }
     } while (ulangi != 'y' && ulangi != 'Y' && ulangi != 't' && ulangi != 'T');
 
-
     if (!found) {
         MessageBox(NULL, "ID Petugas tidak ditemukan.", "NOT FOUND", MB_OK | MB_ICONERROR | MB_DEFAULT_DESKTOP_ONLY);
     }
 }
+
 

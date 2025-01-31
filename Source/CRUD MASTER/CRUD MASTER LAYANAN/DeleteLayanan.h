@@ -1,74 +1,70 @@
-#ifndef DELETEJENISPETUGAS_H
-#define DELETEJENISPETUGAS_H
-void ReadDeleteJenisPetugas();
 
-void TextBoxDeleteJenisPetugas(int id_petugas);
+#ifndef DELETELAYANAN_H
+#define DELETELAYANAN_H
 
-void DeleteJenisPetugas() {
+void DeleteLayanan() {
     SetColorBlock(1, 7);
-    ReadDeleteJenisPetugas();; // Cukup panggil sekali karena pengulangan ditangani di dalam
-    MenuJenisPetugas();
+    ReadDeleteLayanan();; // Cukup panggil sekali karena pengulangan ditangani di dalam
+    MenuLayanan();
 }
-
-void TextBoxDeleteJenisPetugas(int id_petugas) {
+void TextBoxDeleteLayanan(int id_layanan) {
     int found = 0;
     char ulangi;
-    jnspetugas jgs;
+    layanan lyn;
 
     // Tampilkan input box
     SetColorBlock(7, 9);
     textBox2(130, 17, 39, 25);
     gotoprinttext(141, 28, "D E L E T E  D A T A");
-    gotoprinttext(134, 30, "Masukkan ID Jenis : JPS00");
+    gotoprinttext(134, 30, "Masukkan ID Layanan : LYN");
     gotoprinttext(138, 40, "Ketik 0 untuk batal delete");
     gotoxy(159, 30);
-    getnum(&id_petugas, 1);
+    getnum(&id_layanan, 3);
 
     // Cek jika user ingin membatalkan
-    if (id_petugas == 0) {
+    if (id_layanan == 0) {
         MessageBox(NULL, "Penghapusan dibatalkan oleh pengguna.", "CANCEL",
                   MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);
         blankScreen();
-        MenuJenisPetugas();
+        MenuLayanan();
         return;
     }
 
     // Buka file untuk dibaca
-    FILE *arsjgs = fopen("../Database/Dat/JENIS PETUGAS.dat", "rb");
-    if (arsjgs == NULL) {
+    FILE *arslyn = fopen("../Database/Dat/LAYANAN.dat", "rb");
+    if (arslyn == NULL) {
         MessageBox(NULL, "File tidak dapat dibuka!", "ERROR!",
                   MB_OK | MB_ICONERROR | MB_DEFAULT_DESKTOP_ONLY);
         return;
     }
 
     // Buka file temporary
-    FILE *temp = fopen("../Database/Dat/TEMP JENIS PETUGAS.dat", "wb");
+    FILE *temp = fopen("../Database/Dat/TEMP LAYANAN.dat", "wb");
     if (temp == NULL) {
-        fclose(arsjgs);
+        fclose(arslyn);
         MessageBox(NULL, "Tidak dapat membuat file temporary!", "ERROR!",
                   MB_OK | MB_ICONERROR | MB_DEFAULT_DESKTOP_ONLY);
         return;
     }
 
     // Cari data yang akan dihapus
-    while (fread(&jgs, sizeof(jgs), 1, arsjgs)) {
-        if (jgs.id_jenispetugas == id_petugas) {
+    while (fread(&lyn, sizeof(lyn), 1, arslyn)) {
+        if (lyn.id_layanan == id_layanan) {
             found = 1;
             clearArea(131, 18, 38, 24);
-            MessageBox(NULL, "ID JENIS PETUGAS Ditemukan", "NOTIFICATION!",
+            MessageBox(NULL, "ID Layanan Ditemukan", "NOTIFICATION!",
                       MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);
 
             // Tampilkan detail data yang akan dihapus
             clearTengah();
             SetColorBlock(7, 9);
             frameDetailData(36, 17);
-            seluruhjenispetugas();
+            seluruhLayanan();
             gotoxy(65, 25);
-            printf("JGS00%d", jgs.id_jenispetugas);
+            printf("LYN00%d", lyn.id_layanan);
             gotoxy(65, 27);
-            printf("%s", jgs.jabatan);
-            gotoxy(65, 29);
-            printf("%s", jgs.deskripsijabatan);
+            printf("%s", lyn.jnslayanan);
+
 
             SetColorBlock(1, 7);
             gotoxy(50, 35);
@@ -83,39 +79,39 @@ void TextBoxDeleteJenisPetugas(int id_petugas) {
 
             if (cancel != IDOK) {
                 // Jika batal, salin semua data ke temp termasuk yang akan dihapus
-                rewind(arsjgs);
-                while (fread(&jgs, sizeof(jgs), 1, arsjgs)) {
-                    fwrite(&jgs, sizeof(jgs), 1, temp);
+                rewind(arslyn);
+                while (fread(&lyn, sizeof(lyn), 1, arslyn)) {
+                    fwrite(&lyn, sizeof(lyn), 1, temp);
                 }
-                fclose(arsjgs);
+                fclose(arslyn);
                 fclose(temp);
-                remove("../Database/Dat/TEMP JENIS PETUGAS.dat");
+                remove("../Database/Dat/TEMP LAYANAN.dat");
                 MessageBox(NULL, "Penghapusan dibatalkan oleh pengguna.", "CANCEL",
                           MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);
-                return;
+                blankScreen();
+                ReadDeleteLayanan();;
             }
             // Jika OK, lanjutkan tanpa menulis record ini ke file temp
             continue;
         }
         // Tulis record yang tidak dihapus ke file temp
-        fwrite(&jgs, sizeof(jgs), 1, temp);
+        fwrite(&lyn, sizeof(lyn), 1, temp);
     }
 
     // Tutup kedua file
-    fclose(arsjgs);
+    fclose(arslyn);
     fclose(temp);
 
     if (!found) {
-        remove("../Database/Dat/TEMP JENIS PETUGAS.dat");
-        MessageBox(NULL, "ID Jenis Petugas tidak ditemukan!", "ERROR!",
+        remove("../Database/Dat/TEMP LAYANAN.dat");
+        MessageBox(NULL, "ID Layanan tidak ditemukan!", "ERROR!",
                   MB_OK | MB_ICONERROR | MB_DEFAULT_DESKTOP_ONLY);
-        blankScreen();
-        ReadDeleteJenisPetugas();
+        return;
     }
 
     // Hapus file asli dan rename file temp
-    remove("../Database/Dat/JENIS PETUGAS.dat");
-    rename("../Database/Dat/TEMP JENIS PETUGAS.dat", "../Database/Dat/JENIS PETUGAS.dat");
+    remove("../Database/Dat/LAYANAN.dat");
+    rename("../Database/Dat/TEMP LAYANAN.dat", "../Database/Dat/LAYANAN.dat");
 
     MessageBox(NULL, "Data berhasil dihapus!", "SUCCESS!",
               MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);
@@ -129,11 +125,11 @@ void TextBoxDeleteJenisPetugas(int id_petugas) {
 
         if (ulangi == 'y' || ulangi == 'Y') {
             blankScreen();
-            ReadDeleteJenisPetugas(); // Panggil ulang fungsi untuk input baru
+            ReadDeleteLayanan(); // Panggil ulang fungsi untuk input baru
             return;
         } else if (ulangi == 't' || ulangi == 'T') {
             blankScreen();
-            MenuJenisPetugas(); // Kembali ke menu utama
+            MenuLayanan(); // Kembali ke menu utama
             return;
         } else {
             MessageBox(NULL, "Input tidak valid, masukkan y/t.", "ERROR!",
@@ -142,5 +138,4 @@ void TextBoxDeleteJenisPetugas(int id_petugas) {
     } while (ulangi != 'y' && ulangi != 'Y' && ulangi != 't' && ulangi != 'T');
 }
 
-
-#endif //DELETEJENISPETUGAS_H
+#endif //DELETELAYANAN_H

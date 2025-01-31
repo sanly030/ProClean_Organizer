@@ -468,5 +468,95 @@ void blankScreenLogin() {
     }
 }
 
+void getRp(float *nilai, int min, int max, int x, int y) //input rupiah
+{
+    char input[255];
+    char inpkey;
+    int i,n,m;
+    n = 0;
+    do
+    {
+        inpkey = getch(); // membaca masukan dari keyboard per-karakter //
+        if(inpkey == '\b' && n != 0) /* Hapus karakter */
+        {
+            n--;
+            input[n]='\0';
+
+            m = n % 3;
+            if((n-m) % 3 == 0 || n == m)
+            {
+                printf("\b \b");
+                printf("\b \b");
+            }
+            else
+            {
+                printf("\b \b");
+            }
+
+            gotoxy(x, y);		/* Cetak ulang sesuai format */
+            for(i = 0; i < n; i++)
+            {
+                if((i+1) == m || (i+1-m) % 3 == 0)
+                {
+                    printf("%c", input[i]);
+                    if(i != (n-1))
+                    {
+                        printf(".");
+                    }
+                }
+                else
+                {
+                    printf("%c", input[i]);
+                }
+            }
+        }
+        else if(isprint(inpkey))      /* Karakter yang bisa di print */
+        {
+            if(n == max)
+            {
+                continue;
+            }
+            else
+            {
+                if(isdigit(inpkey))   /* Print angka */
+                {
+                    gotoxy(x, y);
+                    input[n]=inpkey;
+                    n++;
+                    m = n % 3;
+                    for(i = 0; i < n; i++)  /* Cetak ulang sesuai format */
+                    {
+                        if((i+1) == m || (i+1-m) % 3 == 0)
+                        {
+                            printf("%c", input[i]);
+                            if(i != (n-1))
+                            {
+                                printf(".");
+                            }
+                        }
+                        else
+                        {
+                            printf("%c", input[i]);
+                        }
+                    }
+                }
+                else printf("\a"); /* Pemberitahuan suara tidak dapat di input (alert) */
+            }
+        }
+        else if(inpkey == 13)	/* Jika menekan enter sebelum mengisi karakter akan muncul suara tidak dapat diinput (alert) */
+        {
+            if(n < min)
+            {
+                printf("\a");
+                inpkey = 0;
+            }
+            else input[n]='\0';
+        }
+    }
+    while(inpkey != 13);
+
+    *nilai = atoi(input);   /* Memasukkan nilai input (char) ke nilai (int) */
+}
+
 
 

@@ -1,5 +1,6 @@
 #ifndef READPETUGAS_H
 #define READPETUGAS_H
+#include "DeletePetugas.h"
 
 void MenuPetugas();
 void TextBoxUpdatePetugasByRole(char id_petugas[]);
@@ -156,7 +157,7 @@ void ReadUpdatePetugasByRole(int role) {
         return;
     }
 
-    BoxBlock(32, 17, 115, 2);
+    BoxBlock(32, 17, 98, 2);
     SetColorBlock(7, 1);
     gotoprinttext(33, 18, "NO.");
     gotoprinttext(38, 18, "I D  P E T U G A S");
@@ -164,7 +165,7 @@ void ReadUpdatePetugasByRole(int role) {
     gotoprinttext(73, 18, "T G L  L A H I R");
     gotoprinttext(94, 18, "N O  T E L P");
     gotoprinttext(111, 18, "S T A T U S");
-    gotoprinttext(127, 18, "U S E R N A M E");
+    // gotoprinttext(127, 18, "U S E R N A M E");
 
     petugas pgs;
 
@@ -174,7 +175,7 @@ void ReadUpdatePetugasByRole(int role) {
 
             SetColorBlock((i % 2 == 0) ? 7 : 7, (i % 2 == 0) ? 1 : 9);
             for (int x = y; x <= y; x++) {
-                for (int j = 32; j < 140; j++) {
+                for (int j = 32; j < 130; j++) {
                     gotoprintchar(j, x, 32);
                 }
             }
@@ -191,8 +192,8 @@ void ReadUpdatePetugasByRole(int role) {
             printf("%s", pgs.no_telp);
             gotoxy(111, y);
             printf("%s", pgs.status);
-            gotoxy(127, y);
-            printf("%s", pgs.username);
+            // gotoxy(127, y);
+            // printf("%s", pgs.username);
 
             i++;
             y++;
@@ -229,12 +230,114 @@ void ReadUpdatePetugasByRole(int role) {
         sprintf(id_petugas, "ADM00%d", angka_id);
     } else if (role == 2) {
         sprintf(id_petugas, "KSR00%d", angka_id);
-    } else {
+    }else if (role == 3 ) {
+        sprintf(id_petugas, "PTS00%d", angka_id);
+    }else {
         sprintf(id_petugas, "UNK00%d", angka_id);
     }
 
     // **Lanjutkan ke proses update**
     TextBoxUpdatePetugasByRole(id_petugas);
+}
+
+void ReadDeletePetugasByRole(int role) {
+    int i = 1;
+    int y = 20;
+    char id_petugas[10]; // Ubah ke char array karena ID mengandung huruf dan angka
+    int found = 0;
+    int angka_id;
+
+    blankScreen();
+    SetColorBlock(1, 7);
+    PrintFile("../Asset/HapusData.txt", 60, 11);
+
+    FILE *arspgs = fopen("../Database/Dat/PETUGAS.dat", "rb");
+    if (arspgs == NULL) {
+        MessageBox(NULL, "File PETUGAS.dat tidak dapat dibuka.", "ERROR", MB_OK | MB_ICONERROR | MB_DEFAULT_DESKTOP_ONLY);
+        return;
+    }
+
+    BoxBlock(32, 17, 98, 2);
+    SetColorBlock(7, 1);
+    gotoprinttext(33, 18, "NO.");
+    gotoprinttext(38, 18, "I D  P E T U G A S");
+    gotoprinttext(61, 18, "N A M A");
+    gotoprinttext(73, 18, "T G L  L A H I R");
+    gotoprinttext(94, 18, "N O  T E L P");
+    gotoprinttext(111, 18, "S T A T U S");
+    // gotoprinttext(127, 18, "U S E R N A M E");
+
+    petugas pgs;
+
+    while (fread(&pgs, sizeof(pgs), 1, arspgs) == 1) {
+        if (pgs.role == role) {
+            found = 1;
+
+            SetColorBlock((i % 2 == 0) ? 7 : 7, (i % 2 == 0) ? 1 : 9);
+            for (int x = y; x <= y; x++) {
+                for (int j = 32; j < 130; j++) {
+                    gotoprintchar(j, x, 32);
+                }
+            }
+
+            gotoxy(33, y);
+            printf("%d", i);
+            gotoxy(39, y);
+            printf("%s", pgs.id_petugas_str);
+            gotoxy(61, y);
+            printf("%s", pgs.nama);
+            gotoxy(76, y);
+            printf("%02d/%02d/%d", pgs.tgl_lahir.hari, pgs.tgl_lahir.bulan, pgs.tgl_lahir.tahun);
+            gotoxy(94, y);
+            printf("%s", pgs.no_telp);
+            gotoxy(111, y);
+            printf("%s", pgs.status);
+            // gotoxy(127, y);
+            // printf("%s", pgs.username);
+
+            i++;
+            y++;
+        }
+    }
+
+    fclose(arspgs);
+
+    // Jika tidak ada data ditemukan
+    if (!found) {
+        MessageBox(NULL, "Tidak ada petugas dengan role yang dipilih.", "NOT FOUND", MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);
+        return;
+    }
+
+
+    // Menampilkan format ID berdasarkan role tanpa input ganda
+    textBox2(131, 17, 39, 25);
+    if (role == 1) {
+        gotoprinttext(134, 30, "Masukkan ID Petugas : ADM00");
+    } else if (role == 2) {
+        gotoprinttext(34, y + 2, "Masukkan ID Petugas : KSR00");
+    }else if(role == 3 ){
+        gotoprinttext(34, y + 2, "Masukkan ID Petugas : PTS00");
+    } else {
+        gotoprinttext(34, y + 2, "Masukkan ID Petugas yang ingin diubah : UNK00");
+    }
+
+    // **Letakkan kursor setelah teks yang ditampilkan**
+    gotoxy(161, 30);
+    scanf("%d", &angka_id); // Hanya membaca angka yang diketik
+
+    // **Gabungkan input angka dengan format ID**
+    if (role == 1) {
+        sprintf(id_petugas, "ADM00%d", angka_id);
+    } else if (role == 2) {
+        sprintf(id_petugas, "KSR00%d", angka_id);
+    }else if(role == 3 ){
+        sprintf(id_petugas, "PTS00%d", angka_id);
+    } else {
+        sprintf(id_petugas, "UNK00%d", angka_id);
+    }
+
+    // **Lanjutkan ke proses update**
+    TextBoxDeletePetugasByRole(id_petugas);
 }
 
 
