@@ -18,6 +18,7 @@
 
 #include "Source/Login.h"
 #include "Source/DashboardMenuAdmin.h"
+#include "Source/DashboardOwner.h"
 #include "Source/Dashboard.h"
 
 #include "Source/CRUD MASTER/CRUD MASTER PETUGAS/CreatePetugas.h"
@@ -44,6 +45,11 @@
 #include "Source/CRUD MASTER/CRUD MASTER PAKET LAYANAN/ReadPktLayanan.h"
 #include "Source/CRUD MASTER/CRUD MASTER PAKET LAYANAN/UpdatePktLayanan.h"
 #include "Source/CRUD MASTER/CRUD MASTER PAKET LAYANAN/DeletePktLayanan.h"
+
+#include "Source/CRUD MASTER/CRUD MASTER PROMO/CreatePromo.h"
+#include "Source/CRUD MASTER/CRUD MASTER PROMO/ReadPromo.h"
+#include "Source/CRUD MASTER/CRUD MASTER PROMO/UpdatePromo.h"
+
 
 
 

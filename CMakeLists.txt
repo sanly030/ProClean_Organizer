@@ -32,4 +32,7 @@ add_executable(ProClean_Organizer main.c
         "Source/CRUD MASTER/CRUD MASTER JENIS LAYANAN/ReadJnsLayanan.h"
         "Source/CRUD MASTER/CRUD MASTER JENIS LAYANAN/UpdateJnsLayanan.h"
         "Source/CRUD MASTER/CRUD MASTER JENIS LAYANAN/DeleteJnsLayanan.h"
+        "Source/CRUD MASTER/CRUD MASTER PROMO/CreatePromo.h"
+        "Source/CRUD MASTER/CRUD MASTER PROMO/ReadPromo.h"
+        "Source/CRUD MASTER/CRUD MASTER PROMO/UpdatePromo.h"
 )

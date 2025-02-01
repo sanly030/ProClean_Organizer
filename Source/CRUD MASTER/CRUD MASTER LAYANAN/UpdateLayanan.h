@@ -5,8 +5,6 @@
 #ifndef UPDATELAYANAN_H
 #define UPDATELAYANAN_H
 
-
-
 void UpdateLayanan() {
     SetColorBlock(1,7);
     ReadUpdateLayanan();

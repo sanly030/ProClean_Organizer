@@ -140,3 +140,12 @@ typedef struct {
     string namaPkt;
 }PktLayanan;
 PktLayanan pkt;
+
+typedef struct {
+    int id_promo;
+    string namaPromo;
+    float potongan;
+    tanggal mulai;
+    tanggal selesai;
+}promo;
+promo prm;

@@ -37,6 +37,7 @@ void Dashboard() {
         case 2:blankScreen();MenuPetugas();break;
         case 3:blankScreen();MenuLayanan();break;
         case 4:blankScreen();MenuJnsLayanan();break;
+        case 5:blankScreen();MenuPromo();break;
         // case 5:blankScreen();MenuPktLayanan();break;
     }
 }
