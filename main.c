@@ -43,10 +43,10 @@
 #include "Source/CRUD MASTER/CRUD MASTER JENIS LAYANAN/UpdateJnsLayanan.h"
 #include "Source/CRUD MASTER/CRUD MASTER JENIS LAYANAN/DeleteJnsLayanan.h"
 
-#include "Source/CRUD MASTER/CRUD MASTER PAKET LAYANAN/CreatePktLayanan.h"
-#include "Source/CRUD MASTER/CRUD MASTER PAKET LAYANAN/ReadPktLayanan.h"
-#include "Source/CRUD MASTER/CRUD MASTER PAKET LAYANAN/UpdatePktLayanan.h"
-#include "Source/CRUD MASTER/CRUD MASTER PAKET LAYANAN/DeletePktLayanan.h"
+#include "Source/CRUD MASTER/CRUD MASTER JENIS KENDARAAN/CreateJenisKendaraan.h"
+#include "Source/CRUD MASTER/CRUD MASTER JENIS KENDARAAN/ReadJenisKendaraan.h"
+#include "Source/CRUD MASTER/CRUD MASTER JENIS KENDARAAN/UpdateJenisKendaraan.h"
+#include "Source/CRUD MASTER/CRUD MASTER JENIS KENDARAAN/DeleteJenisKendaraan.h"
 
 #include "Source/CRUD MASTER/CRUD MASTER PROMO/CreatePromo.h"
 #include "Source/CRUD MASTER/CRUD MASTER PROMO/ReadPromo.h"

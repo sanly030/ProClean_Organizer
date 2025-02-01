@@ -28,6 +28,7 @@ void ReadJnsLayanan() {
     gotoprinttext(70, 18, "N A M A  J N S  L A Y A N A N");
     gotoprinttext(110, 18, "D U R A S I");
 
+
     jnslayanan jly;
 
     while (fread(&jly, sizeof(jnslayanan), 1, arsjly) == 1) {
@@ -262,7 +263,7 @@ void ReadDeleteJenisLayanan() {
         gotoxy(49, y);
         printf("JLY%03d", jly.id_jnslayanan);
         gotoxy(79, y);
-        printf("%s", jly.namajnslyn);
+        printf("%s", jly.jenispaket);
 
         i++;
         y++;

@@ -1,36 +1,35 @@
-#ifndef READPEMBAYARAN_H
-#define READPEMBAYARAN_H
+#ifndef READJENISKENDARAAN_H
+#define READJENISKENDARAAN_H
 
-void ReadPembayaran() {
+void ReadJenisKendaraan() {
     int i = 1;
     int y = 20;
 
     SetColorBlock(1, 7);
     PrintFile("../Asset/LihatData.txt", 50, 11);
 
-    FILE *arspeb = fopen("../Database/Dat/PEMBAYARAN.dat", "rb");
-    if (arspeb == NULL) {
+    FILE *arskdr = fopen("../Database/Dat/JENIS_KENDARAAN.dat", "rb");
+    if (arskdr == NULL) {
         printf("File tidak dapat dibuka.\n");
         return;
     }
 
     // Header tabel
-    BoxBlock(32,17,110,2);
+    BoxBlock(32,17,90,2);
     SetColorBlock(7, 1);
     gotoprinttext(33,18,"NO.");
-    gotoprinttext(38,18,"I D  P E M B A Y A R A N");
-    gotoprinttext(65,18,"N A M A  P E M B A Y A R A N");
+    gotoprinttext(38,18,"I D  J E N I S  K E N D A R A A N");
+    gotoprinttext(80,18,"J E N I S  K E N D A R A A N");
 
+    kendaraan kdr;
 
-    pembayaran peb;
-
-    // Baca dan tampilkan data pembayaran
-    while (fread(&peb, sizeof(peb), 1, arspeb) == 1) {
+    // Baca dan tampilkan data jenis kendaraan
+    while (fread(&kdr, sizeof(kdr), 1, arskdr) == 1) {
         SetColorBlock((i % 2 == 0) ? 7 : 7, (i % 2 == 0) ? 1 : 9);
 
         // Bersihkan baris sebelum menulis data
         for (int x = y; x <= y; x++) {
-            for (int j = 32; j < 142; j++) {
+            for (int j = 32; j < 122; j++) {
                 gotoprintchar(j, x, 32);
             }
         }
@@ -39,16 +38,15 @@ void ReadPembayaran() {
         gotoxy(33, y);
         printf("%d", i);
         gotoxy(44, y);
-        printf("JPR%03d", peb.id_pembayaran);
-        gotoxy(75, y);
-        printf("%s", peb.namaPembayaran);
-
+        printf("JNK%03d", kdr.id_jeniskendaraan);
+        gotoxy(80, y);
+        printf("%s", kdr.jenisKendaraan);
 
         i++;
         y++;
     }
 
-    fclose(arspeb);
+    fclose(arskdr);
 
     // Konfirmasi untuk kembali ke menu
     SetColorBlock(1, 7);
@@ -60,7 +58,7 @@ void ReadPembayaran() {
 
         if (pilihan == 0) {
             blankScreen();        // Bersihkan layar
-            MenuPembayaran();     // Kembali ke menu utama
+            MenuJenisKendaraan(); // Kembali ke menu utama
             break;                // Keluar dari loop
         } else {
             // Jika input salah, tampilkan pesan kesalahan
@@ -69,4 +67,4 @@ void ReadPembayaran() {
     }
 }
 
-#endif //READPEMBAYARAN_H
+#endif //READJENISKENDARAAN_H

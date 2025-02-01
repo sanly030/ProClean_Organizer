@@ -59,6 +59,7 @@ void CreateJnsLayanan() {
         gotoprinttext(45, 22, "J E N I S  P A K E T                  : ");
         gotoprinttext(45, 24, "H A R G A                             : Rp. ");
         gotoprinttext(45, 26, "D U R A S I                           :     Menit");
+        gotoprinttext(45,28,"S T A T U S                           : R/K");
 
         for ( i = 85; i <= 110 ; i++) {
             gotoprintchar(i,23,196);
@@ -69,6 +70,9 @@ void CreateJnsLayanan() {
         for ( i = 85; i <= 110 ; i++) {
             gotoprintchar(i,27,196);
         }
+        for (i = 85; i <= 110 ; i++) {
+            gotoprintchar(i,29,196);
+        }
 
         gotoxy(85, 22);
         getinput(jly.jenispaket, 25, 2);
@@ -78,6 +82,29 @@ void CreateJnsLayanan() {
 
         gotoxy(85, 26);
         getnum(&jly.durasi, 3);
+
+        // Validasi input status
+        bool validStatus = false;
+        do {
+            gotoxy(85, 28);
+            clearArea(85,28,3,1);
+            getinput(jly.status,2,1);
+
+            // Cek apakah input adalah 'L' atau 'P' (tidak case-sensitive)
+            if (strcmp(jly.status, "R") == 0 || strcmp(jly.status, "K") == 0 ||
+                strcmp(jly.status, "r") == 0 || strcmp(jly.status, "k") == 0) {
+                validStatus = true;
+                } else {
+                    gotoxy(75, 32);
+                    clearArea(85,28,3,1);
+                    SetColorBlock(4,7);
+                    MessageBox(NULL,"ISIAN harus 'R' atau 'K'!","NOTIFICATION!",MB_OK|MB_ICONINFORMATION|MB_DEFAULT_DESKTOP_ONLY);
+                    SetColorBlock(7,1);
+                    gotoxy(75, 30);
+
+                    // Bersihkan pesan error
+                }
+        } while (!validStatus);
 
         // Simpan ke file JENISLAYANAN.dat
         FILE *fileJns = fopen("../Database/Dat/JENISLAYANAN.dat", "ab");

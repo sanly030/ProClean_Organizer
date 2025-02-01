@@ -83,6 +83,16 @@ void TextBoxUpdateJenisLayanan(int id_jnslayanan) {
             found = 1;
             MessageBox(NULL, "ID Jenis Layanan ditemukan.", "NOTIFICATION!", MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);
 
+            // Konversi status
+            string Status;
+            if (jly.status[0] == 'R' || jly.status[0] == 'r') {
+                strcpy(Status, "Rumah");
+            } else if (jly.status[0] == 'K' || jly.status[0] == 'k') {
+                strcpy(Status, "Kendaraan");
+            } else {
+                strcpy(Status, "Tidak Valid");
+            }
+
             // Menampilkan data lama
             clearTengah();
             SetColorBlock(7, 9);
@@ -96,6 +106,8 @@ void TextBoxUpdateJenisLayanan(int id_jnslayanan) {
             printf("Rp %.2f", jly.harga);
             gotoxy(65, 31);
             printf("%d", jly.durasi);
+            gotoxy(65,33);
+            printf("%s", Status);
 
             // Input update
             clearArea(131, 18, 38, 24);

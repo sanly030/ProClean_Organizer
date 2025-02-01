@@ -73,7 +73,7 @@ void TextBoxDeleteJenisLayanan(int id_jnslayanan) {
         return;
     }
 
-    FILE *arsjly = fopen("../Database/Dat/JENIS LAYANAN.dat", "rb");
+    FILE *arsjly = fopen("../Database/Dat/JENISLAYANAN.dat", "rb");
     FILE *temp = fopen("../Database/Dat/TEMP JENIS LAYANAN.dat", "wb");
 
     if (arsjly == NULL || temp == NULL) {
@@ -82,19 +82,43 @@ void TextBoxDeleteJenisLayanan(int id_jnslayanan) {
         return;
     }
 
+    // Konversi jenis kelamin
+    string Status;
+    if (jly.status[0] == 'R' || jly.status[0] == 'r') {
+        strcpy(Status, "Rumah");
+    } else if (jly.status[0] == 'K' || jly.status[0] == 'k') {
+        strcpy(Status, "Kendaraan");
+    } else {
+        strcpy(Status, "Tidak Valid");
+    }
+
     while (fread(&jly, sizeof(jly), 1, arsjly)) {
         if (jly.id_jnslayanan == id_jnslayanan) {
             found = 1;
             clearTengah();
             SetColorBlock(7, 9);
             frameDetailData(36, 17);
+            seluruhJnsLayanan();
             gotoxy(65, 25);
             printf("JPP%03d", jly.id_jnslayanan);
             gotoxy(65, 27);
-            printf("%s", jly.namajnslyn);
+            printf("%s", jly.jenispaket);
+            gotoxy(65, 29);
+            printf("Rp %.2f", jly.harga);
+            gotoxy(65, 31);
+            printf("%d", jly.durasi);
+            gotoxy(65,33);
+            printf("%s", Status);
 
             MessageBox(NULL, "ID Jenis Layanan Ditemukan", "NOTIFICATION!",
                        MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);
+
+            SetColorBlock(1, 7);
+            gotoxy(50, 35);
+            printf("Detail Data yang akan dihapus");
+            gotoxy(47, 36);
+            printf("Klik apa saja untuk melanjutkan...");
+            getch();
 
             int cancel = MessageBox(NULL, "Anda yakin ingin menghapus?", "DELETE DATA",
                                     MB_OKCANCEL | MB_ICONQUESTION | MB_DEFAULT_DESKTOP_ONLY);
@@ -126,7 +150,7 @@ void TextBoxDeleteJenisLayanan(int id_jnslayanan) {
     }
 
     remove("../Database/Dat/JENIS LAYANAN.dat");
-    rename("../Database/Dat/TEMP JENIS LAYANAN.dat", "../Database/Dat/JENIS LAYANAN.dat");
+    rename("../Database/Dat/TEMP JENIS LAYANAN.dat", "../Database/Dat/JENISLAYANAN.dat");
 
     MessageBox(NULL, "Data berhasil dihapus!", "SUCCESS!",
                MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);

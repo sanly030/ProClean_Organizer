@@ -40,6 +40,8 @@ void seluruhJnsLayanan() {
     gotoprinttext(43,27,"JENIS PAKET         :");
     gotoprinttext(43,29,"HARGA               :");
     gotoprinttext(43,31,"DURASI              :");
+    gotoprinttext(43,33,"STATUS              :");
+
 }
 
 void seluruhPromo() {
@@ -61,6 +63,21 @@ void seluruhPelanggan() {
     gotoprinttext(43,29,"NO TELP             :");
     gotoprinttext(43,31,"JENIS KELAMIN       :");
 }
+
+void seluruhKendaraan() {
+    SetColorBlock(1,7);
+    gotoprinttext(55,20,"D E T A I L  D A T A");
+    gotoprinttext(43,23,"ID PELANGGAN        :");
+    gotoprinttext(43,25,"JENIS KENDARAAN     :");
+}
+
+void seluruhPembayaran() {
+    SetColorBlock(1,7);
+    gotoprinttext(55,20,"D E T A I L  D A T A");
+    gotoprinttext(43,23,"ID PEMBAYARAN       :");
+    gotoprinttext(43,25,"NAMA PEMBAYARAN     :");
+}
+
 void Tanggal()
 {
     time_t t = time(NULL);

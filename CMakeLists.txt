@@ -44,4 +44,8 @@ add_executable(ProClean_Organizer main.c
         "Source/CRUD MASTER/CRUD MASTER JENIS PEMBAYARAN/ReadPembayaran.h"
         "Source/CRUD MASTER/CRUD MASTER JENIS PEMBAYARAN/UpdatePembayaran.h"
         "Source/CRUD MASTER/CRUD MASTER JENIS PEMBAYARAN/DeletePembayaran.h"
+        "Source/CRUD MASTER/CRUD MASTER JENIS KENDARAAN/CreateJenisKendaraan.h"
+        "Source/CRUD MASTER/CRUD MASTER JENIS KENDARAAN/ReadJenisKendaraan.h"
+        "Source/CRUD MASTER/CRUD MASTER JENIS KENDARAAN/UpdateJenisKendaraan.h"
+        "Source/CRUD MASTER/CRUD MASTER JENIS KENDARAAN/DeleteJenisKendaraan.h"
 )

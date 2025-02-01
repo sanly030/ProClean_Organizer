@@ -124,6 +124,7 @@ typedef struct {
     string jenispaket;
     float harga;
     int durasi;
+    string status;
     int layanan_terpilih[3];
 }jnslayanan;
 jnslayanan jly;
@@ -162,8 +163,12 @@ pelanggan plg;
 
 typedef struct {
     int id_pembayaran;
-    int id_plg;
     string namaPembayaran;
-    string status;
 }pembayaran;
 pembayaran peb;
+
+typedef struct {
+    int id_jeniskendaraan;
+    string jenisKendaraan;
+}kendaraan;
+kendaraan kdr;

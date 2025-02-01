@@ -9,7 +9,6 @@
 void TextBoxUpdateLayanan(int id_layanan);
 void TextBoxDeleteLayanan(int id_layanan);
 
-
 void ReadLayanan() {
     int i = 1;
     int y = 20;
@@ -46,8 +45,6 @@ void ReadLayanan() {
         printf("LYN%03d", lyn.id_layanan);
         gotoxy(62, y);
         printf("%s", lyn.jnslayanan);
-        // gotoxy(105, y);
-        // printf("%s", jgs.deskripsijabatan);
 
 
         i++;
