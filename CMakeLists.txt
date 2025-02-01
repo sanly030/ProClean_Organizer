@@ -35,4 +35,13 @@ add_executable(ProClean_Organizer main.c
         "Source/CRUD MASTER/CRUD MASTER PROMO/CreatePromo.h"
         "Source/CRUD MASTER/CRUD MASTER PROMO/ReadPromo.h"
         "Source/CRUD MASTER/CRUD MASTER PROMO/UpdatePromo.h"
+        "Source/CRUD MASTER/CRUD MASTER PELANGGAN/CreatePelanggan.h"
+        Source/DashboardKasir.h
+        "Source/CRUD MASTER/CRUD MASTER PELANGGAN/ReadPelanggan.h"
+        "Source/CRUD MASTER/CRUD MASTER PELANGGAN/UpdatePelanggan.h"
+        "Source/CRUD MASTER/CRUD MASTER PELANGGAN/DeletePelanggan.h"
+        "Source/CRUD MASTER/CRUD MASTER JENIS PEMBAYARAN/CreatePembayaran.h"
+        "Source/CRUD MASTER/CRUD MASTER JENIS PEMBAYARAN/ReadPembayaran.h"
+        "Source/CRUD MASTER/CRUD MASTER JENIS PEMBAYARAN/UpdatePembayaran.h"
+        "Source/CRUD MASTER/CRUD MASTER JENIS PEMBAYARAN/DeletePembayaran.h"
 )

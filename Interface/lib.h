@@ -52,6 +52,15 @@ void seluruhPromo() {
     gotoprinttext(43,33,"TANGGAL SELESAI     :");
 }
 
+void seluruhPelanggan() {
+    SetColorBlock(1,7);
+    gotoprinttext(55,20,"D E T A I L  D A T A");
+    gotoprinttext(43,23,"ID PELANGGAN        :");
+    gotoprinttext(43,25,"NAMA PELANGGAN      :");
+    gotoprinttext(43,27,"ALAMAT              :");
+    gotoprinttext(43,29,"NO TELP             :");
+    gotoprinttext(43,31,"JENIS KELAMIN       :");
+}
 void Tanggal()
 {
     time_t t = time(NULL);

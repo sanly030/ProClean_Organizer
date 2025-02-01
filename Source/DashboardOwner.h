@@ -1,6 +1,7 @@
 void CreatePromo();
 void ReadPromo();
 void UpdatePromo();
+void DeletePromo();
 
 
 void MenuPromo() {

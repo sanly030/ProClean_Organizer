@@ -51,7 +51,8 @@ void CreatePromo() {
         for (i = 105; i <= 130; i++) gotoprintchar(i, 27, 196);
         for (i = 105; i <= 130; i++) gotoprintchar(i, 29, 196);
 
-        gotoxy(105, 22);        getinput(prm.namaPromo, 25, 2);
+        gotoxy(105, 22);
+        getinput(prm.namaPromo, 25, 2);
         if(strcmpi(prm.namaPromo, "exit") == 0) {
             blankScreen();
             MenuPromo();

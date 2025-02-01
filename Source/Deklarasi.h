@@ -147,5 +147,23 @@ typedef struct {
     float potongan;
     tanggal mulai;
     tanggal selesai;
+
 }promo;
 promo prm;
+
+typedef struct {
+    int id_plg;
+    string namaPlg;
+    string almt;
+    string kelamin;
+    string no_telp;
+}pelanggan;
+pelanggan plg;
+
+typedef struct {
+    int id_pembayaran;
+    int id_plg;
+    string namaPembayaran;
+    string status;
+}pembayaran;
+pembayaran peb;

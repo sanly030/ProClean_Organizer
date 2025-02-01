@@ -24,6 +24,11 @@ void Dashboard() {
     gotoprinttext(9,24,"L A Y A N A N");
     gotoprinttext(9,26,"P A K E T  ");
     gotoprinttext(9,27,"L A Y A N A N");
+    gotoprinttext(9,28,"M E N U");
+    gotoprinttext(9,29,"P E L A N G G A N");
+    gotoprinttext(9,30,"M E N U");
+    gotoprinttext(9,31,"P E M B A Y A R A N");
+
 
     textBox2(3,39,24,2);
     gotoprinttext(5,40,"P I L I H  M E N U :[ ]");
@@ -38,6 +43,8 @@ void Dashboard() {
         case 3:blankScreen();MenuLayanan();break;
         case 4:blankScreen();MenuJnsLayanan();break;
         case 5:blankScreen();MenuPromo();break;
+        case 6:blankScreen();MenuPelanggan();break;
+        case 7:blankScreen();MenuPembayaran();break;
         // case 5:blankScreen();MenuPktLayanan();break;
     }
 }

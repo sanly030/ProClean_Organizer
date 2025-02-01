@@ -124,6 +124,7 @@ void CreatePetugas() {
         gotoxy(86, 13 + i + 1);
         getnum(&id_jenispetugas,1);
 
+
         // Validasi ID
         arsjgs = fopen("../Database/Dat/JENIS PETUGAS.dat", "rb");
         int valid = 0;
@@ -160,6 +161,10 @@ void CreatePetugas() {
         gotoprinttext(45, 22, "N A M A  P E T U G A S                 : ");
         gotoxy(86, 22);
         getinput(pgs.nama, 25, 2);
+        if (strcmpi(pgs.nama, "exit") == 0) {
+            blankScreen();
+            MenuPetugas();
+        }
         gotoprinttext(45, 24, "N O  T E L E P O N                     : ");
         gotoxy(86, 24);
         getinput(pgs.no_telp, 16, 3);

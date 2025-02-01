@@ -19,6 +19,8 @@
 #include "Source/Login.h"
 #include "Source/DashboardMenuAdmin.h"
 #include "Source/DashboardOwner.h"
+#include "Source/DashboardKasir.h"
+
 #include "Source/Dashboard.h"
 
 #include "Source/CRUD MASTER/CRUD MASTER PETUGAS/CreatePetugas.h"
@@ -49,6 +51,22 @@
 #include "Source/CRUD MASTER/CRUD MASTER PROMO/CreatePromo.h"
 #include "Source/CRUD MASTER/CRUD MASTER PROMO/ReadPromo.h"
 #include "Source/CRUD MASTER/CRUD MASTER PROMO/UpdatePromo.h"
+
+
+#include "Source/CRUD MASTER/CRUD MASTER PELANGGAN/CreatePelanggan.h"
+#include "Source/CRUD MASTER/CRUD MASTER PELANGGAN/ReadPelanggan.h"
+#include "Source/CRUD MASTER/CRUD MASTER PELANGGAN/UpdatePelanggan.h"
+#include "Source/CRUD MASTER/CRUD MASTER PELANGGAN/DeletePelanggan.h"
+
+#include "Source/CRUD MASTER/CRUD MASTER JENIS PEMBAYARAN/CreatePembayaran.h"
+#include "Source/CRUD MASTER/CRUD MASTER JENIS PEMBAYARAN/ReadPembayaran.h"
+#include "Source/CRUD MASTER/CRUD MASTER JENIS PEMBAYARAN/UpdatePembayaran.h"
+#include "Source/CRUD MASTER/CRUD MASTER JENIS PEMBAYARAN/DeletePembayaran.h"
+
+
+
+
+
 
 
 
