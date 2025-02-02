@@ -23,6 +23,7 @@ FILE* fp1;
 FILE* temp;
 int A,I,N;
 int opsi;
+char opsiChar[1];
 int nilai;
 int id_petugas;
 int found;
@@ -30,7 +31,6 @@ int pilihan;
 int cancel;
 int batal;
 char Opsi;
-int status;
 char ulangi;
 int i;
 int id_layanan;
@@ -40,7 +40,7 @@ float tunai;
 float total;
 float kembali;
 
-// char status[3][100]={"Pemesanan Berhasil", "Pemesanan Dibatalkan" , "Pesanan telah di bayar"};
+char Status[3][100]={"Pemesanan Berhasil", "Pemesanan Dibatalkan" , "Pesanan telah di bayar"};
 
 struct id {
     int id_petugasKebersihan;
@@ -116,6 +116,7 @@ Admin adm;
         int layanan_terpilih[3];
     }jnslayanan;
     jnslayanan jly;
+FILE * arsjly;
 
     typedef struct {
         int id_jnslayanan;
@@ -123,12 +124,12 @@ Admin adm;
     }tabelDetailJenisPkt;
     tabelDetailJenisPkt tdj;
 
-    typedef struct {
-        int id_pktLayanan;
-        int id_jnslayanan;
-        string namaPkt;
-    }PktLayanan;
-    PktLayanan pkt;
+    // typedef struct {
+    //     int id_pktLayanan;
+    //     int id_jnslayanan;
+    //     string namaPkt;
+    // }PktLayanan;
+    // PktLayanan pkt;
 
     typedef struct {
         int id_promo;
@@ -178,6 +179,7 @@ FILE *arsplg;
         int durasi;
         string almt;
         string namaPembayaran;
+        char Status[100];
     };
     struct TRumah trsTRumah;
     FILE *fileTransaksiRumah;
@@ -189,6 +191,7 @@ FILE *arsplg;
         int id_jnslayanan;
         string namaPembayaran;
         string namaPromo;
+        float potongan;
         string namaTRumah;
         tanggal pemesanan;
         int durasi;
@@ -198,22 +201,40 @@ FILE *arsplg;
     struct DTRumah dTRumah;
     FILE *fileDTRumah;
 
-// DEKLARASI MASTER PELANGGAN
-// typedef struct {
-//     char id[20];
-//     char nama[100];
-//     char notelp[20];
-//     char email[100];
-//     char status[10];
-// }Pelanggan;Plg , Plgtmp;
+    typedef struct TKendaraan{
+        int id_TKendaraan;
+        int id_plg;
+        char namaPlg[20];
+        char jenispaket[20];
+        int id_pembayaran;
+        int id_jnslayanan;
+        int id_promo;
+        float totalHarga;
+        string namaPromo;
+        tanggal pemesanan;
+        int durasi;
+        string almt;
+        string namaPembayaran;
+    };
+    struct TKendaraan trsTKendaraan;
+    FILE *fileTransaksiKendaraan;
 
-//DEKLARASI PAKET LAYANAN
-// typedef struct {
-//     char id[20];
-//     char nama[100];
-//     float harga;
-//     int kapasitas;
-//     int durasi;
-//     char status[10];
-// }PaketLayanan;
-// PaketLayanan PktLyn, PktLyntmp;
+
+    typedef struct DTKendaraan {
+        int id_TKendaraan;
+        int id_plg;
+        int id_pembayaran;
+        int id_jnslayanan;
+        string namaPembayaran;
+        string namaPromo;
+        string namaTRumah;
+        string namaTKendaraan;
+        tanggal pemesanan;
+        int durasi;
+        float totalHarga;
+        string almt;
+    };
+    struct DTKendaraan dTKendaraan;
+    FILE *fileDTKendaraan;
+
+

@@ -1,7 +1,4 @@
 # ninja log v6
-6	1820	7601923619388340	CMakeFiles/ProClean_Organizer.dir/main.c.obj	3cbcfc6a1ac21dfa
-1829	1915	7601923637615916	ProClean_Organizer.exe	849b942ec2cb24c0
-2	208	7601925445502941	build.ninja	8df7f02cb2ebcb53
-8	2040	7601926178384062	CMakeFiles/ProClean_Organizer.dir/main.c.obj	3cbcfc6a1ac21dfa
-6	1585	7601926380673483	CMakeFiles/ProClean_Organizer.dir/main.c.obj	3cbcfc6a1ac21dfa
-1599	1680	7601926396602164	ProClean_Organizer.exe	849b942ec2cb24c0
+6	1884	7602027738763903	CMakeFiles/ProClean_Organizer.dir/main.c.obj	3cbcfc6a1ac21dfa
+1892	1978	7602027757634693	ProClean_Organizer.exe	849b942ec2cb24c0
+2	208	7602044569479122	build.ninja	8df7f02cb2ebcb53

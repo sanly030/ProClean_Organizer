@@ -1,3 +1,5 @@
+
+
 void createTransaksiRumah();
 void TambahDetailTransaksiPembersihanRumah();
 
@@ -6,7 +8,6 @@ void TambahTransaksiPembersihanRumah() {
     i = 0;
     total = 0;
     trsTRumah.totalHarga = 0;
-
 
     fileTransaksiRumah = fopen("../TRANSAKSI/../Source/../Database/Dat/TRANSAKSIPEMBERSIHANRUMAH.dat", "ab+");
     fread(&trsTRumah,sizeof(trsTRumah),1,fileTransaksiRumah);
@@ -81,6 +82,7 @@ void TambahDetailTransaksiPembersihanRumah() {
     gotoxy(70,18);
     printf("%s", trsTRumah.namaPlg);
 
+    // strcmp(opsiChar, "R") != 0 && strcmp(opsiChar, "K") != 0;
     do{
         fflush(stdin);
         showCursor();
@@ -178,6 +180,7 @@ void TambahDetailTransaksiPembersihanRumah() {
                 found = 1;
                 trsTRumah.id_promo = prm.id_promo;
                 strcpy(trsTRumah.namaPromo,prm.namaPromo);
+                dTRumah.potongan = prm.potongan;
             }
         }
         if (found == 0){
@@ -230,12 +233,21 @@ void TambahDetailTransaksiPembersihanRumah() {
     gotoxy(70,34);
     printf("%d Menit", trsTRumah.durasi);
 
+    trsTRumah.totalHarga = jly.harga;
+    trsTRumah.totalHarga = trsTRumah.totalHarga - (trsTRumah.totalHarga*dTRumah.potongan/100);
     SetColorBlock(7,9);
     gotoxy(40,34);
     printf("T O T A L  H A R G A        :");
     gotoxy(70,34);
     printf("Rp. %.0f", trsTRumah.totalHarga);
 
+    strcpy(trsTRumah.Status, Status[0]);
+
+    SetColorBlock(7,9);
+    gotoxy(40,36);
+    printf("S T A T U S              :");
+    gotoxy(70,36);
+    printf("%s", trsTRumah.Status);
 
 }
 

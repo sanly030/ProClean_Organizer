@@ -1,7 +1,5 @@
 
 
-#include "TRANSAKSI/TRANSAKSI PEMBERSIHAN RUMAH/CreateTransaksiPembersihanRumah.h"
-
 void Dashboard() {
     system("color 71");
     PrintFile("..//Asset//ikonsapu.txt",90, 12);
@@ -39,7 +37,7 @@ void Dashboard() {
 
     gotoprinttext(10,35,"K E L U A R ");
     gotoxy(26,40);
-    getnum(&opsi,1);
+    getnum(&opsi,2);
 
     switch (opsi) {
         case 1:blankScreen();MenuJenisPetugas();break;
