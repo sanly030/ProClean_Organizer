@@ -326,7 +326,59 @@ void ReadDeleteDetailJenisLayanan() {
     MenuJnsLayanan();
 }
 
+void readCreateJenisPaketinTransaksi(){
+    FILE *arsjly;
+    SetColorBlock(7,1);
+    for(i = 17; i <= 19;i++){
+        for(j = 130; j < 167; j++){
+            gotoprintchar(j,i,32);
+        }
+    }
 
+    gotoprinttext(131,18,"NO.");
+    gotoprinttext(134,18,"ID JENIS PAKET");
+    gotoprinttext(147,18,"NAMA JENIS PAKET");
+    i = 1;
+    y = 20;
+
+    arsjly = fopen("../Database/Dat/JENISLAYANAN.dat", "rb+");
+    if (arsplg == NULL) {
+        printf("File could not be opened\n");
+        return;
+    }
+    while (fread(&jly ,sizeof(jly), 1, arsjly) == 1 ) {
+        if (i % 2 == 0) {
+            SetColorBlock(7,1);
+            for(x = y; x <= y;x++){
+                for(j = 130; j < 167; j++){
+                    gotoprintchar(j,x,32);
+                }
+            }
+            gotoxy(131, y);
+            printf("%d", i);
+            gotoxy(134, y);
+            generateid("JPP",jly.id_jnslayanan);
+            gotoxy(147, y);
+            printf("%s\n", jly.jenispaket);
+        } else {
+            SetColorBlock(7,9);
+            for(x = y; x <= y;x++){
+                for(j = 130; j < 167; j++){
+                    gotoprintchar(j,x,32);
+                }
+            }
+            gotoxy(131, y);
+            printf("%d", i);
+            gotoxy(134, y);
+            generateid("JPP",jly.id_jnslayanan);
+            gotoxy(147, y);
+            printf("%s", jly.jenispaket);
+        }
+        i++;
+        y++;
+    }
+    fclose(arsjly);
+}
 
 
 

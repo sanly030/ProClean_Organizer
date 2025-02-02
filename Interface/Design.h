@@ -558,5 +558,71 @@ void getRp(float *nilai, int min, int max, int x, int y) //input rupiah
     *nilai = atoi(input);   /* Memasukkan nilai input (char) ke nilai (int) */
 }
 
+void frameTransaksi(int x, int y){
+    SetColorBlock(9,9);
+    for(i = 10; i < 43; i++){  // Ubah batas bawah dari 42 ke 43 (+1)
+        for(j = 37; j < 116; j++){
+            gotoprintchar(j,i,32);
+        }
+    }
+    SetColorBlock(7,7);
+    gotoprintchar(37,10,219);
+    gotoprintchar(38,10,219);
+    gotoprintchar(37,11,219);
+
+    gotoprintchar(37,42,219);
+    gotoprintchar(38,42,219);
+    gotoprintchar(37,41,219);
+
+    gotoprintchar(114,10,219);
+    gotoprintchar(115,10,219);
+    gotoprintchar(115,11,219);
+
+    gotoprintchar(114,43,219);  // Ubah dari 42 ke 43 (+1)
+    gotoprintchar(115,43,219);
+    gotoprintchar(115,42,219);
+
+    SetColorBlock(7,9);
+    gotoprintchar(40,10,201);
+    for(i=41; i <= 111;i++){
+        gotoprintchar(i,10,205);
+    }
+    gotoprintchar(112,10,187);
+
+    gotoprintchar(40,11,188);
+    gotoprintchar(39,11,201);
+    gotoprintchar(39,12,188);
+    gotoprintchar(38,12,201);
+
+    for(i = 13; i <=40; i++){  // Ubah batas bawah dari 39 ke 40 (+1)
+        gotoprintchar(38,i,186);
+    }
+
+    gotoprintchar(38,41,200);
+    gotoprintchar(39,41,187);
+    gotoprintchar(39,42,200);
+    gotoprintchar(40,42,187);
+
+    gotoprintchar(40,43,200);
+    for(i=41; i <= 111;i++){
+        gotoprintchar(i,43,205);  // Ubah dari 42 ke 43 (+1)
+    }
+    gotoprintchar(112,43,188);
+    gotoprintchar(112,42,201);
+    gotoprintchar(113,42,188);
+    gotoprintchar(113,41,201);
+    gotoprintchar(114,41,188);
+
+    gotoprintchar(112,10,187);
+    gotoprintchar(112,11,200);
+    gotoprintchar(113,11,187);
+    gotoprintchar(113,12,200);
+    gotoprintchar(114,12,187);
+
+    for(i = 13; i <=40; i++){  // Ubah batas bawah dari 39 ke 40 (+1)
+        gotoprintchar(114,i,186);
+    }
+    SetColorBlock(7,9);
+}
 
 

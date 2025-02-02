@@ -48,4 +48,7 @@ add_executable(ProClean_Organizer main.c
         "Source/CRUD MASTER/CRUD MASTER JENIS KENDARAAN/ReadJenisKendaraan.h"
         "Source/CRUD MASTER/CRUD MASTER JENIS KENDARAAN/UpdateJenisKendaraan.h"
         "Source/CRUD MASTER/CRUD MASTER JENIS KENDARAAN/DeleteJenisKendaraan.h"
+        "Source/TRANSAKSI/TRANSAKSI PEMBERSIHAN RUMAH/CreateTransaksiPembersihanRumah.h"
+        "Source/TRANSAKSI/TRANSAKSI PEMBERSIHAN RUMAH/ReadTransaksiPembersihanRumah.h"
+        "Source/TRANSAKSI/TRANSAKSI PEMBERSIHAN KENDARAAN/CreateTransaksiPembersihanKendaraan.h"
 )

@@ -105,7 +105,7 @@ void TextBoxUpdateJenisLayanan(int id_jnslayanan) {
             gotoxy(65, 29);
             printf("Rp %.2f", jly.harga);
             gotoxy(65, 31);
-            printf("%d", jly.durasi);
+            printf("%d Menit", jly.durasi);
             gotoxy(65,33);
             printf("%s", Status);
 

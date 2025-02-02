@@ -82,19 +82,22 @@ void TextBoxDeleteJenisLayanan(int id_jnslayanan) {
         return;
     }
 
-    // Konversi jenis kelamin
-    string Status;
-    if (jly.status[0] == 'R' || jly.status[0] == 'r') {
-        strcpy(Status, "Rumah");
-    } else if (jly.status[0] == 'K' || jly.status[0] == 'k') {
-        strcpy(Status, "Kendaraan");
-    } else {
-        strcpy(Status, "Tidak Valid");
-    }
+
 
     while (fread(&jly, sizeof(jly), 1, arsjly)) {
         if (jly.id_jnslayanan == id_jnslayanan) {
             found = 1;
+
+            // Konversi jenis kelamin
+            string Status;
+            if (jly.status[0] == 'R' || jly.status[0] == 'r') {
+                strcpy(Status, "Rumah");
+            } else if (jly.status[0] == 'K' || jly.status[0] == 'k') {
+                strcpy(Status, "Kendaraan");
+            } else {
+                strcpy(Status, "Tidak Valid");
+            }
+
             clearTengah();
             SetColorBlock(7, 9);
             frameDetailData(36, 17);
@@ -106,7 +109,7 @@ void TextBoxDeleteJenisLayanan(int id_jnslayanan) {
             gotoxy(65, 29);
             printf("Rp %.2f", jly.harga);
             gotoxy(65, 31);
-            printf("%d", jly.durasi);
+            printf("%d Menit", jly.durasi);
             gotoxy(65,33);
             printf("%s", Status);
 
