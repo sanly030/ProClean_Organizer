@@ -24,6 +24,7 @@ FILE* temp;
 int A,I,N;
 int opsi;
 char opsiChar[1];
+char inputrp[80];
 int nilai;
 int id_petugas;
 int found;

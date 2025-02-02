@@ -643,3 +643,219 @@ void BlankDashboard(){
         }
     }
 }
+
+void boxSearch(){
+    SetColorBlock(1,7);
+    gotoprintchar(136,9,201);
+    for(i = 137; i <= 164;i++){
+        gotoprintchar(i,9,205);
+    }
+    gotoprintchar(165,9,187);
+    gotoprintchar(136,10,186);
+    gotoprintchar(165,10,186);
+    gotoprintchar(136,11,200);
+    for(i = 137; i <= 164;i++){
+        gotoprintchar(i,11,205);
+    }
+    gotoprintchar(165,11,188);
+}
+
+void tampilanDetailTableTransaksiPembersihanRumah(){
+    SetColorBlock(1,7);
+    /*border atas*/
+    for(i = 12; i <= 12;i++){
+        for(j = 37; j < 167; j++){
+            gotoprintchar(j,i,205);
+        }
+    }
+    /*border sudut kiri atas*/
+    gotoprintchar(36,12,206);
+    /*border sudut kanan atas*/
+    gotoprintchar(167,12,206);
+    /*border vertikal kebawah kiri*/
+    for(i = 13; i <= 38;i++){
+        gotoprintchar(36,i,186);
+    }
+    /*border vertikal kebawah kanan*/
+    for(i = 13; i <= 38;i++){
+        gotoprintchar(167,i,186);
+    }
+    /*border sudut bawah kiri*/
+    gotoprintchar(36,38,206);
+    for(i = 38; i <= 38;i++){
+        for(j = 37; j < 167; j++){
+            gotoprintchar(j,i,205);
+        }
+    }
+    /*border sudut bawah kanan*/
+    gotoprintchar(167,38,206);
+
+    SetColorBlock(7,1);
+    for(i = 13; i <= 15;i++){
+        for(j = 37; j < 167; j++){
+            gotoprintchar(j,i,32);
+        }
+    }
+    gotoprinttext(38,14,"NO.");
+    gotoprinttext(43,14,"ID TRANSAKSI");
+    gotoprinttext(57,14,"ID PELANGGAN");
+    gotoprinttext(69,14,"ID JENIS LAYANAN");
+    gotoprinttext(100,14,"ID PROMO");
+    gotoprinttext(123,14,"TOTAL HARGA");
+}
+
+void blankTable(){
+    int u;
+    SetColorBlock(7,7);
+    for(u = 13; u <38; u++){
+        for(j = 37; j < 167; j++){
+            gotoprintchar(j,u,32);
+        }
+    }
+}
+
+void moreTable(int a){
+    SetColorBlock(1,7);
+    gotoxy(80,40);printf("Klik apa saja untuk melihat data selanjutnya...");
+    getch();
+    blankTable();
+    y = a;
+}
+
+void rupiah(int number,char output[80]){
+    if(number < 1000) sprintf(output, "Rp. %d", number);
+    else if(number < 1000000) sprintf(output, "Rp. %d.%03d", number/1000, number%1000);
+    else if(number < 1000000000) sprintf(output, "Rp. %d.%03d.%03d", number/1000000, (number%1000000)/1000, number%1000);
+    else sprintf(output, "Rp. %d.%03d.%03d.%03d", number/1000000000, (number%1000000000)/1000, (number%1000000)/1000, number%1000);
+}
+
+void batasTable(){
+    if (i == 25) {
+        moreTable(12);
+    }
+    if (i == 50) {
+        moreTable(12);
+    }
+    if (i == 75) {
+        moreTable(12);
+    }
+    if (i == 100) {
+        moreTable(12);
+    }
+    if (i == 125) {
+        moreTable(12);
+    }
+    if (i == 150) {
+        moreTable(12);
+    }
+    if (i == 175) {
+        moreTable(12);
+    }if (i == 200) {
+        moreTable(12);
+    }if (i == 225) {
+        moreTable(12);
+    }if (i == 250) {
+        moreTable(12);
+    }if (i == 275) {
+        moreTable(12);
+    }if (i == 300) {
+        moreTable(12);
+    }if (i == 325) {
+        moreTable(12);
+    }if (i == 350) {
+        moreTable(12);
+    }if (i == 375) {
+        moreTable(12);
+    }if (i == 400) {
+        moreTable(12);
+    }if (i == 425) {
+        moreTable(12);
+    }if (i == 450) {
+        moreTable(12);
+    }
+    if (i == 475) {
+        moreTable(12);
+    }if (i == 500) {
+        moreTable(12);
+    }if (i == 525) {
+        moreTable(12);
+    }if (i == 550) {
+        moreTable(12);
+    }if (i == 575) {
+        moreTable(12);
+    }if (i == 600) {
+        moreTable(12);
+    }if (i == 625) {
+        moreTable(12);
+    }if (i == 650) {
+        moreTable(12);
+    }if (i == 675) {
+        moreTable(12);
+    }if (i == 700) {
+        moreTable(12);
+    }if (i == 725) {
+        moreTable(12);
+    }if (i == 750) {
+        moreTable(12);
+    }if (i == 775) {
+        moreTable(12);
+    }if (i == 800) {
+        moreTable(12);
+    }if (i == 825) {
+        moreTable(12);
+    }if (i == 850) {
+        moreTable(12);
+    }if (i == 875) {
+        moreTable(12);
+    }if (i == 900) {
+        moreTable(12);
+    }if (i == 925) {
+        moreTable(12);
+    }if (i == 950) {
+        moreTable(12);
+    }if (i == 975) {
+        moreTable(12);
+    }if (i == 1000) {
+        moreTable(12);
+    }if (i == 1025) {
+        moreTable(12);
+    }if (i == 1050) {
+        moreTable(12);
+    }if (i == 1075) {
+        moreTable(12);
+    }if (i == 1100) {
+        moreTable(12);
+    }if (i == 1125) {
+        moreTable(12);
+    }if (i == 1150) {
+        moreTable(12);
+    }if (i == 1175) {
+        moreTable(12);
+    }if (i == 1200) {
+        moreTable(12);
+    }if (i == 1225) {
+        moreTable(12);
+    }if (i == 1250) {
+        moreTable(12);
+    }if (i == 1275) {
+        moreTable(12);
+    }if (i == 1300) {
+        moreTable(12);
+    }if (i == 1325) {
+        moreTable(12);
+    }if (i == 1350) {
+        moreTable(12);
+    }if (i == 1375) {
+        moreTable(12);
+    }if (i == 1400) {
+        moreTable(12);
+    }if (i == 1425) {
+        moreTable(12);
+    }if (i == 1450) {
+        moreTable(12);
+    }if (i == 1475) {
+        moreTable(12);
+    }if (i == 1500) {
+        moreTable(12);
+    }
+}

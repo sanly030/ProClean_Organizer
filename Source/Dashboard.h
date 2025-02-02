@@ -1,5 +1,3 @@
-
-
 void Dashboard() {
     system("color 71");
     PrintFile("..//Asset//ikonsapu.txt",90, 12);
@@ -33,10 +31,9 @@ void Dashboard() {
 
 
     textBox2(3,39,24,2);
-    gotoprinttext(5,40,"P I L I H  M E N U :[ ]");
-
+    gotoprinttext(4,40,"P I L I H  M E N U :[  ]");
     gotoprinttext(10,35,"K E L U A R ");
-    gotoxy(26,40);
+    gotoxy(25,40);
     getnum(&opsi,2);
 
     switch (opsi) {
@@ -50,6 +47,7 @@ void Dashboard() {
         case 8:blankScreen();MenuJenisKendaraan();break;
         case 9:blankScreen();createTransaksiRumah();break;
         case 10:blankScreen();createTransaksiKendaraan();break;
+        case 11:blankScreen();readAllDataTransaksiPembelian();break;
         // case 5:blankScreen();MenuPktLayanan();break;
     }
 }
