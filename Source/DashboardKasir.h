@@ -10,6 +10,7 @@ void CreateJenisKendaraan();
 void ReadJenisKendaraan();
 void UpdateJenisKendaraan();
 void DeleteJenisKendaraan();
+void createTransaksiObat();
 
 
 

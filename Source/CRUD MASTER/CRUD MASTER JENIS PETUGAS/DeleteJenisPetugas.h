@@ -108,7 +108,7 @@ void TextBoxDeleteJenisPetugas(int id_petugas) {
 
     while (fread(&jgs, sizeof(jgs), 1, arsjgs)) {
         if (jgs.id_jenispetugas == id_petugas) {
-            found = 1;
+            found = 0;
             clearArea(131, 18, 38, 24);
             MessageBox(NULL, "ID Jenis Petugas Ditemukan", "NOTIFICATION!",
                       MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);

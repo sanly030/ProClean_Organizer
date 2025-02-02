@@ -63,7 +63,7 @@
 #include "Source/CRUD MASTER/CRUD MASTER JENIS PEMBAYARAN/UpdatePembayaran.h"
 #include "Source/CRUD MASTER/CRUD MASTER JENIS PEMBAYARAN/DeletePembayaran.h"
 
-
+#include "Source/TRANSAKSI/TRANSAKSI PEMBERSIHAN RUMAH/CreateTransaksiPembersihanRumah.h"
 
 
 
@@ -76,6 +76,6 @@
 
 int main() {
     tampilanawal();
-    getch();
 
+    getch();
 }

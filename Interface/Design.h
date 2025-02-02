@@ -626,3 +626,20 @@ void frameTransaksi(int x, int y){
 }
 
 
+void BlankDesain(){
+    SetColorBlock(7,7);
+    for(i = 16; i < 34; i++){
+        for(j = 130; j < 167; j++){
+            gotoprintchar(j,i,32);
+        }
+    }
+}
+
+void BlankDashboard(){
+    SetColorBlock(7,7);
+    for(i = 9; i < 42; i++){
+        for(j = 34; j < 170; j++){
+            gotoprintchar(j,i,32);
+        }
+    }
+}

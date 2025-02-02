@@ -50,6 +50,8 @@ void Dashboard() {
         case 6:blankScreen();MenuPelanggan();break;
         case 7:blankScreen();MenuPembayaran();break;
         case 8:blankScreen();MenuJenisKendaraan();break;
+        case 9:blankScreen();createTransaksiRumah();break;
+        case 10:blankScreen();createTransaksiKendaraan();break;
         // case 5:blankScreen();MenuPktLayanan();break;
     }
 }
