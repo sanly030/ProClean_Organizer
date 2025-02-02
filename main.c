@@ -64,6 +64,8 @@
 #include "Source/CRUD MASTER/CRUD MASTER JENIS PEMBAYARAN/DeletePembayaran.h"
 
 #include "Source/TRANSAKSI/TRANSAKSI PEMBERSIHAN RUMAH/CreateTransaksiPembersihanRumah.h"
+#include "Source/TRANSAKSI/TRANSAKSI PEMBERSIHAN KENDARAAN/CreateTransaksiPembersihanKendaraan.h"
+
 
 
 

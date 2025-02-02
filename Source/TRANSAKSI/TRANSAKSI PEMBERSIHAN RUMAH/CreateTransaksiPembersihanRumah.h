@@ -249,6 +249,11 @@ void TambahDetailTransaksiPembersihanRumah() {
     gotoxy(70,36);
     printf("%s", trsTRumah.Status);
 
+    fileTransaksiRumah = fopen("../TRANSAKSI/../Source/../Database/Dat/TRANSAKSIPEMBERSIHANRUMAH.dat", "ab");
+    fwrite(&trsTRumah, sizeof(trsTRumah), 1, fileTransaksiRumah);
+    fclose(fileTransaksiRumah);
+
+    MessageBox(NULL, "Pemesanan berhasil!", "NOTIFICATION", MB_OK |MB_ICONINFORMATION| MB_DEFAULT_DESKTOP_ONLY);
 }
 
 void createTransaksiRumah(){
