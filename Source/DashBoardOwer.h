@@ -44,7 +44,7 @@ void MenuPromo() {
             case 2:blankScreen();ReadPromo();break;
             case 3:blankScreen();UpdatePromo();break;
             case 4:blankScreen();DeletePromo();break;
-            case 5:blankScreen();Dashboard();
+            case 5:blankScreen();DashboardOwn();
             exit(0);
             default:
                 gotoprinttext(80,38,"Pilihan tidak valid.\n");

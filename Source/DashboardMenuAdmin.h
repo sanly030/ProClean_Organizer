@@ -14,10 +14,10 @@ void CreateJnsLayanan();
 void ReadJnsLayanan();
 void UpdateJnsLayanan();
 void DeleteJnsLayanan();
-void CreatePktLayanan();
-void ReadPktLayanan();
-void UpdatePktLayanan();
-void DeletePktLayanan();
+// void CreatePktLayanan();
+// void ReadPktLayanan();
+// void UpdatePktLayanan();
+// void DeletePktLayanan();
 void CreateJenisPktLayanan();
 
 

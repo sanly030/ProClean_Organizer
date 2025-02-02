@@ -46,12 +46,12 @@ void seluruhJnsLayanan() {
 
 void seluruhPromo() {
     SetColorBlock(1,7);
-    gotoprinttext(55,22,"D E T A I L  D A T A");
-    gotoprinttext(43,25,"ID PROMO            :");
-    gotoprinttext(43,27,"NAMA PROMO          :");
-    gotoprinttext(43,29,"POTONGAN            :");
-    gotoprinttext(43,31,"TANGGAL MULAI       :");
-    gotoprinttext(43,33,"TANGGAL SELESAI     :");
+    gotoprinttext(55,21,"D E T A I L  D A T A");
+    gotoprinttext(43,23,"ID PROMO            :");
+    gotoprinttext(43,25,"NAMA PROMO          :");
+    gotoprinttext(43,27,"POTONGAN            :");
+    gotoprinttext(43,29,"TANGGAL MULAI       :");
+    gotoprinttext(43,31,"TANGGAL SELESAI     :");
 }
 
 void seluruhPelanggan() {

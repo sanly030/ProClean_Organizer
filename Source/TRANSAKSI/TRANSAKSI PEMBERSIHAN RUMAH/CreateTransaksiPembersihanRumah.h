@@ -256,7 +256,6 @@ void TambahDetailTransaksiPembersihanRumah() {
     fwrite(&dTRumah,sizeof(dTRumah),1,fileDTRumah);
     fclose(fileDTRumah);
     MessageBox(NULL, "Pemesanan berhasil!", "NOTIFICATION", MB_OK |MB_ICONINFORMATION| MB_DEFAULT_DESKTOP_ONLY);
-
 }
 
 void createTransaksiRumah(){

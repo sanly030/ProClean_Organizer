@@ -102,7 +102,7 @@ void MenuPembayaran() {
             case 1:blankScreen();CreatePembayaran();break;
             case 2:blankScreen();ReadPembayaran();break;
             case 3:blankScreen();UpdatePembayaran();break;
-            // case 4:blankScreen();DeletePembayaran();break;
+            case 4:blankScreen();DeletePembayaran();break;
             case 5:blankScreen();Dashboard();
             exit(0);
             default:

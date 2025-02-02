@@ -18,10 +18,10 @@
 
 #include "Source/Login.h"
 #include "Source/DashboardMenuAdmin.h"
-#include "Source/DashboardOwner.h"
 #include "Source/DashboardKasir.h"
-
+#include "Source/DashboardOwner.h"
 #include "Source/Dashboard.h"
+
 
 #include "Source/CRUD MASTER/CRUD MASTER PETUGAS/CreatePetugas.h"
 #include "Source/CRUD MASTER/CRUD MASTER PETUGAS/ReadPetugas.h"
@@ -51,6 +51,7 @@
 #include "Source/CRUD MASTER/CRUD MASTER PROMO/CreatePromo.h"
 #include "Source/CRUD MASTER/CRUD MASTER PROMO/ReadPromo.h"
 #include "Source/CRUD MASTER/CRUD MASTER PROMO/UpdatePromo.h"
+#include "Source/CRUD MASTER/CRUD MASTER PROMO/DeletePromo.h"
 
 
 #include "Source/CRUD MASTER/CRUD MASTER PELANGGAN/CreatePelanggan.h"

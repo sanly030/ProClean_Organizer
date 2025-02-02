@@ -3,10 +3,11 @@
     printf("%d", i);
     gotoxy(43, y);
     generateid("TRSPR",trsTRumah.id_TRumah);
-    gotoxy(50, y);
+    gotoxy(55, y);
     printf("PLG%03d", trsTRumah.id_plg);
     gotoxy(60, y);
     printf("JLY%03d", trsTRumah.id_jnslayanan);
+
         gotoxy(70, y);
         printf("PRM%03d\n", trsTRumah.id_promo);
     gotoxy(125, y);
