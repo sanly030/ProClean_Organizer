@@ -95,6 +95,7 @@ int isValidDate(int hari, int bulan, int tahun) {
 
 void CreatePetugas() {
     char pilihan;
+
     do {
         SetColorBlock(1, 7);
         textBox2(31, 10, 139, 33);

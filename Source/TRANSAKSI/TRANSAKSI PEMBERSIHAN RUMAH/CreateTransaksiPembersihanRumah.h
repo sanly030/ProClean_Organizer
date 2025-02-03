@@ -239,7 +239,11 @@ void TambahDetailTransaksiPembersihanRumah() {
     gotoxy(70,34);
     printf("Rp. %.0f", trsTRumah.totalHarga);
     dTRumah.totalHarga = trsTRumah.totalHarga; //Ngambil data harga terakhir setelah promo
-
+    /* buka file untuk menambah data detail*/
+    fileDTRumah = fopen("../TRANSAKSI/../Source/../Database/Dat/DETAILTRANSAKSIRUMAH.dat","ab+");
+    fwrite(&dTRumah,sizeof(dTRumah),1,fileDTRumah);
+    fclose(fileDTRumah);
+    
     strcpy(trsTRumah.Status, Status[0]);
     SetColorBlock(7,9);
     gotoxy(40,36);
@@ -250,11 +254,6 @@ void TambahDetailTransaksiPembersihanRumah() {
     fileTransaksiRumah = fopen("../TRANSAKSI/../Source/../Database/Dat/TRANSAKSIPEMBERSIHANRUMAH.dat", "ab");
     fwrite(&trsTRumah, sizeof(trsTRumah), 1, fileTransaksiRumah);
     fclose(fileTransaksiRumah);
-
-    /* buka file untuk menambah data detail*/
-    fileDTRumah = fopen("../TRANSAKSI/../Source/../Database/Dat/DETAILTRANSAKSIRUMAH.dat","ab+");
-    fwrite(&dTRumah,sizeof(dTRumah),1,fileDTRumah);
-    fclose(fileDTRumah);
     MessageBox(NULL, "Pemesanan berhasil!", "NOTIFICATION", MB_OK |MB_ICONINFORMATION| MB_DEFAULT_DESKTOP_ONLY);
 }
 

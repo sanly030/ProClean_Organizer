@@ -1,4 +1,4 @@
-    void dataTransaksiPembelian(){
+void dataTransaksiPembelian(){
     gotoxy(38, y);
     printf("%d", i);
     gotoxy(43, y);
@@ -32,7 +32,7 @@ void dataDetailTransaksiPemesanan(){
 void readAllDataTransaksiPembelian(){
     boxSearch();
     gotoprinttext(138,10,"CARI   : TRSPR");
-    tampilanDetailTableTransaksiPembersihanRumah(); //ini harusnya pake yg sahar
+    tampilanTableTransaksiPembersihanRumah(); //ini harusnya pake yg sahar
     i = 1;
     y = 16;
 
@@ -62,86 +62,86 @@ void readAllDataTransaksiPembelian(){
     fclose(fileTransaksiRumah);
 }
 
-// void lihatDetailTransaksiPembelianOwner(){
-//     boxSearch();
-//     gotoprinttext(138,10,"CARI   : TRSBO");
-//     gotoprinttext(152, 10, "       ");
-//     gotoxy(152, 10);
-//     showCursor();
-//     getnum(&temptrsbo.id_transaksi, 3);
-//     hideCursor();
-//     arsdetailbeliobat = fopen("../TRANSAKSI APOTEK/../Source/../Database/Dat/detailpembelian.dat", "rb+");
-//     fread(&dtbo,sizeof(dtbo),1,arsdetailbeliobat);
-//     found = 0;
-//     while(!feof(arsdetailbeliobat) && found==0){
-//         if (temptrsbo.id_transaksi == dtbo.id_transaksi){ /* mengecek apakah id yang dicari ada dalam id transaksi */
-//             found = 1;
-//         }else {
-//             fread(&dtbo, sizeof(dtbo), 1, arsdetailbeliobat);
-//         }
-//     }
-//     fclose(arsdetailbeliobat);
-//     if(found == 0) {
-//         cancel = MessageBoxA(NULL,"ID Transaksi Tidak ada!, Anda ingin mencari lagi?","ATTENTION",MB_OKCANCEL |MB_ICONINFORMATION| MB_DEFAULT_DESKTOP_ONLY);
-//         if(cancel == IDOK) {
-//             BlankDashboard();
-//             readAllDataTransaksiPembelian();
-//             lihatDetailTransaksiPembelianOwner();
-//         } else if (cancel == IDCANCEL){
-//             BlankDashboard();
-//             dataTransaksiPembelianMenu();
-//         }
-//     }
-//
-//     if(found == 1) {
-//         a = 1;
-//         y = 16;
-//         BlankDashboard();
-//         tampilanDetailTableTransaksiPembelian();
-//         /* buka file untuk dibaca */
-//         arsdetailbeliobat = fopen("../TRANSAKSI APOTEK/../Source/../Database/Dat/detailpembelian.dat", "rb");
-//         fread(&dtbo, sizeof(dtbo), 1, arsdetailbeliobat);
-//         while (fread(&dtbo, sizeof(dtbo), 1, arsdetailbeliobat) == 1) {
-//             if (temptrsbo.id_transaksi == dtbo.id_transaksi) { /* munculkan data yang id nya sesuai saja */
-//                 if (a % 2 == 0) {
-//                     SetColorBlock(15, 4);
-//                     for (x = y; x <= y; x++) {
-//                         for (j = 37; j < 167; j++) {
-//                             gotoprintchar(j, x, 32);
-//                         }
-//                     }
-//                     dataDetailTransaksiPembelian();
-//                 } else {
-//                     SetColorBlock(15, 12);
-//                     for (x = y; x <= y; x++) {
-//                         for (j = 37; j < 167; j++) {
-//                             gotoprintchar(j, x, 32);
-//                         }
-//                     }
-//                     dataDetailTransaksiPembelian();
-//                 }
-//                 batasTable();
-//                 a++;
-//                 y++;
-//             }
-//         }
-//         fclose(arsdetailbeliobat);
-//     }
-//     SpecialKeyCariorBackDashboard(150, 40,10,12,15,&output);
-//     switch (output) {
-//         case 1 :
-//             SetColorBlock(4,15);
-//             readAllDataTransaksiPembelian();
-//             lihatDetailTransaksiPembelianOwner();
-//             break;
-//
-//         case 2:
-//             BlankDashboard();
-//             dataTransaksiPembelianMenu();
-//             break;
-//     }
-//
-// }
+void lihatDetailTransaksiPembersihanRumah(){
+    boxSearch();
+    gotoprinttext(138,10,"CARI   : TRSPR");
+    gotoprinttext(152, 10, "       ");
+    gotoxy(152, 10);
+    showCursor();
+    getnum(&temptrsTRumah.id_TRumah, 3);
+    hideCursor();
+    fileDTRumah = fopen("../TRANSAKSI/../Source/../Database/Dat/DETAILTRANSAKSIRUMAH.dat", "rb+");
+    fread(&dTRumah,sizeof(dTRumah),1,fileDTRumah);
+    found = 0;
+    while(!feof(fileDTRumah) && found==0){
+        if (temptrsTRumah.id_TRumah == dTRumah.id_TRumah){ /* mengecek apakah id yang dicari ada dalam id transaksi */
+            found = 1;
+        }else {
+            fread(&dTRumah, sizeof(dTRumah), 1, fileDTRumah);
+        }
+    }
+    fclose(fileDTRumah);
+    if(found == 0) {
+        cancel = MessageBoxA(NULL,"ID Transaksi Tidak ada!, Anda ingin mencari lagi?","ATTENTION",MB_OKCANCEL |MB_ICONINFORMATION| MB_DEFAULT_DESKTOP_ONLY);
+        if(cancel == IDOK) {
+            BlankDashboard();
+            readAllDataTransaksiPembelian();
+            lihatDetailTransaksiPembersihanRumah();
+        } else if (cancel == IDCANCEL){
+            BlankDashboard();
+            Dashboard();
+        }
+    }
+
+    if(found == 1) {
+        a = 1;
+        y = 16;
+        BlankDashboard();
+        tampilanDetailTableTransaksiPembersihanRumah();
+        /* buka file untuk dibaca */
+        fileDTRumah = fopen("../TRANSAKSI/../Source/../Database/Dat/DETAILTRANSAKSIRUMAH.dat", "rb");
+        fread(&dTRumah, sizeof(dTRumah), 1, fileDTRumah);
+        while (fread(&dTRumah, sizeof(dTRumah), 1, fileDTRumah) == 1) {
+            if (temptrsTRumah.id_TRumah == dTRumah.id_TRumah) { /* munculkan data yang id nya sesuai saja */
+                if (a % 2 == 0) {
+                    SetColorBlock(7, 1);
+                    for (x = y; x <= y; x++) {
+                        for (j = 37; j < 167; j++) {
+                            gotoprintchar(j, x, 32);
+                        }
+                    }
+                    dataDetailTransaksiPemesanan();
+                } else {
+                    SetColorBlock(15, 12);
+                    for (x = y; x <= y; x++) {
+                        for (j = 37; j < 167; j++) {
+                            gotoprintchar(j, x, 32);
+                        }
+                    }
+                    dataDetailTransaksiPemesanan();
+                }
+                batasTable();
+                a++;
+                y++;
+            }
+        }
+        fclose(fileDTRumah);
+    }
+    SpecialKeyCariorBackDashboard(150, 40,10,9,7,&output);
+    switch (output) {
+        case 1 :
+            SetColorBlock(1,7);
+            readAllDataTransaksiPembelian();
+            lihatDetailTransaksiPembersihanRumah();
+            break;
+
+        case 2:
+            BlankDashboard();
+            Dashboard();
+            break;
+    }
+
+}
 
 
 /*

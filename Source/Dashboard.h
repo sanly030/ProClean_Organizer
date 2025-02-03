@@ -1,3 +1,5 @@
+
+
 void Dashboard() {
     system("color 71");
     PrintFile("..//Asset//ikonsapu.txt",90, 12);
@@ -47,7 +49,23 @@ void Dashboard() {
         case 8:blankScreen();MenuJenisKendaraan();break;
         case 9:blankScreen();createTransaksiRumah();break;
         case 10:blankScreen();createTransaksiKendaraan();break;
-        case 11:blankScreen();readAllDataTransaksiPembelian();break;
-        // case 5:blankScreen();MenuPktLayanan();break;
-    }
-}
+        case 11:blankScreen();readAllDataTransaksiPembelian();
+        SpecialKeyCariorBackDashboard(150, 40,10,9,7,&output);
+        switch (output) {
+            case 1 :
+                SetColorBlock(1,7);
+            lihatDetailTransaksiPembersihanRumah();
+            break;
+            case 2:
+                BlankDashboard();
+            Dashboard();
+            break;
+
+        }
+           break;
+        case 12:blankScreen();laporanKeuanganMerchandise();;break;
+        }
+
+            // case 5:blankScreen();MenuPktLayanan();break;
+        }
+

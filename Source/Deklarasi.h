@@ -35,13 +35,16 @@ char Opsi;
 char ulangi;
 int i;
 int id_layanan;
+int output;
+int cekbulan, cektahun;
+char namabulan[20];
 
 //Untuk Keuangan
 float tunai;
 float total;
 float kembali;
 
-char Status[3][100]={"Pemesanan Berhasil", "Pemesanan Dibatalkan" , "Pesanan telah di bayar"};
+char Status[5][100]={"Pemesanan Berhasil", "Pemesanan Dibatalkan" , "Pemesanan telah di bayar", "Pemesanan segera dikerjakan!", "Pemesanan selesai!"};
 
 struct id {
     int id_petugasKebersihan;
@@ -183,6 +186,7 @@ FILE *arsplg;
         char Status[100];
     };
     struct TRumah trsTRumah;
+struct TRumah temptrsTRumah;
     FILE *fileTransaksiRumah;
 
     typedef struct DTRumah {
@@ -241,3 +245,45 @@ FILE *arsplg;
     FILE *fileDTKendaraan;
 
 
+void convertBulan(int bulan){
+    if(bulan == 1){
+        strcpy(namabulan,"JANUARI");
+    } else if(bulan == 2){
+        strcpy(namabulan,"FEBRUARI");
+    }else if(bulan == 3){
+        strcpy(namabulan,"MARET");
+    }else if(bulan == 4){
+        strcpy(namabulan,"APRIL");
+    }else if(bulan == 5){
+        strcpy(namabulan,"MEI");
+    }else if(bulan == 6){
+        strcpy(namabulan,"JUNI");
+    }else if(bulan == 7){
+        strcpy(namabulan,"JULI");
+    }else if(bulan == 8){
+        strcpy(namabulan,"AGUSTUS");
+    }else if(bulan == 9){
+        strcpy(namabulan,"SEPTEMBER");
+    }else if(bulan == 10){
+        strcpy(namabulan,"OKTOBER");
+    }else if(bulan == 11){
+        strcpy(namabulan,"NOVEMBER");
+    }else if(bulan == 12){
+        strcpy(namabulan,"DESEMBER");
+    }
+}
+
+typedef struct TPenjadwalan{
+    int id_Penjadwalan;
+    int id_TRumah;
+    int id_TKendaraan;
+    int id_petugas_str;
+    string nama;
+    tanggal pemesanan;
+    tanggal penjadwalan;
+    int durasi;
+    char Status[100];
+};
+struct TRumah trsTRumah;
+struct TRumah temptrsTRumah;
+FILE *fileTransaksiRumah;

@@ -558,6 +558,207 @@ void getRp(float *nilai, int min, int max, int x, int y) //input rupiah
     *nilai = atoi(input);   /* Memasukkan nilai input (char) ke nilai (int) */
 }
 
+void DashboardCRUD(){
+    SetColorBlock(9,9);
+    frameLayout(130,9,170,42,32);
+    SetColorBlock(1,15);
+    frameLayout(130,9,131,42,223);
+    frameLayout(130,9,170,10,223);
+    frameLayout(169,9,170,42,223);
+    frameLayout(130,41,170,42,220);
+}
+
+void menuLaporanManajer(){
+    SetColorBlock(7,9);
+    //DrawFile(65,19,"../Desaintxt/Dashboard/menuLaporan.txt");
+    gotoprinttext(82,25,"B U L A N A N");
+    gotoprinttext(82,28,"T A H U N A N");
+    gotoprinttext(82,31,"K E M B A L I");
+}
+
+void menuBackLihat(int y){
+    gotoprinttext(153,y," L I H A T   \n");
+    gotoprinttext(134,y," K E M B A L I");
+}
+
+void BorderSwitchRole(int x, int y, int lebar){
+    /*untuk kiri atas*/
+    gotoxy(x,y);printf("%c", 201);
+    int a;
+    a = x + 1;
+    for(i = 0; i < lebar; i++){
+        gotoxy(a,y);printf("%c",205); /*untuk asci tepi atas =*/
+        a++;
+    }
+    /*untuk kanan atas*/
+    gotoxy(a,y);printf("%c", 187);
+
+    gotoxy(x,y+1);printf("%c",186);/*untuk ascii tepi sama dengan miring kiri tengah*/
+
+    gotoxy(a,y+1);printf("%c",186);/*untuk ascii tepi sama dengan miring kanan tengah */
+
+    gotoxy(x,y+2);printf("%c",200);/*untuk sudut kiri bawah*/
+    a = x + 1;
+    for(i = 0; i < lebar; i++){
+        gotoxy(a,y+2);printf("%c",205);/*untuk tepi bawah =*/
+        a++;
+    }
+    gotoxy(a,y+2);printf("%c",188);/*untuk sudut kanan bawah*/
+}
+
+void BorderSwitchRoleDashboard(int x, int y, int lebar,int tinggi){
+    gotoxy(x,y);printf("%c", 201);
+    int a;
+    a = x + 1;
+    for(i = 0; i < lebar; i++){
+        gotoxy(a,y);printf("%c",205); /*untuk asci tepi atas =*/
+        a++;
+    }
+    /*untuk kanan atas*/
+    gotoxy(a,y);printf("%c", 187);
+    int b = y + 1;
+    for(i = 0; i < 2; i++) {
+        gotoxy(x, b);
+        printf("%c", 186);/*untuk ascii tepi sama dengan miring kiri tengah*/
+        b++;
+    }
+    b = y + 1;
+    for(i = 0; i < 2; i++) {
+        gotoxy(a, b);
+        printf("%c", 186);/*untuk ascii tepi sama dengan miring kiri tengah*/
+        b++;
+    }
+    gotoxy(x,b);printf("%c",200);/*untuk sudut kiri bawah*/
+    a = x + 1;
+    for(i = 0; i < lebar; i++){
+        gotoxy(a,b);printf("%c",205);/*untuk tepi bawah =*/
+        a++;
+    }
+    gotoxy(a,b);printf("%c",188);/*untuk sudut kanan bawah*/
+}
+
+void SpecialkeyLaporanManajer(int x, int y, int lebar,int tinggi, int *output) {
+    //Declaration
+    int count = 1;
+    char ch;
+
+    //Algorithm
+//    BorderSwitchRole(x, y, lebar);
+    menuLaporanManajer();
+    if(count == 1){
+        SetColorBlock(0,9);
+        gotoprinttext(82,25,"B U L A N A N");
+    }
+    while (1) {
+        ch = getch();
+        if (ch == ENTER || ch == TAB) {
+            switch (count) {
+                case 1 :
+                    Beep(3000, 100);
+                    *output = count;
+                    break;
+
+                case 2 :
+                    Beep(3000, 100);
+                    *output = count;
+                    break;
+
+                case 3 :
+                    Beep(3000, 100);
+                    *output = count;
+                    break;
+            }
+            break;
+        } else if (ch == UP_KEY) {
+            if (count > 1) {
+                Beep(700, 120);
+//                clearArea(x, y, lebar + 2, tinggi);
+                y -= 3;  // Geser ke atas sebanyak 4 unit
+                SetColorBlock(7,9);
+//               BorderSwitchRole(x, y, lebar);
+                menuLaporanManajer();
+                count--;
+            }
+            if(count == 1){
+                SetColorBlock(0,9);
+                gotoprinttext(82,25,"B U L A N A N");
+            } else if(count == 2){
+                SetColorBlock(0,9);
+                gotoprinttext(82,28,"T A H U N A N");
+            } else if(count==3){
+                SetColorBlock(0,9);
+                gotoprinttext(82,31,"K E M B A L I");
+            }
+        } else if (ch == DOWN_KEY) {
+            if (count < 3) {
+                Beep(700, 120);
+//                clearArea(x, y, lebar + 2, tinggi);
+                y += 3;  // Geser ke bawah sebanyak 4 unit
+//                BorderSwitchRole(x, y, lebar);
+                SetColorBlock(7,9);
+                menuLaporanManajer();
+                count++;
+            }
+            if(count == 1){
+                SetColorBlock(0,9);
+                gotoprinttext(82,25,"B U L A N A N");
+            } else if(count == 2){
+                SetColorBlock(0,9);
+                gotoprinttext(82,28,"T A H U N A N");
+            } else if(count==3){
+                SetColorBlock(0,9);
+                gotoprinttext(82,31,"K E M B A L I");
+            }
+        }
+    }
+}
+
+
+void SpecialKeyCariDataLaporan(int x, int y, int lebar,int tinggi,int *output) {
+    int count = 1;
+    char ch;
+    //Algorithm
+    SetColorBlock(7, 9);
+    BorderSwitchRole(x, y, lebar);
+    menuBackLihat(y+1);
+    while (1) {
+        ch = getch();
+        if (ch == ENTER || ch == TAB) {
+            switch (count) {
+                case 1 :
+                    Beep(3000, 100);
+                    *output = count;
+                    break;
+
+                case 2 :
+                    Beep(3000, 100);
+                    *output = count;
+                    break;
+            }
+            break;
+        } else if (ch == RIGHT_KEY) {
+            if (count > 1) {
+                Beep(1000, 100);
+                clearArea(x, y, lebar+2,tinggi);
+                x += 17;
+                BorderSwitchRole(x, y, lebar);
+                menuBackLihat(y+1);
+                count--;
+            }
+        } else if (ch == LEFT_KEY) {
+            if (count < 2) {
+                Beep(1000, 100);
+                clearArea(x, y, lebar+2, tinggi);
+                x -= 17;
+                BorderSwitchRole(x,y,lebar);
+                menuBackLihat(y+1);
+                count++;
+            }
+        }
+    }
+}
+
+
 void frameTransaksi(int x, int y){
     SetColorBlock(9,9);
     for(i = 10; i < 43; i++){  // Ubah batas bawah dari 42 ke 43 (+1)
@@ -858,4 +1059,371 @@ void batasTable(){
     }if (i == 1500) {
         moreTable(12);
     }
+}
+
+void menuLihatorBack(int x, int y,int jarak){
+    gotoprinttext(x,y,"LIHAT DETAIL\n");
+    gotoprinttext(x-jarak,y,"KEMBALI");
+}
+
+void SpecialKeyCariorBackDashboard(int x, int y,int jarak,int fore,int back,int *output) {
+    hideCursor();
+    int count = 1;
+    char ch;
+    //Algorithm
+    SetColorBlock(fore, back);
+    menuLihatorBack(x,y,jarak);
+    if(count == 1){
+        SetColorBlock(0,back);
+        gotoprinttext(x,y,"LIHAT DETAIL");
+    }
+
+    while (1) {
+        ch = getch();
+        if (ch == ENTER || ch == TAB) {
+            switch (count) {
+                case 1 :
+                    Beep(1000, 120);
+                *output = count;
+                break;
+
+                case 2 :
+                    Beep(1000, 120);
+                *output = count;
+                break;
+            }
+            break;
+        } else if (ch == RIGHT_KEY) {
+            if (count > 1) {
+                Beep(700, 120);
+                SetColorBlock(fore, back);
+                menuLihatorBack(x,y,jarak);
+                count--;
+                if(count == 1){
+                    SetColorBlock(0,back);
+                    gotoprinttext(x,y,"LIHAT DETAIL");
+                } else if(count == 2){
+                    SetColorBlock(0,back);
+                    gotoprinttext(x-jarak,y,"KEMBALI");
+                }
+            }
+        } else if (ch == LEFT_KEY) {
+            if (count < 2) {
+                Beep(700, 120);
+                SetColorBlock(fore, back);
+                menuLihatorBack(x,y,jarak);
+                count++;
+                if(count == 1){
+                    SetColorBlock(0,back);
+                    gotoprinttext(x,y,"LIHAT DETAIL");
+                } else if(count == 2){
+                    SetColorBlock(0,back);
+                    gotoprinttext(x-jarak,y,"KEMBALI");
+                }
+            }
+        }
+    }
+}
+
+void tampilanTableTransaksiPembersihanRumah(){
+    SetColorBlock(1,7);
+    /*border atas*/
+    for(i = 12; i <= 12;i++){
+        for(j = 37; j < 167; j++){
+            gotoprintchar(j,i,205);
+        }
+    }
+    /*border sudut kiri atas*/
+    gotoprintchar(36,12,206);
+    /*border sudut kanan atas*/
+    gotoprintchar(167,12,206);
+    /*border vertikal kebawah kiri*/
+    for(i = 13; i <= 38;i++){
+        gotoprintchar(36,i,186);
+    }
+    /*border vertikal kebawah kanan*/
+    for(i = 13; i <= 38;i++){
+        gotoprintchar(167,i,186);
+    }
+    /*border sudut bawah kiri*/
+    gotoprintchar(36,38,206);
+    for(i = 38; i <= 38;i++){
+        for(j = 37; j < 167; j++){
+            gotoprintchar(j,i,205);
+        }
+    }
+    /*border sudut bawah kanan*/
+    gotoprintchar(167,38,206);
+
+    SetColorBlock(15,4);
+    for(i = 13; i <= 15;i++){
+        for(j = 37; j < 167; j++){
+            gotoprintchar(j,i,32);
+        }
+    }
+    gotoprinttext(38,14,"NO.");
+    gotoprinttext(43,14,"ID TRANSAKSI");
+    gotoprinttext(57,14,"ID PELANGGAN");
+    gotoprinttext(69,14,"ID JENIS LAYANAN");
+    gotoprinttext(100,14,"ID PROMO");
+    gotoprinttext(123,14,"TOTAL HARGA");
+}
+
+void uangLaporan(int number,char output[80]){
+    if(number < 1000) sprintf(output, "%d", number);
+    else if(number < 1000000) sprintf(output, "%d.%03d", number/1000, number%1000);
+    else if(number < 1000000000) sprintf(output, "%d.%03d.%03d", number/1000000, (number%1000000)/1000, number%1000);
+    else sprintf(output, "%d.%03d.%03d.%03d", number/1000000000, (number%1000000000)/1000, (number%1000000)/1000, number%1000);
+}
+
+void aturkanankekiri(char kata[],int a, int b){
+    // Kata yang akan dicetak
+    int panjang = strlen(kata);
+
+    // Tentukan posisi awal cetakan
+    x = a - panjang; // Kolom 80 sebagai batas, kurangi panjang kata
+    y = b; // Baris 10, bisa disesuaikan dengan tinggi layar
+
+    // Cetak kata dari kanan ke kiri
+    gotoxy(x, y);
+    printf("%s", kata);
+    printf("\n");
+}
+
+void menuYesorNo(int x, int y,int jarak){
+    gotoprinttext(x,y,"    Y A\n");
+    gotoprinttext(x-jarak,y,"T I D A K");
+}
+
+void SpecialKeyYesorNoDashboard(int x, int y,int jarak,int fore,int back,int *output) {
+    hideCursor();
+    int count = 1;
+    char ch;
+    //Algorithm
+    SetColorBlock(fore, back);
+    menuYesorNo(x,y,jarak);
+    if(count == 1){
+        SetColorBlock(0,back);
+        gotoprinttext(x,y,"    Y A");
+    }
+
+    while (1) {
+        ch = getch();
+        if (ch == ENTER || ch == TAB) {
+            switch (count) {
+                case 1 :
+                    Beep(1000, 120);
+                *output = count;
+                break;
+
+                case 2 :
+                    Beep(1000, 120);
+                *output = count;
+                break;
+            }
+            break;
+        } else if (ch == RIGHT_KEY) {
+            if (count > 1) {
+                Beep(700, 120);
+                SetColorBlock(fore, back);
+                menuYesorNo(x,y,jarak);
+                count--;
+                if(count == 1){
+                    SetColorBlock(0,back);
+                    gotoprinttext(x,y,"    Y A");
+                } else if(count == 2){
+                    SetColorBlock(0,back);
+                    gotoprinttext(x-jarak,y,"T I D A K");
+                }
+            }
+        } else if (ch == LEFT_KEY) {
+            if (count < 2) {
+                Beep(700, 120);
+                SetColorBlock(fore, back);
+                menuYesorNo(x,y,jarak);
+                count++;
+                if(count == 1){
+                    SetColorBlock(0,back);
+                    gotoprinttext(x,y,"    Y A");
+                } else if(count == 2){
+                    SetColorBlock(0,back);
+                    gotoprinttext(x-jarak,y,"T I D A K");
+                }
+            }
+        }
+    }
+}
+
+void bulan(){
+    gotoprinttext(48,23,"Januari");
+    gotoprinttext(48,24,"Februari");
+    gotoprinttext(48,25,"Maret");
+    gotoprinttext(48,26,"April");
+    gotoprinttext(48,27,"Mei");
+    gotoprinttext(48,28,"Juni");
+    gotoprinttext(48,29,"Juli");
+    gotoprinttext(48,30,"Agustus");
+    gotoprinttext(48,31,"September");
+    gotoprinttext(48,32,"Oktober");
+    gotoprinttext(48,33,"November");
+    gotoprinttext(48,34,"Desember");
+
+}
+
+void borderInput(int x, int y, int lebar){
+    /*sudut kiri atas*/
+    gotoprintchar(x,y,201);
+
+    /*tepi atas*/
+    int a = x +1;
+    for(i = 0; i < lebar;i++){
+        gotoprintchar(a,y,205);
+        a++;
+    }
+    /*sudut kanan atas*/
+    gotoprintchar(a,y,187);
+
+    /*untuk tepi kiri tengah*/
+    gotoprintchar(x,y+1,186);
+    /*untuk tepi kanan tengah*/
+    gotoprintchar(a,y+1,186);
+
+    /*sudut kiri bawah*/
+    gotoprintchar(x,y+2,200);
+
+    /*tepi bawah*/
+    a = x +1;
+    for(i = 0; i < lebar;i++){
+        gotoprintchar(a,y+2,205);
+        a++;
+    }
+
+    /*sudut kanan bawah*/
+    gotoprintchar(a,y + 2,188);
+
+}
+
+void kertas(int x,int y){
+    SetColorBlock(15,15);
+    for(i = 10; i <= 40;i++){
+        for(j = 36; j <= 127; j++){
+            gotoprintchar(j,i,219);
+        }
+    }
+    SetColorBlock(1,15);
+    //DrawFile(x,y,namaFile);
+    SetColorBlock(1,15);
+    frameLayout(36,10,37,40,223);
+    frameLayout(36,10,128,11,223);
+    frameLayout(127,10,128,40,223);
+    frameLayout(36,40,128,41,220);
+}
+
+void lembarLaporanBulanan(){
+    SetColorBlock(1,15);
+    kertas(50,12);
+    gotoprinttext(58,18,"UNTUK PERIODE BULAN  TAHUN ");
+    SetColorBlock(7,9);
+    //DrawFile(132,13,"../Desaintxt/Dashboard/cariLaporan.txt");
+    gotoprinttext(133,23,"Bulan");
+    borderInput(133,24,32);
+    gotoprinttext(133,27,"Tahun");
+    borderInput(133,28,32);
+    for(j = 20; j <= 22; j++) {
+        for (i = 42; i < 120; i++) {
+            gotoprintchar(i, j, 32);
+        }
+    }
+    for(i = 23; i< 35;i++){
+        gotoprintchar(42,i,32);
+    }
+    for(i = 42; i< 120;i++){
+        gotoprintchar(i,35,32);
+    }
+    for(i = 23; i< 35;i++){
+        gotoprintchar(46,i,32);
+    }
+    for(i = 23; i< 35;i++){
+        gotoprintchar(100,i,32);
+    }
+    for(i = 23; i< 35;i++){
+        gotoprintchar(119,i,32);
+    }
+    for(i=23; i < 35;i++){
+        SetColorBlock(9,15);
+        gotoprinttext(102,i,"Rp.");
+    }
+    for(i = 1; i <=9; i++){
+        gotoxy(44,22+i);
+        printf("%d.",i);
+    }
+    for(i = 10; i <=12; i++){
+        gotoxy(43,22+i);
+        printf("%d.",i);
+    }
+    SetColorBlock(15,9);
+    for(i = 101; i < 117; i++){
+        gotoprintchar(i,35,196);
+    }
+    gotoprinttext(118,35,"+");
+    SetColorBlock(9,15);
+    gotoprinttext(82,37,"TOTAL KESELURUHAN : Rp.");
+    SetColorBlock(15,9);
+    gotoprinttext(43,21,"NO.");
+    gotoprinttext(67,21,"ID TRANSAKSI");
+    gotoprinttext(102,21,"TOTAL PENDAPATAN");
+}
+
+void lembarLaporanTahunan(){
+    SetColorBlock(1,15);
+    kertas(50,12);
+    gotoprinttext(58,18,"U N T U K  P E R I O D E  T A H U N");
+    SetColorBlock(7,9);
+    //DrawFile(132,13,"../Desaintxt/Dashboard/cariLaporan.txt");
+    gotoprinttext(133,25,"Tahun");
+    borderInput(133,26,32);
+    for(j = 20; j <= 22; j++) {
+        for (i = 42; i < 120; i++) {
+            gotoprintchar(i, j, 32);
+        }
+    }
+    for(i = 23; i< 35;i++){
+        gotoprintchar(42,i,32);
+    }
+    for(i = 42; i< 120;i++){
+        gotoprintchar(i,35,32);
+    }
+    for(i = 23; i< 35;i++){
+        gotoprintchar(46,i,32);
+    }
+    for(i = 23; i< 35;i++){
+        gotoprintchar(100,i,32);
+    }
+    for(i = 23; i< 35;i++){
+        gotoprintchar(119,i,32);
+    }
+    for(i=23; i < 35;i++){
+        SetColorBlock(9,15);
+        gotoprinttext(102,i,"Rp.");
+    }
+    for(i = 1; i <=9; i++){
+        gotoxy(44,22+i);
+        printf("%d.",i);
+    }
+    for(i = 10; i <=12; i++){
+        gotoxy(43,22+i);
+        printf("%d.",i);
+    }
+    SetColorBlock(15,9);
+    for(i = 101; i < 117; i++){
+        gotoprintchar(i,35,196);
+    }
+    gotoprinttext(118,35,"+");
+    SetColorBlock(9,15);
+    bulan();
+    gotoprinttext(82,37,"TOTAL KESELURUHAN : Rp.");
+    SetColorBlock(15,9);
+    gotoprinttext(43,21,"NO.");
+    gotoprinttext(72,21,"BULAN");
+    gotoprinttext(102,21,"TOTAL PENDAPATAN");
 }
