@@ -125,7 +125,6 @@ void ReadPetugasByRole(int role) {
     SetColorBlock(1, 7);
     while (1) { // Looping untuk meminta input ulang jika salah
         textBox2(32, y + 1, 28, 2);
-        gotoprinttext(34, y + 2, "Tekan 0 untuk kembali: ");
         gotoxy(57, y + 2);
         getnum(&pilihan, 1); // Meminta input angka
 
@@ -150,6 +149,7 @@ void ReadUpdatePetugasByRole(int role) {
     blankScreen();
     SetColorBlock(1, 7);
     PrintFile("../Asset/UbahData.txt", 50, 11);
+
 
     FILE *arspgs = fopen("../Database/Dat/PETUGAS.dat", "rb");
     if (arspgs == NULL) {
@@ -179,7 +179,7 @@ void ReadUpdatePetugasByRole(int role) {
                     gotoprintchar(j, x, 32);
                 }
             }
-
+            gotoprinttext(141, 28, "U P D A T E  D A T A");
             gotoxy(33, y);
             printf("%d", i);
             gotoxy(39, y);
@@ -212,17 +212,17 @@ void ReadUpdatePetugasByRole(int role) {
     // Menampilkan format ID berdasarkan role tanpa input ganda
     textBox2(131, 17, 39, 25);
     if (role == 1) {
-        gotoprinttext(134, 30, "Masukkan ID Petugas : ADM00");
+        gotoprinttext(134, y + 2, "Masukkan ID Petugas : ADM00");
     } else if (role == 2) {
-        gotoprinttext(34, y + 2, "Masukkan ID Petugas : KSR00");
+        gotoprinttext(134, y + 2, "Masukkan ID Petugas : KSR00");
     }else if(role == 3 ){
-        gotoprinttext(34, y + 2, "Masukkan ID Petugas : PTS00");
+        gotoprinttext(134, y + 2, "Masukkan ID Petugas : PTS00");
     } else {
-        gotoprinttext(34, y + 2, "Masukkan ID Petugas yang ingin diubah : UNK00");
+        gotoprinttext(134, y + 2, "Masukkan ID Petugas yang ingin diubah : UNK00");
     }
 
     // **Letakkan kursor setelah teks yang ditampilkan**
-    gotoxy(161, 30);
+    gotoxy(161, y+2);
     scanf("%d", &angka_id); // Hanya membaca angka yang diketik
 
     // **Gabungkan input angka dengan format ID**
@@ -312,13 +312,13 @@ void ReadDeletePetugasByRole(int role) {
     // Menampilkan format ID berdasarkan role tanpa input ganda
     textBox2(131, 17, 39, 25);
     if (role == 1) {
-        gotoprinttext(134, 30, "Masukkan ID Petugas : ADM00");
+        gotoprinttext(134, y + 2, "Masukkan ID Petugas : ADM00");
     } else if (role == 2) {
-        gotoprinttext(34, y + 2, "Masukkan ID Petugas : KSR00");
+        gotoprinttext(134, y + 2, "Masukkan ID Petugas : KSR00");
     }else if(role == 3 ){
-        gotoprinttext(34, y + 2, "Masukkan ID Petugas : PTS00");
+        gotoprinttext(134, y + 2, "Masukkan ID Petugas : PTS00");
     } else {
-        gotoprinttext(34, y + 2, "Masukkan ID Petugas yang ingin diubah : UNK00");
+        gotoprinttext(134, y + 2, "Masukkan ID Petugas yang ingin diubah : UNK00");
     }
 
     // **Letakkan kursor setelah teks yang ditampilkan**

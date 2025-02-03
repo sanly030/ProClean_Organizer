@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 typedef char string[255];
@@ -46,7 +47,7 @@ char* getNextPetugasId(int id_jenispetugas) {
     int lastNumber = 0;
 
     // Dapatkan kode prefix berdasarkan jenis petugas
-    FILE *arsjgs = fopen("../Database/Dat/JENIS PETUGAS.dat", "rb");
+    FILE *arsjgs = fopen("../Database/Dat/JENIS PETUGAS.dat", "rb+");
     if (arsjgs != NULL) {
         jnspetugas jgs;
         while (fread(&jgs, sizeof(jgs), 1, arsjgs)) {
@@ -194,10 +195,10 @@ void CreatePetugas() {
         getinput(pgs.status, 25, 2);
         gotoprinttext(45, 30, "U S E R N A M E                        : ");
         gotoxy(86, 30);
-        getinput(pgs.username, 20, 2);
+        getinput(pgs.username, 20, 1);
         gotoprinttext(45, 32, "P A S S W O R D                        : ");
         gotoxy(86, 32);
-        getinput(pgs.password, 20, 2);
+        getinput(pgs.password, 20, 1);
 
         // Simpan ke file
         fwrite(&pgs, sizeof(pgs), 1, arspgs);
@@ -218,4 +219,3 @@ void CreatePetugas() {
 
     MenuPetugas();
 }
-

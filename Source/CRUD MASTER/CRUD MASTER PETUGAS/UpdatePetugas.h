@@ -90,9 +90,13 @@ void TextBoxUpdatePetugasByRole(char id_petugas[]) {
             gotoprinttext(134, 34, "[6] Password");
             gotoprinttext(134, 36, "Masukkan Pilihan : ");
             gotoxy(153, 36);
-
             int pilihan;
-            scanf("%d", &pilihan);
+            getnum(&pilihan, 1);
+            if (pilihan == 0) {
+                blankScreen();
+                UpdatePetugas();
+            }
+
 
             switch (pilihan) {
                 case 1:

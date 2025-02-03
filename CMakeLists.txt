@@ -54,4 +54,6 @@ add_executable(ProClean_Organizer main.c
         "Source/TRANSAKSI/TRANSAKSI PENJADWALAN PETUGAS/CreateTransaksiPenjadwalanPetugas.h"
         "Source/CRUD MASTER/CRUD MASTER PROMO/DeletePromo.h"
         Source/DashBoardOwer.h
+        Source/LAPORAN/laporanTransaksiPembersihanRumah.h
+        "Source/TRANSAKSI/TRANSAKSI PEMBERSIHAN KENDARAAN/ReadTransaksiPembersihanKendaraan.h"
 )
