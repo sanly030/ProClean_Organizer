@@ -69,6 +69,7 @@
 #include "Source/LAPORAN/laporanTransaksiPembersihanRumah.h"
 
 #include "Source/TRANSAKSI/TRANSAKSI PEMBERSIHAN KENDARAAN/CreateTransaksiPembersihanKendaraan.h"
+#include "Source/TRANSAKSI/TRANSAKSI PEMBERSIHAN KENDARAAN/ReadTransaksiPembersihanKendaraan.h"
 
 #include "Source/TRANSAKSI/TRANSAKSI PENJADWALAN PETUGAS/CreateTransaksiPenjadwalanPetugas.h"
 

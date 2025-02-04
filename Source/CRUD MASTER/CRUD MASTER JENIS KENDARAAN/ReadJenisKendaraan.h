@@ -67,4 +67,58 @@ void ReadJenisKendaraan() {
     }
 }
 
+
+void readCreateKendaraaninTransaksi() {
+    FILE *arskdr;
+    SetColorBlock(7,1);
+    for(i = 17; i <= 19;i++){
+        for(j = 130; j < 167; j++){
+            gotoprintchar(j,i,32);
+        }
+    }
+
+    gotoprinttext(131,18,"NO.");
+    gotoprinttext(134,18,"ID JENIS KENDARAAN");
+    gotoprinttext(147,18,"JENIS KENDARAAN");
+    i = 1;
+    y = 20;
+
+    arskdr = fopen("../Database/Dat/JENIS_KENDARAAN.dat", "rb+");
+    if (arskdr == NULL) {
+        printf("File could not be opened\n");
+        return;
+    }
+    while (fread(&kdr ,sizeof(kdr), 1, arskdr) == 1 ) {
+        if (i % 2 == 0) {
+            SetColorBlock(7,1);
+            for(x = y; x <= y;x++){
+                for(j = 130; j < 167; j++){
+                    gotoprintchar(j,x,32);
+                }
+            }
+            gotoxy(131, y);
+            printf("%d", i);
+            gotoxy(134, y);
+            generateid("JNK",kdr.id_jeniskendaraan);
+            gotoxy(147, y);
+            printf("%s\n", kdr.jenisKendaraan);
+        } else {
+            SetColorBlock(7,9);
+            for(x = y; x <= y;x++){
+                for(j = 130; j < 167; j++){
+                    gotoprintchar(j,x,32);
+                }
+            }
+            gotoxy(131, y);
+            printf("%d", i);
+            gotoxy(134, y);
+            generateid("JNK",kdr.id_jeniskendaraan);
+            gotoxy(147, y);
+            printf("%s\n", kdr.jenisKendaraan);
+        }
+        i++;
+        y++;
+    }
+    fclose(arskdr);
+}
 #endif //READJENISKENDARAAN_H

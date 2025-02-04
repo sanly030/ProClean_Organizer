@@ -4,7 +4,6 @@
 
 #ifndef READLAYANAN_H
 #define READLAYANAN_H
-#include "UpdateLayanan.h"
 
 void TextBoxUpdateLayanan(int id_layanan);
 void TextBoxDeleteLayanan(int id_layanan);

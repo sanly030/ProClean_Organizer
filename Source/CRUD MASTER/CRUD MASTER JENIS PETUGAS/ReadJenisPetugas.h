@@ -1,6 +1,5 @@
 #ifndef READJENISPETUGAS_H
 #define READJENISPETUGAS_H
-#include "DeleteJenisPetugas.h"
 
 void TextBoxUpdateJenisPetugas(int id_petugas);
 void TextBoxDeleteJenisPetugas(int id_petugas);

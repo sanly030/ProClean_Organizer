@@ -196,7 +196,7 @@ void CreatePetugas() {
         getinput(pgs.status, 25, 2);
         gotoprinttext(45, 30, "U S E R N A M E                        : ");
         gotoxy(86, 30);
-        getinput(pgs.username, 20, 1);
+        getinput(pgs.username, 20, 2);
         gotoprinttext(45, 32, "P A S S W O R D                        : ");
         gotoxy(86, 32);
         getinput(pgs.password, 20, 1);

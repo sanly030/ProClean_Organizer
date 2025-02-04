@@ -1,5 +1,3 @@
-
-
 void Dashboard() {
     system("color 71");
     PrintFile("..//Asset//ikonsapu.txt",90, 12);
@@ -62,10 +60,20 @@ void Dashboard() {
             break;
 
         }
-           break;
+        break;
         case 12:blankScreen();laporanKeuanganMerchandise();;break;
+        case 13:blankScreen();createTransaksiPenjadwalan();break;
+        case 14:blankScreen();readAllDataTransaksiPembelianKendaraan();
+        switch (output) {
+            case 1 :
+                SetColorBlock(1,7);
+            lihatDetailTransaksiPembersihanKendaraan();
+            break;
+            case 2:
+                BlankDashboard();
+            Dashboard();
+            break;
         }
-
-            // case 5:blankScreen();MenuPktLayanan();break;
-        }
+    }
+}
 

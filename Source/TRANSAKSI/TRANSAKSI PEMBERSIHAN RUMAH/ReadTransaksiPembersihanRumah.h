@@ -7,9 +7,8 @@ void dataTransaksiPembelian(){
     printf("PLG%03d", trsTRumah.id_plg);
     gotoxy(60, y);
     printf("JLY%03d", trsTRumah.id_jnslayanan);
-
-        gotoxy(70, y);
-        printf("PRM%03d\n", trsTRumah.id_promo);
+    gotoxy(70, y);
+    printf("PRM%03d\n", trsTRumah.id_promo);
     gotoxy(125, y);
     rupiah(trsTRumah.totalHarga,inputrp);
     printf("%s",inputrp);
@@ -32,7 +31,7 @@ void dataDetailTransaksiPemesanan(){
 void readAllDataTransaksiPembelian(){
     boxSearch();
     gotoprinttext(138,10,"CARI   : TRSPR");
-    tampilanTableTransaksiPembersihanRumah(); //ini harusnya pake yg sahar
+    tampilanTableTransaksiPembersihanRumah();
     i = 1;
     y = 16;
 
@@ -144,85 +143,113 @@ void lihatDetailTransaksiPembersihanRumah(){
 }
 
 
-/*
-void lihatDetailTransaksiPembelianAdmin(){
-    boxSearch();
-    gotoprinttext(138,10,"CARI   : TRSBO");
-    gotoprinttext(152, 10, "       ");
-    gotoxy(152, 10);
-    showCursor();
-    getnum(&temptrsmc.id_transaksi, 3);
-    hideCursor();
-    arsdetail = fopen("../TRANSAKSI BIOSKOP/../Source/../Database/Dat/DetailMerchandise.dat", "rb+");
-    fread(&dtmc,sizeof(dtmc),1,arsdetail);
-    found = 0;
-    while(!feof(arsdetail) && found==0){
-        if (temptrsmc.id_transaksi == dtmc.id_transaksi){ /* mengecek apakah id yang dicari ada dalam id transaksi #1#
-            found = 1;
-        }else {
-            fread(&dtmc, sizeof(dtmc), 1, arsdetail);
-        }
-    }
-    fclose(arsdetail);
-    if(found == 0) {
-        cancel = MessageBoxA(NULL,"ID Transaksi Tidak ada!, Anda ingin mencari lagi?","ATTENTION",MB_OKCANCEL |MB_ICONINFORMATION| MB_DEFAULT_DESKTOP_ONLY);
-        if(cancel == IDOK) {
-            BlankDashboard();
-            readAllDataTransaksiMerchandise();
-            lihatDetailTransaksiMerchandiseAdmin();
-        } else if (cancel == IDCANCEL){
-            BlankDashboard();
-            dataTransaksiMenuAdmin();
-        }
-    }
+// void readCreatePelangganinTransaksi(){
+//     FILE *arsplg;
+//     SetColorBlock(7,1);
+//     for(i = 17; i <= 19;i++){
+//         for(j = 130; j < 167; j++){
+//             gotoprintchar(j,i,32);
+//         }
+//     }
+//
+//     gotoprinttext(131,18,"NO.");
+//     gotoprinttext(134,18,"ID PELANGGAN");
+//     gotoprinttext(147,18,"NAMA PELANGGAN");
+//     i = 1;
+//     y = 20;
+//
+//     arsplg = fopen("../Database/Dat/PELANGGAN.dat", "rb+");
+//     if (arsplg == NULL) {
+//         printf("File could not be opened\n");
+//         return;
+//     }
+//     while (fread(&plg ,sizeof(plg), 1, arsplg) == 1 ) {
+//         if (i % 2 == 0) {
+//             SetColorBlock(7,1);
+//             for(x = y; x <= y;x++){
+//                 for(j = 130; j < 167; j++){
+//                     gotoprintchar(j,x,32);
+//                 }
+//             }
+//             gotoxy(131, y);
+//             printf("%d", i);
+//             gotoxy(134, y);
+//             generateid("PLG",plg.id_plg);
+//             gotoxy(147, y);
+//             printf("%s\n", plg.namaPlg);
+//         } else {
+//             SetColorBlock(7,9);
+//             for(x = y; x <= y;x++){
+//                 for(j = 130; j < 167; j++){
+//                     gotoprintchar(j,x,32);
+//                 }
+//             }
+//             gotoxy(131, y);
+//             printf("%d", i);
+//             gotoxy(134, y);
+//             generateid("PLG",plg.id_plg);
+//             gotoxy(147, y);
+//             printf("%s\n", plg.namaPlg);
+//         }
+//         i++;
+//         y++;
+//     }
+//     fclose(arsplg);
+// }
 
-    if(found == 1) {
-        a = 1;
-        y = 16;
-        BlankDashboard();
-        tampilanDetailTableTransaksiMerchandise();
-        /* buka file untuk dibaca #1#
-        arsdetail = fopen("../TRANSAKSI BIOSKOP/../Source/../Database/Dat/DetailMerchandise.dat", "rb");
-        fread(&dtmc, sizeof(dtmc), 1, arsdetail);
-        while (fread(&dtmc, sizeof(dtmc), 1, arsdetail) == 1) {
-            if (temptrsmc.id_transaksi == dtmc.id_transaksi) { /* munculkan data yang id nya sesuai saja #1#
-                if (a % 2 == 0) {
-                    SetColorBlock(7, 1);
-                    for (x = y; x <= y; x++) {
-                        for (j = 37; j < 167; j++) {
-                            gotoprintchar(j, x, 32);
-                        }
-                    }
-                    dataDetailTransaksiMerchandise();
-                } else {
-                    SetColorBlock(7, 9);
-                    for (x = y; x <= y; x++) {
-                        for (j = 37; j < 167; j++) {
-                            gotoprintchar(j, x, 32);
-                        }
-                    }
-                    dataDetailTransaksiMerchandise();
-                }
-                batasTable();
-                a++;
-                y++;
-            }
-        }
-        fclose(arsdetail);
-    }
-    SpecialKeyCariorBackDashboard(150, 40,10,9,7,&output);
-    switch (output) {
-        case 1 :
-            SetColorBlock(1,7);
-            readAllDataTransaksiMerchandise();
-            lihatDetailTransaksiMerchandiseAdmin();
-            break;
 
-        case 2:
-            BlankDashboard();
-            dataTransaksiMenuAdmin();
-            break;
-    }
 
+
+void readCreateTransaksiinPenjadwalan(){
+FILE *ars;
+SetColorBlock(7,1);
+for(i = 17; i <= 19;i++){
+for(j = 130; j < 167; j++){
+gotoprintchar(j,i,32);
 }
-*/
+}
+
+gotoprinttext(131,18,"NO.");
+gotoprinttext(134,18,"ID PELANGGAN");
+gotoprinttext(147,18,"NAMA PELANGGAN");
+i = 1;
+y = 20;
+
+arsplg = fopen("../Database/Dat/PELANGGAN.dat", "rb+");
+if (arsplg == NULL) {
+printf("File could not be opened\n");
+return;
+}
+while (fread(&plg ,sizeof(plg), 1, arsplg) == 1 ) {
+if (i % 2 == 0) {
+SetColorBlock(7,1);
+for(x = y; x <= y;x++){
+for(j = 130; j < 167; j++){
+gotoprintchar(j,x,32);
+}
+}
+gotoxy(131, y);
+printf("%d", i);
+gotoxy(134, y);
+generateid("PLG",plg.id_plg);
+gotoxy(147, y);
+printf("%s\n", plg.namaPlg);
+} else {
+SetColorBlock(7,9);
+for(x = y; x <= y;x++){
+for(j = 130; j < 167; j++){
+gotoprintchar(j,x,32);
+}
+}
+gotoxy(131, y);
+printf("%d", i);
+gotoxy(134, y);
+generateid("PLG",plg.id_plg);
+gotoxy(147, y);
+printf("%s\n", plg.namaPlg);
+}
+i++;
+y++;
+}
+fclose(arsplg);
+}

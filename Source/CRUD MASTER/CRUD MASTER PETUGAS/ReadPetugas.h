@@ -1,6 +1,5 @@
 #ifndef READPETUGAS_H
 #define READPETUGAS_H
-#include "DeletePetugas.h"
 
 void MenuPetugas();
 void TextBoxUpdatePetugasByRole(char id_petugas[]);
@@ -322,7 +321,7 @@ void ReadDeletePetugasByRole(int role) {
     }
 
     // **Letakkan kursor setelah teks yang ditampilkan**
-    gotoxy(161, 30);
+    gotoxy(161, y + 2 );
     scanf("%d", &angka_id); // Hanya membaca angka yang diketik
 
     // **Gabungkan input angka dengan format ID**

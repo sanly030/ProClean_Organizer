@@ -1,12 +1,8 @@
-
-#include "../../../Interface/lib.h"
-
 void TextBoxUpdatePetugasByRole(char id_petugas[]);
 
-// void ReadUpdatePetugasByRole(int role);
 void UpdatePetugas() {
 
-    int role; // Variabel untuk menyimpan pilihan role
+    int role;
 
     blankScreen();
     SetColorBlock(1, 7);

@@ -1,6 +1,5 @@
 #ifndef READJNSLAYANAN_H
 #define READJNSLAYANAN_H
-#include "DeleteJnsLayanan.h"
 
 void TextBoxUpdateJenisLayanan(int id_jnslayanan);
 void TextBoxDeleteDetailJenisLayanan(int id_jnslayanan);

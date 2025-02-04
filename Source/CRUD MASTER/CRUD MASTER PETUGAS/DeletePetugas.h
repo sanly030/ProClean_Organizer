@@ -2,7 +2,7 @@
 #define DELETEPETUGAS_H
 
 void TextBoxDeletePetugasByRole(char id_petugas[]);
-// Fungsi Hapus Data
+
 void DeletePetugas() {
     int role; // Variabel untuk menyimpan pilihan role
 
@@ -99,7 +99,8 @@ void TextBoxDeletePetugasByRole(char id_petugas[]) {
                 remove("../Database/Dat/TEMP_PETUGAS.dat");
                 MessageBox(NULL, "Penghapusan dibatalkan oleh pengguna.", "CANCEL",
                           MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);
-                return;
+                blankScreen();
+                MenuPetugas();
             }
             // Jika OK, lanjutkan tanpa menulis record ini ke file temp
             continue;
@@ -135,7 +136,7 @@ void TextBoxDeletePetugasByRole(char id_petugas[]) {
 
         if (ulangi == 'y' || ulangi == 'Y') {
             blankScreen();
-            ReadDeletePetugasByRole(); // Panggil ulang fungsi untuk input baru
+            ReadDeletePetugasByRole(id_petugas); // Panggil ulang fungsi untuk input baru
             return;
         } else if (ulangi == 't' || ulangi == 'T') {
             blankScreen();

@@ -761,70 +761,71 @@ void SpecialKeyCariDataLaporan(int x, int y, int lebar,int tinggi,int *output) {
 
 void frameTransaksi(int x, int y){
     SetColorBlock(9,9);
-    for(i = 10; i < 43; i++){  // Ubah batas bawah dari 42 ke 43 (+1)
+    for(i = 15; i < 41; i++){  // Ubah batas atas dari 10 ke 15 (+5), bawah dari 43 ke 41 (-2)
         for(j = 37; j < 116; j++){
             gotoprintchar(j,i,32);
         }
     }
     SetColorBlock(7,7);
-    gotoprintchar(37,10,219);
-    gotoprintchar(38,10,219);
-    gotoprintchar(37,11,219);
+    gotoprintchar(37,15,219);
+    gotoprintchar(38,15,219);
+    gotoprintchar(37,16,219);
 
-    gotoprintchar(37,42,219);
-    gotoprintchar(38,42,219);
-    gotoprintchar(37,41,219);
+    gotoprintchar(37,40,219);
+    gotoprintchar(38,40,219);
+    gotoprintchar(37,39,219);
 
-    gotoprintchar(114,10,219);
-    gotoprintchar(115,10,219);
-    gotoprintchar(115,11,219);
+    gotoprintchar(114,15,219);
+    gotoprintchar(115,15,219);
+    gotoprintchar(115,16,219);
 
-    gotoprintchar(114,43,219);  // Ubah dari 42 ke 43 (+1)
-    gotoprintchar(115,43,219);
-    gotoprintchar(115,42,219);
+    gotoprintchar(114,41,219);  // Ubah dari 43 ke 41 (-2)
+    gotoprintchar(115,41,219);
+    gotoprintchar(115,40,219);
 
     SetColorBlock(7,9);
-    gotoprintchar(40,10,201);
+    gotoprintchar(40,15,201);
     for(i=41; i <= 111;i++){
-        gotoprintchar(i,10,205);
+        gotoprintchar(i,15,205);
     }
-    gotoprintchar(112,10,187);
+    gotoprintchar(112,15,187);
 
-    gotoprintchar(40,11,188);
-    gotoprintchar(39,11,201);
-    gotoprintchar(39,12,188);
-    gotoprintchar(38,12,201);
+    gotoprintchar(40,16,188);
+    gotoprintchar(39,16,201);
+    gotoprintchar(39,17,188);
+    gotoprintchar(38,17,201);
 
-    for(i = 13; i <=40; i++){  // Ubah batas bawah dari 39 ke 40 (+1)
+    for(i = 18; i <=38; i++){  // Ubah batas atas dari 13 ke 18 (+5), bawah dari 40 ke 38 (-2)
         gotoprintchar(38,i,186);
     }
 
-    gotoprintchar(38,41,200);
-    gotoprintchar(39,41,187);
-    gotoprintchar(39,42,200);
-    gotoprintchar(40,42,187);
+    gotoprintchar(38,39,200);
+    gotoprintchar(39,39,187);
+    gotoprintchar(39,40,200);
+    gotoprintchar(40,40,187);
 
-    gotoprintchar(40,43,200);
+    gotoprintchar(40,41,200);
     for(i=41; i <= 111;i++){
-        gotoprintchar(i,43,205);  // Ubah dari 42 ke 43 (+1)
+        gotoprintchar(i,41,205);  // Ubah dari 43 ke 41 (-2)
     }
-    gotoprintchar(112,43,188);
-    gotoprintchar(112,42,201);
-    gotoprintchar(113,42,188);
-    gotoprintchar(113,41,201);
-    gotoprintchar(114,41,188);
+    gotoprintchar(112,41,188);
+    gotoprintchar(112,40,201);
+    gotoprintchar(113,40,188);
+    gotoprintchar(113,39,201);
+    gotoprintchar(114,39,188);
 
-    gotoprintchar(112,10,187);
-    gotoprintchar(112,11,200);
-    gotoprintchar(113,11,187);
-    gotoprintchar(113,12,200);
-    gotoprintchar(114,12,187);
+    gotoprintchar(112,15,187);
+    gotoprintchar(112,16,200);
+    gotoprintchar(113,16,187);
+    gotoprintchar(113,17,200);
+    gotoprintchar(114,17,187);
 
-    for(i = 13; i <=40; i++){  // Ubah batas bawah dari 39 ke 40 (+1)
+    for(i = 18; i <=38; i++){  // Ubah batas atas dari 13 ke 18 (+5), bawah dari 40 ke 38 (-2)
         gotoprintchar(114,i,186);
     }
     SetColorBlock(7,9);
 }
+
 
 
 void BlankDesain(){
@@ -903,6 +904,51 @@ void tampilanDetailTableTransaksiPembersihanRumah(){
     gotoprinttext(69,14,"ID JENIS LAYANAN");
     gotoprinttext(100,14,"ID PROMO");
     gotoprinttext(123,14,"TOTAL HARGA");
+}
+
+void tampilanDetailTableTransaksiPembersihanKendaraan(){
+    SetColorBlock(1,7);
+    /*border atas*/
+    for(i = 12; i <= 12;i++){
+        for(j = 37; j < 167; j++){
+            gotoprintchar(j,i,205);
+        }
+    }
+    /*border sudut kiri atas*/
+    gotoprintchar(36,12,206);
+    /*border sudut kanan atas*/
+    gotoprintchar(167,12,206);
+    /*border vertikal kebawah kiri*/
+    for(i = 13; i <= 38;i++){
+        gotoprintchar(36,i,186);
+    }
+    /*border vertikal kebawah kanan*/
+    for(i = 13; i <= 38;i++){
+        gotoprintchar(167,i,186);
+    }
+    /*border sudut bawah kiri*/
+    gotoprintchar(36,38,206);
+    for(i = 38; i <= 38;i++){
+        for(j = 37; j < 167; j++){
+            gotoprintchar(j,i,205);
+        }
+    }
+    /*border sudut bawah kanan*/
+    gotoprintchar(167,38,206);
+
+    SetColorBlock(7,1);
+    for(i = 13; i <= 15;i++){
+        for(j = 37; j < 167; j++){
+            gotoprintchar(j,i,32);
+        }
+    }
+    gotoprinttext(38,14,"NO.");
+    gotoprinttext(43,14,"ID TRANSAKSI");
+    gotoprinttext(57,14,"ID PELANGGAN");
+    gotoprinttext(69,14,"ID JENIS LAYANAN");
+    gotoprinttext(100,14,"ID JENIS KENDARAAN");
+    gotoprinttext(125,14,"ID PROMO");
+    gotoprinttext(135,14,"TOTAL HARGA");
 }
 
 void blankTable(){
@@ -1155,7 +1201,7 @@ void tampilanTableTransaksiPembersihanRumah(){
     /*border sudut bawah kanan*/
     gotoprintchar(167,38,206);
 
-    SetColorBlock(15,4);
+    SetColorBlock(7,1);
     for(i = 13; i <= 15;i++){
         for(j = 37; j < 167; j++){
             gotoprintchar(j,i,32);
@@ -1168,6 +1214,52 @@ void tampilanTableTransaksiPembersihanRumah(){
     gotoprinttext(100,14,"ID PROMO");
     gotoprinttext(123,14,"TOTAL HARGA");
 }
+
+void tampilanTableTransaksiPembersihanKendaraan(){
+    SetColorBlock(1,7);
+    /*border atas*/
+    for(i = 12; i <= 12;i++){
+        for(j = 37; j < 167; j++){
+            gotoprintchar(j,i,205);
+        }
+    }
+    /*border sudut kiri atas*/
+    gotoprintchar(36,12,206);
+    /*border sudut kanan atas*/
+    gotoprintchar(167,12,206);
+    /*border vertikal kebawah kiri*/
+    for(i = 13; i <= 38;i++){
+        gotoprintchar(36,i,186);
+    }
+    /*border vertikal kebawah kanan*/
+    for(i = 13; i <= 38;i++){
+        gotoprintchar(167,i,186);
+    }
+    /*border sudut bawah kiri*/
+    gotoprintchar(36,38,206);
+    for(i = 38; i <= 38;i++){
+        for(j = 37; j < 167; j++){
+            gotoprintchar(j,i,205);
+        }
+    }
+    /*border sudut bawah kanan*/
+    gotoprintchar(167,38,206);
+
+    SetColorBlock(7,1);
+    for(i = 13; i <= 15;i++){
+        for(j = 37; j < 167; j++){
+            gotoprintchar(j,i,32);
+        }
+    }
+    gotoprinttext(38,14,"NO.");
+    gotoprinttext(43,14,"ID TRANSAKSI");
+    gotoprinttext(57,14,"ID PELANGGAN");
+    gotoprinttext(75,14,"ID JENIS LAYANAN");
+    gotoprinttext(95,14,"ID JENIS KENDARAAN");
+    gotoprinttext(115,14,"ID PROMO");
+    gotoprinttext(135,14,"TOTAL HARGA");
+}
+
 
 void uangLaporan(int number,char output[80]){
     if(number < 1000) sprintf(output, "%d", number);

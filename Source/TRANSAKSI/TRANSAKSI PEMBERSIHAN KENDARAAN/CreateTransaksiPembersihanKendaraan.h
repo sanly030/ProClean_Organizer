@@ -21,9 +21,9 @@ void TambahTransaksiPembersihanKendaraan() {
         trsTKendaraan.id_TKendaraan = id+1;
     }
     SetColorBlock(7,9);
-    gotoxy(40, 12);
-    printf("I D  T R A N S A K S I     :");
-    gotoxy(70, 12);
+    gotoxy(42, 18);
+    printf("I D  T R A N S A K S I              :");
+    gotoxy(80, 18);
     generateid("TRSPK",trsTKendaraan.id_TKendaraan);
     fclose(fileTransaksiKendaraan);
     TambahDetailTransaksiPembersihanKendaraan();
@@ -34,25 +34,29 @@ void TambahDetailTransaksiPembersihanKendaraan() {
     found = 0;
     SetColorBlock(7,9);
     dTKendaraan.id_TKendaraan = trsTKendaraan.id_TKendaraan;
-    gotoxy(40,12);
-    printf("I D  T R A N S A K S I     :");
-    gotoxy(70,12);
+    gotoxy(42,18);
+    printf("I D  T R A N S A K S I              :");
+    gotoxy(80,18);
     generateid("TRSPK",dTKendaraan.id_TKendaraan);
 
-    gotoxy(40,14);
-    printf("N A M A  T R A N S A K S I  :");
-    gotoxy(70,14);
+    gotoxy(42,20);
+    printf("N A M A  T R A N S A K S I          :");
+    gotoxy(80,20);
     getinput(dTKendaraan.namaTKendaraan,25,2);
+    if(strcmpi(dTKendaraan.namaTKendaraan, "exit")==0) {
+        blankScreen();
+        Dashboard();
+    }
 
     do{
         fflush(stdin);
         showCursor();
         BlankDesain();
         readCreatePelangganinTransaksi();
-        gotoxy(40, 16);
+        gotoxy(42, 22);
         SetColorBlock(7,9);
-        printf("I D  P E L A N G G A N     :  PLG");
-        gotoxy(73, 16);
+        printf("I D  P E L A N G G A N              : PLG");
+        gotoxy(83, 22);
         getnum(&trsTKendaraan.id_plg,3);
         found = 0;
         if(trsTKendaraan.id_plg == 0){
@@ -65,10 +69,48 @@ void TambahDetailTransaksiPembersihanKendaraan() {
                 found = 1;
                 trsTKendaraan.id_plg = plg.id_plg;
                 strcpy(trsTKendaraan.namaPlg,plg.namaPlg);
+
             }
         }
         if (found == 0){
             MessageBox(NULL,"Maaf ID Pelanggan Tidak Tersedia","NOTIFICATION!",MB_OK|MB_ICONINFORMATION|MB_DEFAULT_DESKTOP_ONLY);
+            clearArea(83,22,1,1);
+        }
+        BlankDesain();
+        hideCursor();
+    }while(found == 0);
+
+    SetColorBlock(7,9);
+    clearArea(42,22,38,1);
+    gotoxy(42,22);
+    printf("N A M A  P E L A N G G A N          :");
+    gotoxy(80,22);
+    printf("%s", trsTKendaraan.namaPlg);
+
+    do {fflush(stdin);
+        showCursor();
+        BlankDesain();
+        readCreateKendaraaninTransaksi();
+        gotoxy(42, 24);
+        SetColorBlock(7,9);
+        printf("I D  J E N I S  K E N D A R A A N   : JNK");
+        gotoxy(83, 24);
+        getnum(&trsTKendaraan.id_jeniskendaraan,3);
+        found = 0;
+        if(trsTKendaraan.id_jeniskendaraan == 0){
+            BlankDashboard();
+            Dashboard();
+        }
+        arskdr = fopen("../Database/Dat/JENIS_KENDARAAN.dat", "rb");
+        while(fread(&kdr,sizeof (kdr),1,arskdr)==1){
+            if(trsTKendaraan.id_jeniskendaraan == kdr.id_jeniskendaraan){
+                found = 1;
+                trsTKendaraan.id_jeniskendaraan = kdr.id_jeniskendaraan;
+                strcpy(trsTKendaraan.jenisKendaraan,kdr.jenisKendaraan);
+            }
+        }
+        if (found == 0){
+            MessageBox(NULL,"Maaf ID Jenis Kendaraan Tidak Tersedia","NOTIFICATION!",MB_OK|MB_ICONINFORMATION|MB_DEFAULT_DESKTOP_ONLY);
             clearArea(73,17,3,1);
         }
         BlankDesain();
@@ -76,20 +118,20 @@ void TambahDetailTransaksiPembersihanKendaraan() {
     }while(found == 0);
 
     SetColorBlock(7,9);
-    gotoxy(40,18);
-    printf("N A M A  P E L A N G G A N  :");
-    gotoxy(70,18);
-    printf("%s", trsTKendaraan.namaPlg);
+    gotoxy(42,24);
+    printf("J E N I S  K E N D A R A A N        :");
+    gotoxy(80,24);
+    printf("%s", trsTKendaraan.jenisKendaraan);
 
     do{
         fflush(stdin);
         showCursor();
         BlankDesain();
         readCreateJenisPaketinTransaksiKendaraan();
-        gotoxy(40, 20);
+        gotoxy(42, 26);
         SetColorBlock(7,9);
-        printf("I D  J E N I S  P A K E T   :  JPP");
-        gotoxy(74, 20);
+        printf("I D  J E N I S  P A K E T           : JPP");
+        gotoxy(83, 26);
         getnum(&trsTKendaraan.id_jnslayanan,3);
         found = 0;
         if(trsTKendaraan.id_jnslayanan == 0){
@@ -115,9 +157,9 @@ void TambahDetailTransaksiPembersihanKendaraan() {
 
     }while(found == 0);
     SetColorBlock(7,9);
-    gotoxy(40,22);
-    printf("N A M A  J E N I S  P A K E T :");
-    gotoxy(70,22);
+    gotoxy(42,26);
+    printf("N A M A  J E N I S  P A K E T       :");
+    gotoxy(80,26);
     printf("%s", trsTKendaraan.jenispaket);
 
     do{
@@ -125,10 +167,10 @@ void TambahDetailTransaksiPembersihanKendaraan() {
         showCursor();
         BlankDesain();
         readCreatePembayaraninTransaksi();
-        gotoxy(40, 24);
+        gotoxy(42, 28);
         SetColorBlock(7,9);
-        printf("I D  J E N I S  P E M B A Y A R A N: JPR");
-        gotoxy(81, 24);
+        printf("I D  J E N I S  P E M B A Y A R A N : JPR");
+        gotoxy(83, 28);
         getnum(&trsTKendaraan.id_pembayaran,3);
         found = 0;
         if(trsTKendaraan.id_jnslayanan == 0){
@@ -153,9 +195,10 @@ void TambahDetailTransaksiPembersihanKendaraan() {
 
     }while(found == 0);
     SetColorBlock(7,9);
-    gotoxy(40,26);
-    printf("N A M A  J E N I S  P E M B A Y A R A N:");
-    gotoxy(75,26);
+    clearArea(42,28,41,1);
+    gotoxy(42,28);
+    printf("J E N I S  P E M B A Y A R A N      :");
+    gotoxy(80,28);
     printf("%s", trsTKendaraan.namaPembayaran);
 
     do{
@@ -163,10 +206,10 @@ void TambahDetailTransaksiPembersihanKendaraan() {
         showCursor();
         BlankDesain();
         readCreatePromoinTransaksi();
-        gotoxy(40, 28);
+        gotoxy(42, 30);
         SetColorBlock(7,9);
-        printf("I D  P R O M O             : PRM");
-        gotoxy(73, 28);
+        printf("I D  P R O M O                      : PRM");
+        gotoxy(83, 30);
         getnum(&trsTKendaraan.id_promo,3);
         found = 0;
         if(trsTKendaraan.id_promo == 0){
@@ -189,53 +232,70 @@ void TambahDetailTransaksiPembersihanKendaraan() {
         hideCursor();
     }while(found == 0);
     SetColorBlock(7,9);
-    gotoxy(40,30);
-    printf("N A M A  J E N I S  P R O M O :");
-    gotoxy(75,30);
+    gotoxy(42,30);
+    printf("N A M A  J E N I S  P R O M O       : ");
+    gotoxy(80,30);
     printf("%s", trsTKendaraan.namaPromo);
 
-    gotoxy(40, 32);
-    printf("T G L  P E M E S A N A N    : ");
-    gotoprinttext(69, 32, "  /  /     \n");
+    gotoxy(42, 32);
+    printf("T G L  P E M E S A N A N            : ");
+    gotoprinttext(80, 32, "  /  /     \n");
     do {
-        gotoxy(69, 32);
+        gotoxy(80, 32);
         getnum(&trsTKendaraan.pemesanan.hari,2);
         if(trsTKendaraan.pemesanan.hari > 31 || trsTKendaraan.pemesanan.hari < 1 ){
             MessageBox(NULL,"Jangka Inputan hari 1 - 31","NOTIFICATION!",MB_OK|MB_ICONINFORMATION|MB_DEFAULT_DESKTOP_ONLY);
-            clearArea(69,15,2,1);
+            clearArea(80,32,2,1);
         }
     }
     while(trsTKendaraan.pemesanan.hari > 31 || trsTKendaraan.pemesanan.hari < 1 );
     do {
-        gotoxy(72, 32);
+        gotoxy(83, 32);
         getnum(&trsTKendaraan.pemesanan.bulan,2);
         if(trsTKendaraan.pemesanan.bulan > 12 || trsTKendaraan.pemesanan.bulan < 1 ){
             MessageBox(NULL,"Jangka Inputan bulan 1 - 12","NOTIFICATION!",MB_OK|MB_ICONINFORMATION|MB_DEFAULT_DESKTOP_ONLY);
-            clearArea(72,15,2,1);
+            clearArea(86,32,2,1);
         }
     }while(trsTKendaraan.pemesanan.bulan > 12 || trsTKendaraan.pemesanan.bulan < 1);
     do {
-        gotoxy(75, 32);
+        gotoxy(86, 32);
         getnum(&trsTKendaraan.pemesanan.tahun, 4);
         hideCursor();
         if (trsTKendaraan.pemesanan.tahun < 2025 || trsTKendaraan.pemesanan.tahun > 2028) {
             MessageBox(NULL, "Jangka Inputan tahun 2025 - 2028", "NOTIFICATION!",MB_OK | MB_ICONINFORMATION | MB_DEFAULT_DESKTOP_ONLY);
-            clearArea(75, 15, 4, 1);
+            clearArea(86, 32, 4, 1);
         }
     }while(trsTKendaraan.pemesanan.tahun < 2025  || trsTKendaraan.pemesanan.tahun > 2028);
 
 
     SetColorBlock(7,9);
-    gotoxy(40,34);
-    printf("D U R A S I               :");
-    gotoxy(70,34);
+    gotoxy(42,34);
+    printf("D U R A S I                         :");
+    gotoxy(80,34);
     printf("%d Menit", trsTKendaraan.durasi);
 
     SetColorBlock(7,9);
-    gotoxy(40,34);
-    printf("T O T A L  H A R G A        :");
-    gotoxy(70,34);
+    gotoxy(42,36);
+    printf("T O T A L  H A R G A                :");
+    gotoxy(80,36);
     printf("Rp. %.0f", trsTKendaraan.totalHarga);
+    dTKendaraan.totalHarga = trsTKendaraan.totalHarga;
+
+    fileDTKendaraan = fopen("../TRANSAKSI/../Soure/../Database/Dat/DETAILTRANSAKSIKENDARAAN.dat", "ab+");
+    fwrite(&dTKendaraan,sizeof(dTKendaraan),1,fileDTKendaraan);
+    fclose(fileDTKendaraan);
+
+    strcpy(trsTKendaraan.Status, Status[0]);
+    SetColorBlock(7,9);
+    gotoxy(42,38);
+    printf("S T A T U S              :");
+    gotoxy(80,38);
+    printf("%s", trsTKendaraan.Status);
+
+    fileTransaksiKendaraan = fopen("../TRANSAKSI/../Source/../Database/Dat/TRANSAKSIPEMBERSIHANKENDARAAN.dat", "ab");
+    fwrite(&trsTKendaraan,sizeof(dTKendaraan),1,fileTransaksiKendaraan);
+    fclose(fileTransaksiKendaraan);
+    MessageBox(NULL, "Pemesanan berhasil!", "NOTIFICATION", MB_OK |MB_ICONINFORMATION| MB_DEFAULT_DESKTOP_ONLY);
 
 }
 
@@ -244,4 +304,6 @@ void createTransaksiKendaraan(){
     SetColorBlock(1,7);
     TambahTransaksiPembersihanKendaraan();
     fclose(fileTransaksiKendaraan);
+    blankScreen();
+    Dashboard();
 }

@@ -167,6 +167,7 @@ FILE *arsplg;
         int id_jeniskendaraan;
         string jenisKendaraan;
     }kendaraan;
+    FILE * arskdr;
     kendaraan kdr;
 
     typedef struct TRumah{
@@ -219,10 +220,13 @@ struct TRumah temptrsTRumah;
         string namaPromo;
         tanggal pemesanan;
         int durasi;
+        string jenisKendaraan;
         string almt;
         string namaPembayaran;
+        char Status[100];
     };
     struct TKendaraan trsTKendaraan;
+struct TKendaraan temptrsTKendaraan;
     FILE *fileTransaksiKendaraan;
 
 
@@ -236,6 +240,8 @@ struct TRumah temptrsTRumah;
         string namaPromo;
         string namaTRumah;
         string namaTKendaraan;
+        string jenisKendaraan;
+        char namaPlg[20];
         tanggal pemesanan;
         int durasi;
         float totalHarga;
@@ -276,7 +282,9 @@ void convertBulan(int bulan){
 typedef struct TPenjadwalan{
     int id_Penjadwalan;
     int id_TRumah;
+    string namaTRumah;
     int id_TKendaraan;
+    string namaTKendaraan;
     int id_petugas_str;
     string nama;
     tanggal pemesanan;
@@ -284,6 +292,14 @@ typedef struct TPenjadwalan{
     int durasi;
     char Status[100];
 };
-struct TRumah trsTRumah;
-struct TRumah temptrsTRumah;
-FILE *fileTransaksiRumah;
+struct TPenjadwalan trsTPenjadwalan;
+struct TPenjadwalan temptrsTPenjadwalan;
+FILE *fileTransaksiPenjadwalan;
+
+typedef struct DTPenjadwalan {
+    int id_Penjadwalan;
+    string nama;
+    string alamat;
+};
+struct DTPenjadwalan dTPenjadwalan;
+FILE *fileDTPenjadwalan;
